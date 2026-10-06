@@ -232,40 +232,6 @@ uv run discoverphysics \
   --num-seeds 5
 ```
 
-### Package the Public Dataset
-
-From the adapters repository root, generate into a separate dataset checkout and
-write its digest-pinned manifest. The packaging script requires exactly the
-11-world, two-seed public suite and includes the dataset-level metric:
-
-```bash
-uv run --project src/discoverphysics discoverphysics \
-  --output-dir ../harbor-datasets/datasets/discoverphysics
-uv run --project src/discoverphysics --extra harbor python src/discoverphysics/scripts/package_dataset.py \
-  ../harbor-datasets/datasets/discoverphysics
-```
-
-### Bundle Oracle Evidence
-
-Keep the generated tasks unchanged after a run. From the adapters repository root:
-
-```bash
-uv run --project src/discoverphysics --extra harbor python src/discoverphysics/scripts/bundle_evidence.py \
-  --job-dir "jobs/discoverphysics/$oracle_run" \
-  --tasks-dir "datasets/$oracle_run" \
-  --output-dir "jobs/discoverphysics-evidence/adapters/discoverphysics/$oracle_run"
-```
-
-The script checks every task against its recorded lock digest, removes provider
-credentials from copied configs/logs, preserves historical scores, recomputes
-metrics with a bundled copy of `metric.py`, and writes a per-task CSV and SHA-256
-inventory. It rejects an existing output directory. Original job files remain
-untouched. Review the sanitized bundle before uploading it; do not upload raw
-job configuration files containing provider keys.
-
-Upload the latest oracle evidence alongside the reviewer's actual parity results
-under `adapters/discoverphysics/` in the same Hugging Face evidence PR.
-
 ## Comparison with Original Benchmark (Parity)
 
 ### Parity type: Scenario 3 (custom upstream agent)
@@ -343,71 +309,25 @@ evidence; it is not an original-versus-adapter parity claim.
 
 ## Notes & Caveats
 
-### Migration and Outstanding Review
+[Adapter PR #9](https://github.com/harbor-framework/adapters/pull/9) continues
+[the original review](https://github.com/harbor-framework/harbor/pull/2974).
+Generated task contents match the evaluated dataset; migration changes only
+packaging, entry points, and paths.
 
-The October 6 migration passes 134 unit tests, Ruff lint/format, package type
-checking, and source/wheel builds against external Harbor 0.22.0. The installed
-wheel imports the custom agent and includes its task templates. All 22
-regenerated task digests exactly match the September 30 oracle run, and all
-three run configurations validate. No new model evaluations were launched.
-See [migration check results](validation/migration-checks.json).
-
-[Replacement adapter PR #9](https://github.com/harbor-framework/adapters/pull/9)
-continues [Harbor PR #2974](https://github.com/harbor-framework/harbor/pull/2974)
-under the standalone adapters layout. The custom agent and its protocol helper
-are installed as part of `discoverphysics`; Harbor is an external optional
-runtime dependency. Prompts, simulator sources, fitting, grading, and task names
-are unchanged by this migration. The existing oracle scores retain their
-original task and grading versions.
-
-Outstanding review items carried forward:
-
-- Incorporate the reviewer's scored parity outcomes, transcripts, configuration,
-  revisions, and HF evidence link when available. `parity_experiment.json` is
-  intentionally absent until measured results exist; the structural validator
-  reports this outstanding requirement. Do not discard scored failures or
-  count infrastructure errors as benchmark failures.
-- Complete the separate standard CLI-agent compatibility check and publish the
-  dataset/evidence. Neither the oracle nor a successful package migration
-  establishes agent parity or CLI-agent compatibility.
-- Resolve the open [verifier-credential thread](https://github.com/harbor-framework/harbor/pull/2974#discussion_r4092711477),
-  [parity-prompt thread](https://github.com/harbor-framework/harbor/pull/2974#discussion_r4092711577),
-  and [experiment-batch thread](https://github.com/harbor-framework/harbor/pull/2974#discussion_r4092711698).
-  The result token is root-only, but shares the main container with the agent;
-  discovery credentials allow access to native parity prompts; experiment
-  requests have a payload-size bound but no per-round work bound. These existing
-  behaviors are carried over for review, not silently changed during parity.
-- Detailed verifier results, including private judge reasoning, are written to
-  the shared verifier log mount. Restricting their visibility remains a known
-  follow-up; the current separation does not protect those files from an agent
-  that can access that mount during verification.
-
-### Dataset Submission and Evidence
-
-- [Dataset draft PR #259](https://github.com/harbor-framework/harbor-datasets/pull/259)
-  contains all 22 generated tasks, `dataset.toml` with exact content digests,
-  the custom `metric.py`, and upstream licenses.
-- [Submitted dataset snapshot](https://github.com/Randl/harbor-datasets/tree/4952f1fe2e0104d6ae5467c52444dbd908b13828/datasets/discoverphysics)
-  contains the compact package: approximately 1.2 MB, with Docker build
-  definitions and small service scripts. The physics image fetches and verifies
-  the pinned upstream revision instead of duplicating its sources in each task.
-  That historical snapshot records the original source hashes in `source.json`.
-  The migration preserves generated task contents; the adapter source now lives
-  in `harbor-framework/adapters` under `src/discoverphysics`.
-- [Preserved oracle summaries and per-task scores](validation/README.md) cover
-  the latest run, `discoverphysics-oracle-20260930-102507`.
-- Oracle evidence is prepared for `harborframework/parity-experiments` under
-  `adapters/discoverphysics/`. Upload and its public evidence link are pending.
-  The latest judged run includes sanitized job/trial configs, lockfiles, logs,
-  per-task scores, full-precision experiments, exact task sources, and checksums.
-- Agent parity is being run separately by the Harbor reviewer (Audrey Zheng). The separate
-  standard CLI-agent compatibility check remains pending; an oracle run does
-  not satisfy that requirement.
-
-Dataset publication does not block local evaluation. Neither the draft dataset
-submission nor the oracle results claim that agent parity has passed.
-
-
+- Dataset: [PR #259](https://github.com/harbor-framework/harbor-datasets/pull/259),
+  [evaluated snapshot](https://github.com/Randl/harbor-datasets/tree/4952f1fe2e0104d6ae5467c52444dbd908b13828/datasets/discoverphysics).
+  Registry publication is pending. For repackaging, follow the repository's
+  [dataset registration guide](../../docs/adapters.mdx#step-8-register-the-dataset).
+- [Latest oracle evidence](validation/README.md): 22/22 passed. Full logs and
+  experiment artifacts are prepared for `harborframework/parity-experiments`;
+  the public upload link is pending. Use the repository's
+  [upload skill](../../skills/upload-parity-experiments/SKILL.md) for publication.
+- Reviewer-coordinated parity and the separate standard CLI-agent check remain
+  pending. An oracle pass does not establish either result.
+- Open review limitations: the root-only verifier token shares the main container
+  with the agent; discovery credentials expose native parity prompts; experiment
+  requests have no per-round work bound; private judge reasoning is written to
+  the shared verifier log mount. Review threads are linked in the PR.
 - `--upstream-root` requires a Git checkout at the requested commit. Upstream assets
   must be pristine, including no untracked or ignored files in their source
   directories; source archives without Git provenance are rejected. Image builds

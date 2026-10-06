@@ -26,12 +26,6 @@ packages = ["src/discoverphysics"]
 testpaths = ["tests/unit"]
 asyncio_mode = "auto"
 
-[tool.ruff.lint.isort]
-known-first-party = ["discoverphysics"]
-
-[tool.ruff]
-line-length = 88
-
 [tool.ruff.lint]
 select = ["E4", "E7", "E9", "F"]
 

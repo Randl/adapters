@@ -16,12 +16,8 @@ The Harbor runtime Git revision was not recorded; provenance retains null.
 The complete sanitized evidence for this run also includes per-trial
 logs/configurations, full-precision experiments, exact task snapshots, and
 checksums. Hugging Face publication is pending coordination with the reviewer.
-Recreate the bundle using `scripts/bundle_evidence.py` and the original task
-directory; upload under `adapters/discoverphysics/` in
-`harborframework/parity-experiments`.
-
-`migration-checks.json` and `migration-pytest.txt` record package checks,
-including the regenerated task digest comparison and 134 passing unit tests.
+Use the repository's [upload skill](../../../skills/upload-parity-experiments/SKILL.md)
+to publish under `adapters/discoverphysics/` in `harborframework/parity-experiments`.
 
 Dataset PR: https://github.com/harbor-framework/harbor-datasets/pull/259
 Original review: https://github.com/harbor-framework/harbor/pull/2974
