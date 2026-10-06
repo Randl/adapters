@@ -369,7 +369,8 @@ regenerated task digests exactly match the September 30 oracle run, and all
 three run configurations validate. No new model evaluations were launched.
 See [migration check results](validation/migration-checks.json).
 
-This package continues [Harbor PR #2974](https://github.com/harbor-framework/harbor/pull/2974)
+[Replacement adapter PR #9](https://github.com/harbor-framework/adapters/pull/9)
+continues [Harbor PR #2974](https://github.com/harbor-framework/harbor/pull/2974)
 under the standalone adapters layout. The custom agent and its protocol helper
 are installed as part of `discoverphysics`; Harbor is an external optional
 runtime dependency. Prompts, simulator sources, fitting, grading, and task names

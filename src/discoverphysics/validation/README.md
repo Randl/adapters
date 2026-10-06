@@ -31,5 +31,6 @@ and the original task directories; upload them under
 
 Dataset PR: https://github.com/harbor-framework/harbor-datasets/pull/259
 Original review: https://github.com/harbor-framework/harbor/pull/2974
+Migration PR: https://github.com/harbor-framework/adapters/pull/9
 
 Archive SHA-256: `0cd1b040305baf840e7fbebcf42c883e57956c1284a4113498774f290ffd23aa`
