@@ -167,21 +167,8 @@ docker run --rm \
 ```
 
 The oracle uses `dt=0.005`, matching the pinned simulator integration step.
-All 11 canonical laws pass trajectory validation through the hardened law runner
-against the pinned evaluators with observation noise disabled.
-The September 24, 2026 judged oracle run
-(`discoverphysics-oracle-20260924-094246`) passed all 22 tasks with zero errors or
-retries and mean reward `1.0`, using `claude-opus-4-6`. Mean explanation score was
-`0.9545` (range `0.8–1.0`), and all 22 full-precision experiment artifacts were
-retained. The run took approximately 17 minutes. Its `E@1` and `E@2` are both
-`0.5`, reflecting upstream's fixed 22-world denominator for the 11 supported worlds.
-All 22 retained task snapshots match the content digests in the original trial
-lockfiles. The original job did not record the Harbor Git revision; the evidence
-bundle reports that revision as unknown rather than inferring it from dates.
-These snapshots predate the subsequently submitted dataset package.
-
 The September 30, 2026 judged oracle run
-(`discoverphysics-oracle-20260930-102507`) also passed all 22 tasks with zero
+(`discoverphysics-oracle-20260930-102507`) passed all 22 tasks with zero
 errors or retries in approximately 12 minutes. Mean explanation score was
 `0.95` (range `0.8–1.0`), and every trial completed two experiment rounds.
 All 22 task snapshots match their recorded lock digests and the task files in
@@ -189,12 +176,10 @@ the compact dataset submission at `4952f1fe`. This run validates the build-time
 upstream fetch and the current verifier; its full-precision experiment artifacts
 and sanitized logs are included in the evidence bundle.
 
-The September 30 offline check passed all 11 canonical laws against the pinned
-noiseless evaluators, and 134 adapter unit tests passed. Ruff checks passed;
-repository-wide type checking reported unrelated missing `harbor_atif2otel`
-and `sky.server` imports. This offline check is not a new 22-task judged run.
-
-Recomputed historical metrics retain the 22/22 pass result and explanation mean.
+The run's mean reward is `1.0`; `E@1` and `E@2` are both `0.5`, reflecting
+upstream's fixed 22-world denominator for the 11 supported worlds. Its Harbor
+runtime Git revision was not recorded and remains unknown in the provenance.
+Recomputed metrics agree with the recorded result.
 With the restored upstream cutoff, no geometric-MSE field is emitted because
 all 22 normalized MSEs fall below `1e-14`. The evidence retains the original
 job summary and labels the recomputed summary separately.
@@ -278,9 +263,7 @@ inventory. It rejects an existing output directory. Original job files remain
 untouched. Review the sanitized bundle before uploading it; do not upload raw
 job configuration files containing provider keys.
 
-The prepared September 30 bundle additionally includes the offline oracle log,
-its Python/package versions and pinned-source verification, and the unit/lint/
-type-check outputs. Upload these alongside the author's actual parity results
+Upload the latest oracle evidence alongside the reviewer's actual parity results
 under `adapters/discoverphysics/` in the same Hugging Face evidence PR.
 
 ## Comparison with Original Benchmark (Parity)
@@ -411,11 +394,11 @@ Outstanding review items carried forward:
   That historical snapshot records the original source hashes in `source.json`.
   The migration preserves generated task contents; the adapter source now lives
   in `harbor-framework/adapters` under `src/discoverphysics`.
-- [Preserved oracle summaries and per-task scores](validation/README.md) include
-  both successful jobs and a separate infrastructure/recovery history.
+- [Preserved oracle summaries and per-task scores](validation/README.md) cover
+  the latest run, `discoverphysics-oracle-20260930-102507`.
 - Oracle evidence is prepared for `harborframework/parity-experiments` under
   `adapters/discoverphysics/`. Upload and its public evidence link are pending.
-  Both judged runs include sanitized job/trial configs, lockfiles, logs,
+  The latest judged run includes sanitized job/trial configs, lockfiles, logs,
   per-task scores, full-precision experiments, exact task sources, and checksums.
 - Agent parity is being run separately by the Harbor reviewer (Audrey Zheng). The separate
   standard CLI-agent compatibility check remains pending; an oracle run does

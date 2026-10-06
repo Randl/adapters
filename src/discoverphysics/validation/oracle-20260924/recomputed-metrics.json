@@ -1,1 +1,0 @@
-{"trial_pass_rate": 1.0, "worlds_passed_at_1": 11, "world_pass_rate_at_1": 1.0, "expected_world_pass_rate_at_1": 0.5, "expected_world_pass_rate_at_1_sem": 0.0, "worlds_passed_at_2": 11, "world_pass_rate_at_2": 1.0, "expected_world_pass_rate_at_2": 0.5, "expected_world_pass_rate_at_2_sem": 0.0, "mean_explanation_score": 0.9545454545454546}
