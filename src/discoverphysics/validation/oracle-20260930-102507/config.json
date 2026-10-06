@@ -1,0 +1,22 @@
+{
+  "job_name": "discoverphysics-oracle-20260930-102507",
+  "jobs_dir": "jobs/discoverphysics",
+  "n_concurrent_trials": 2,
+  "environment": {
+    "type": "docker",
+    "force_build": true
+  },
+  "metrics": [
+    {
+      "type": "uv-script",
+      "kwargs": {
+        "script_path": "adapters/discoverphysics/src/discoverphysics/metric.py"
+      }
+    }
+  ],
+  "datasets": [
+    {
+      "path": "datasets/discoverphysics-oracle-20260930-102507"
+    }
+  ]
+}

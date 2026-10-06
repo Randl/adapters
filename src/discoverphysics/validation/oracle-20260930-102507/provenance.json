@@ -1,0 +1,17 @@
+{
+  "job_name": "discoverphysics-oracle-20260930-102507",
+  "trial_count": 22,
+  "task_digests_verified": true,
+  "upstream_commits": [
+    "33b7fa9df96de9c35744efd181ca7e5a8dd60ad5"
+  ],
+  "harbor_commit_at_run": null,
+  "harbor_commit_at_export": "94e9860b74f671d6b34c473ce8a94a3e952d80fc",
+  "notes": [
+    "The original run did not record its Harbor Git revision; no revision is inferred from timestamps.",
+    "Bundled tasks match recorded lock digests; ignored Python caches are omitted.",
+    "Provider credentials are redacted in job files; task files are copied unchanged.",
+    "job/result.json preserves historical metrics; recomputed-metrics.json uses the bundled metric.py.",
+    "This is oracle evidence, not an agent parity or standard CLI-agent compatibility result."
+  ]
+}

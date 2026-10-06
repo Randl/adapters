@@ -1,0 +1,246 @@
+{
+  "id": "584c516a-9adf-462f-9788-970f8e2deb96",
+  "started_at": "2026-09-24T09:42:59.750736",
+  "updated_at": "2026-09-24T10:00:11.369640",
+  "finished_at": "2026-09-24T10:00:11.369640",
+  "n_total_trials": 22,
+  "stats": {
+    "n_completed_trials": 22,
+    "n_errored_trials": 0,
+    "n_running_trials": 0,
+    "n_pending_trials": 0,
+    "n_cancelled_trials": 0,
+    "n_retries": 0,
+    "evals": {
+      "oracle__discoverphysics-oracle-20260924-094246": {
+        "n_trials": 22,
+        "n_errors": 0,
+        "metrics": [
+          {
+            "trial_pass_rate": 1.0,
+            "worlds_passed_at_1": 11,
+            "world_pass_rate_at_1": 1.0,
+            "expected_world_pass_rate_at_1": 0.5,
+            "expected_world_pass_rate_at_1_sem": 0.0,
+            "worlds_passed_at_2": 11,
+            "world_pass_rate_at_2": 1.0,
+            "expected_world_pass_rate_at_2": 0.5,
+            "expected_world_pass_rate_at_2_sem": 0.0,
+            "mean_explanation_score": 0.9545454545454546,
+            "geometric_mean_normalized_mse": 9.999999999999987e-15
+          }
+        ],
+        "pass_at_k": {},
+        "reward_stats": {
+          "reward": {
+            "1.0": [
+              "fractional__seed-1__Whn3iaR",
+              "oscillator__seed-0__9H6F7AA",
+              "fractional__seed-0__oYgvZS2",
+              "oscillator__seed-1__iKEqW9z",
+              "hubble__seed-1__VPLH5a9",
+              "dark_matter__seed-0__Lb4kYhK",
+              "dark_matter__seed-1__k37GyPR",
+              "hubble__seed-0__CHzNAW6",
+              "extra_dimensions__seed-1__qnNujcG",
+              "coulomb_easy__seed-1__pyBervh",
+              "extra_dimensions__seed-0__ekt76Dv",
+              "coulomb_easy__seed-0__y4xq2K6",
+              "yukawa__seed-1__Vc8n7Uj",
+              "yukawa__seed-0__abYXU7B",
+              "three_species__seed-1__Jbpwoxf",
+              "three_species__seed-0__vxcUGzv",
+              "gravity__seed-1__etTiAHo",
+              "ether__seed-1__PLcTj65",
+              "circle__seed-0__mXerQ5f",
+              "ether__seed-0__gcgwifx",
+              "gravity__seed-0__NvcsyK3",
+              "circle__seed-1__T2SVj57"
+            ]
+          },
+          "world_index": {
+            "5": [
+              "fractional__seed-1__Whn3iaR",
+              "fractional__seed-0__oYgvZS2"
+            ],
+            "8": [
+              "oscillator__seed-0__9H6F7AA",
+              "oscillator__seed-1__iKEqW9z"
+            ],
+            "7": [
+              "hubble__seed-1__VPLH5a9",
+              "hubble__seed-0__CHzNAW6"
+            ],
+            "2": [
+              "dark_matter__seed-0__Lb4kYhK",
+              "dark_matter__seed-1__k37GyPR"
+            ],
+            "4": [
+              "extra_dimensions__seed-1__qnNujcG",
+              "extra_dimensions__seed-0__ekt76Dv"
+            ],
+            "1": [
+              "coulomb_easy__seed-1__pyBervh",
+              "coulomb_easy__seed-0__y4xq2K6"
+            ],
+            "10": [
+              "yukawa__seed-1__Vc8n7Uj",
+              "yukawa__seed-0__abYXU7B"
+            ],
+            "9": [
+              "three_species__seed-1__Jbpwoxf",
+              "three_species__seed-0__vxcUGzv"
+            ],
+            "6": [
+              "gravity__seed-1__etTiAHo",
+              "gravity__seed-0__NvcsyK3"
+            ],
+            "3": [
+              "ether__seed-1__PLcTj65",
+              "ether__seed-0__gcgwifx"
+            ],
+            "0": [
+              "circle__seed-0__mXerQ5f",
+              "circle__seed-1__T2SVj57"
+            ]
+          },
+          "seed": {
+            "1": [
+              "fractional__seed-1__Whn3iaR",
+              "oscillator__seed-1__iKEqW9z",
+              "hubble__seed-1__VPLH5a9",
+              "dark_matter__seed-1__k37GyPR",
+              "extra_dimensions__seed-1__qnNujcG",
+              "coulomb_easy__seed-1__pyBervh",
+              "yukawa__seed-1__Vc8n7Uj",
+              "three_species__seed-1__Jbpwoxf",
+              "gravity__seed-1__etTiAHo",
+              "ether__seed-1__PLcTj65",
+              "circle__seed-1__T2SVj57"
+            ],
+            "0": [
+              "oscillator__seed-0__9H6F7AA",
+              "fractional__seed-0__oYgvZS2",
+              "dark_matter__seed-0__Lb4kYhK",
+              "hubble__seed-0__CHzNAW6",
+              "extra_dimensions__seed-0__ekt76Dv",
+              "coulomb_easy__seed-0__y4xq2K6",
+              "yukawa__seed-0__abYXU7B",
+              "three_species__seed-0__vxcUGzv",
+              "circle__seed-0__mXerQ5f",
+              "ether__seed-0__gcgwifx",
+              "gravity__seed-0__NvcsyK3"
+            ]
+          },
+          "seed_pool_size": {
+            "2": [
+              "fractional__seed-1__Whn3iaR",
+              "oscillator__seed-0__9H6F7AA",
+              "fractional__seed-0__oYgvZS2",
+              "oscillator__seed-1__iKEqW9z",
+              "hubble__seed-1__VPLH5a9",
+              "dark_matter__seed-0__Lb4kYhK",
+              "dark_matter__seed-1__k37GyPR",
+              "hubble__seed-0__CHzNAW6",
+              "extra_dimensions__seed-1__qnNujcG",
+              "coulomb_easy__seed-1__pyBervh",
+              "extra_dimensions__seed-0__ekt76Dv",
+              "coulomb_easy__seed-0__y4xq2K6",
+              "yukawa__seed-1__Vc8n7Uj",
+              "yukawa__seed-0__abYXU7B",
+              "three_species__seed-1__Jbpwoxf",
+              "three_species__seed-0__vxcUGzv",
+              "gravity__seed-1__etTiAHo",
+              "ether__seed-1__PLcTj65",
+              "circle__seed-0__mXerQ5f",
+              "ether__seed-0__gcgwifx",
+              "gravity__seed-0__NvcsyK3",
+              "circle__seed-1__T2SVj57"
+            ]
+          },
+          "explanation_score": {
+            "1.0": [
+              "fractional__seed-1__Whn3iaR",
+              "oscillator__seed-0__9H6F7AA",
+              "fractional__seed-0__oYgvZS2",
+              "oscillator__seed-1__iKEqW9z",
+              "dark_matter__seed-0__Lb4kYhK",
+              "dark_matter__seed-1__k37GyPR",
+              "coulomb_easy__seed-1__pyBervh",
+              "coulomb_easy__seed-0__y4xq2K6",
+              "yukawa__seed-0__abYXU7B",
+              "three_species__seed-1__Jbpwoxf",
+              "three_species__seed-0__vxcUGzv",
+              "gravity__seed-1__etTiAHo",
+              "circle__seed-0__mXerQ5f",
+              "gravity__seed-0__NvcsyK3",
+              "circle__seed-1__T2SVj57"
+            ],
+            "0.8": [
+              "hubble__seed-1__VPLH5a9",
+              "extra_dimensions__seed-1__qnNujcG",
+              "extra_dimensions__seed-0__ekt76Dv"
+            ],
+            "0.9": [
+              "hubble__seed-0__CHzNAW6",
+              "yukawa__seed-1__Vc8n7Uj",
+              "ether__seed-1__PLcTj65",
+              "ether__seed-0__gcgwifx"
+            ]
+          },
+          "normalized_mse": {
+            "4.790631105251858e-28": [
+              "fractional__seed-1__Whn3iaR",
+              "fractional__seed-0__oYgvZS2"
+            ],
+            "1.4602146004436082e-27": [
+              "oscillator__seed-0__9H6F7AA",
+              "oscillator__seed-1__iKEqW9z"
+            ],
+            "4.588909024790263e-27": [
+              "hubble__seed-1__VPLH5a9",
+              "hubble__seed-0__CHzNAW6"
+            ],
+            "5.0269276867314e-21": [
+              "dark_matter__seed-0__Lb4kYhK",
+              "dark_matter__seed-1__k37GyPR"
+            ],
+            "9.226825745790834e-28": [
+              "extra_dimensions__seed-1__qnNujcG",
+              "extra_dimensions__seed-0__ekt76Dv"
+            ],
+            "3.5853991121362256e-21": [
+              "coulomb_easy__seed-1__pyBervh",
+              "coulomb_easy__seed-0__y4xq2K6"
+            ],
+            "6.102970399308234e-28": [
+              "yukawa__seed-1__Vc8n7Uj",
+              "yukawa__seed-0__abYXU7B"
+            ],
+            "8.125009006207063e-27": [
+              "three_species__seed-1__Jbpwoxf",
+              "three_species__seed-0__vxcUGzv"
+            ],
+            "5.326944011329143e-28": [
+              "gravity__seed-1__etTiAHo",
+              "gravity__seed-0__NvcsyK3"
+            ],
+            "1.5392796773157168e-23": [
+              "ether__seed-1__PLcTj65",
+              "ether__seed-0__gcgwifx"
+            ],
+            "3.939149368673951e-27": [
+              "circle__seed-0__mXerQ5f",
+              "circle__seed-1__T2SVj57"
+            ]
+          }
+        },
+        "exception_stats": {}
+      }
+    },
+    "n_input_tokens": null,
+    "n_cache_tokens": null,
+    "n_output_tokens": null,
+    "cost_usd": null
+  }
+}

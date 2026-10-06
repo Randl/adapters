@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-06",
+  "harbor_dependency": "0.22.0",
+  "python": "3.12.13",
+  "unit_tests_passed": 134,
+  "ruff_check": "passed",
+  "ruff_format": "passed",
+  "ty_check": "passed",
+  "sdist_and_wheel_build": "passed",
+  "installed_wheel_agent_and_template_import": "passed",
+  "regenerated_tasks_matching_20260930_oracle_digests": 22,
+  "run_configurations_validated": [
+    "run_discoverphysics.yaml",
+    "run_parity.yaml",
+    "run_parity_sanity.yaml"
+  ],
+  "structural_validation": {
+    "passed": 28,
+    "errors": [
+      "parity_experiment.json awaits measured results from the reviewer"
+    ],
+    "warnings": 0
+  },
+  "new_oracle_or_parity_runs": 0
+}
