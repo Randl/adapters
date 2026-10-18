@@ -1,0 +1,30 @@
+version = "1.0"
+artifacts = ["/workspace/actions.json"]
+
+[task]
+name = "videogamebench/{task_id}"
+authors = [{name = "Alex L. Zhang"}, {name = "Thomas L. Griffiths"}, {name = "Karthik R. Narasimhan"}, {name = "Ofir Press"}]
+
+[metadata]
+mode = "game-boy-lite"
+source_revision = "faab53179cb4babdd102f35cb83c24a5f2c29d05"
+
+[agent]
+timeout_sec = 14400
+
+[environment]
+build_timeout_sec = 600
+cpus = 2
+memory_mb = 2048
+storage_mb = 10240
+network_mode = "allowlist"
+allowed_hosts = ["api.openai.com", "api.anthropic.com"]
+
+[verifier]
+timeout_sec = 6000
+environment_mode = "separate"
+
+[verifier.environment]
+build_timeout_sec = 600
+cpus = 2
+memory_mb = 2048

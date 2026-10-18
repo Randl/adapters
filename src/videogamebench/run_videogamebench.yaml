@@ -1,0 +1,8 @@
+datasets:
+  - path: datasets/videogamebench
+agents:
+  - name: oracle
+environment:
+  type: docker
+  delete: true
+n_concurrent_trials: 1

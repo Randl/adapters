@@ -1,0 +1,17 @@
+services:
+  main:
+    depends_on:
+      game:
+        condition: service_healthy
+  game:
+    build:
+      context: .
+      dockerfile: Dockerfile.game
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080', timeout=5)"]
+      interval: 5s
+      timeout: 10s
+      retries: 24
+      start_period: 360s
+    networks:
+      - default
