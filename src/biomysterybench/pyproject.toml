@@ -1,0 +1,23 @@
+[project]
+name = "harbor-biomysterybench-adapter"
+version = "0.1.0"
+description = "BioMysteryBench data and rubric adapter for Harbor"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["huggingface-hub==1.33.0"]
+
+[project.scripts]
+biomysterybench = "biomysterybench.main:main"
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "ruff==0.17.1", "ty==0.0.89", "openai==2.54.0"]
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "biomysterybench"
+
+[tool.ty.src]
+exclude = ["src/biomysterybench/task-template"]

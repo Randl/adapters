@@ -1,0 +1,40 @@
+[
+  {
+    "adapter_name": "biomysterybench",
+    "adapter_builders": [
+      "Evgenii Zheltonozhskii (zheltonozhskiy@gmail.com)"
+    ],
+    "original_benchmark": [
+      {
+        "split": "full",
+        "size": 90,
+        "harness": "llm",
+        "supported_agents": [
+          "None"
+        ],
+        "adaptable": true,
+        "notes": "90 tasks = 73 human-solvable + 17 human-difficult problems in the revised v11 full set. No problems are excluded. The original 99-problem paper results use an earlier answer key."
+      }
+    ],
+    "harbor_adapter": [
+      {
+        "split": "full",
+        "adapted_benchmark_size": 90,
+        "parity_benchmark_size": 0,
+        "parity_sampling_rate": 0,
+        "registry_benchmark_size": 0,
+        "added_agents": [
+          "None"
+        ],
+        "parity_matching_agents": [
+          "None"
+        ],
+        "parity_unmatching_agents": [
+          "None"
+        ],
+        "parity_costs": "$0",
+        "notes": "Local WIP. No measured model parity, full oracle validation, publication or registry entry."
+      }
+    ]
+  }
+]
