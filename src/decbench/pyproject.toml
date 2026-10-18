@@ -1,0 +1,23 @@
+[project]
+name = "harbor-decbench-adapter"
+version = "0.1.0"
+description = "DecBench frozen sample-set adapter for Harbor"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["huggingface-hub==1.33.0", "pyelftools==0.32"]
+
+[project.scripts]
+decbench = "decbench.main:main"
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "ruff==0.17.1", "ty==0.0.89"]
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "decbench"
+
+[tool.ty.src]
+exclude = ["src/decbench/task-template", "tests/evaluator_contract.py"]

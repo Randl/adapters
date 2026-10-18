@@ -1,0 +1,40 @@
+[
+  {
+    "adapter_name": "decbench",
+    "adapter_builders": [
+      "Evgenii Zheltonozhskii (zheltonozhskiy@gmail.com)"
+    ],
+    "original_benchmark": [
+      {
+        "split": "sample-set",
+        "size": 250,
+        "harness": "agent",
+        "supported_agents": [
+          "None"
+        ],
+        "adaptable": true,
+        "notes": "250 function tasks from the frozen sample-set across 223 binaries. Other leaderboard presets are excluded. IDs include project, optimization, binary and function plus a stable hash."
+      }
+    ],
+    "harbor_adapter": [
+      {
+        "split": "sample-set",
+        "adapted_benchmark_size": 250,
+        "parity_benchmark_size": 0,
+        "parity_sampling_rate": 0,
+        "registry_benchmark_size": 0,
+        "added_agents": [
+          "None"
+        ],
+        "parity_matching_agents": [
+          "None"
+        ],
+        "parity_unmatching_agents": [
+          "None"
+        ],
+        "parity_costs": "$0",
+        "notes": "Local WIP. No measured model parity, full oracle validation, publication or registry entry."
+      }
+    ]
+  }
+]

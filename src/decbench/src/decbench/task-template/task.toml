@@ -1,0 +1,32 @@
+version = "1.0"
+artifacts = ["/workspace/decompiled.c", "/workspace/address_lines.json"]
+
+[task]
+name = "noelo-lab/{task_id}"
+authors = [{name = "Noelo Lab"}]
+
+[metadata]
+dataset_revision = "815eb96f130b6d2ef7fa600e04669bf20139bf27"
+upstream_revision = "ae070b885b4e005ed37510a2c3445af6284dc2b9"
+split = "sample-set"
+
+[agent]
+timeout_sec = 600
+
+[environment]
+build_timeout_sec = 600
+cpus = 2
+memory_mb = 4096
+storage_mb = 10240
+network_mode = "allowlist"
+allowed_hosts = ["api.openai.com", "api.anthropic.com"]
+
+[verifier]
+timeout_sec = 600
+environment_mode = "separate"
+
+[verifier.environment]
+build_timeout_sec = 3600
+cpus = 4
+memory_mb = 16384
+storage_mb = 30720
