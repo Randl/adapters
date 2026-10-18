@@ -1,0 +1,12 @@
+datasets:
+  - path: datasets/codereviewbench
+agents:
+  - name: oracle
+environment:
+  type: docker
+  delete: true
+n_concurrent_trials: 1
+metrics:
+  - type: uv-script
+    kwargs:
+      script_path: src/codereviewbench/src/codereviewbench/metric.py

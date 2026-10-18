@@ -1,0 +1,40 @@
+[
+  {
+    "adapter_name": "codereviewbench",
+    "adapter_builders": [
+      "Evgenii Zheltonozhskii (zheltonozhskiy@gmail.com)"
+    ],
+    "original_benchmark": [
+      {
+        "split": "offline",
+        "size": 50,
+        "harness": "agent",
+        "supported_agents": [
+          "None"
+        ],
+        "adaptable": true,
+        "notes": "50 tasks = 10 PRs each from cal.com, Discourse, Grafana, Keycloak and Sentry. All 173 golden comments are retained. Strict/core/all profiles include 139/158/173 issues. The online benchmark is excluded."
+      }
+    ],
+    "harbor_adapter": [
+      {
+        "split": "offline",
+        "adapted_benchmark_size": 50,
+        "parity_benchmark_size": 0,
+        "parity_sampling_rate": 0,
+        "registry_benchmark_size": 0,
+        "added_agents": [
+          "None"
+        ],
+        "parity_matching_agents": [
+          "None"
+        ],
+        "parity_unmatching_agents": [
+          "None"
+        ],
+        "parity_costs": "$0",
+        "notes": "Local WIP. No measured model parity, full oracle validation, publication or registry entry."
+      }
+    ]
+  }
+]

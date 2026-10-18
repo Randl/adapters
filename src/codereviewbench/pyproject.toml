@@ -1,0 +1,23 @@
+[project]
+name = "harbor-codereviewbench-adapter"
+version = "0.1.0"
+description = "Offline Martian code review benchmark adapter"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+codereviewbench = "codereviewbench.main:main"
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "ruff==0.17.1", "ty==0.0.89", "openai==2.54.0", "tqdm==4.70.1"]
+
+[build-system]
+requires = ["uv_build>=0.11.19,<0.12"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "codereviewbench"
+
+[tool.ty.src]
+exclude = ["src/codereviewbench/task-template"]
