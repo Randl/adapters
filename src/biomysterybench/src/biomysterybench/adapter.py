@@ -10,6 +10,7 @@ from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
 from huggingface_hub import hf_hub_download
+from huggingface_hub.utils import tqdm
 
 from .judge import DEFAULT_BASE_URL, endpoint_host
 
@@ -88,45 +89,49 @@ class BioMysteryBenchAdapter:
             rows = [r for r in rows if r["id"] in requested]
         if self.limit is not None:
             rows = rows[: self.limit]
-        for row in rows:
-            task_id = "biomysterybench-" + row["id"]
-            target = self.output_dir / task_id
-            if target.exists() and not self.overwrite:
-                continue
-            # Validate all archive entries before extracting any file.
-            with ZipFile(self.source(f"data/{row['id']}.zip")) as archive:
-                for entry in archive.infolist():
-                    path = Path(entry.filename)
-                    if (
-                        path.is_absolute()
-                        or ".." in path.parts
-                        or stat.S_ISLNK(entry.external_attr >> 16)
-                    ):
-                        raise ValueError(f"Unsafe archive member: {entry.filename}")
-                # Stage beside the output directory so extraction/copy failures
-                # cannot leave a partially generated task or destroy an old one.
-                self.output_dir.parent.mkdir(parents=True, exist_ok=True)
-                with TemporaryDirectory(
-                    prefix=f".{task_id}-", dir=self.output_dir.parent
-                ) as directory:
-                    staging = Path(directory) / "task"
-                    shutil.copytree(
-                        TEMPLATE,
-                        staging,
-                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
-                    )
-                    archive.extractall(staging / "environment/data")
-                    self._write_task(staging, task_id, row)
-                    self.output_dir.mkdir(parents=True, exist_ok=True)
-                    backup = Path(directory) / "previous"
-                    if target.exists():
-                        target.rename(backup)
-                    try:
-                        staging.rename(target)
-                    except BaseException:
-                        if backup.exists():
-                            backup.rename(target)
-                        raise
+        with tqdm(
+            rows, desc="Generating tasks", unit="task", dynamic_ncols=True
+        ) as progress:
+            for row in progress:
+                progress.set_postfix_str(row["id"])
+                task_id = "biomysterybench-" + row["id"]
+                target = self.output_dir / task_id
+                if target.exists() and not self.overwrite:
+                    continue
+                # Validate all archive entries before extracting any file.
+                with ZipFile(self.source(f"data/{row['id']}.zip")) as archive:
+                    for entry in archive.infolist():
+                        path = Path(entry.filename)
+                        if (
+                            path.is_absolute()
+                            or ".." in path.parts
+                            or stat.S_ISLNK(entry.external_attr >> 16)
+                        ):
+                            raise ValueError(f"Unsafe archive member: {entry.filename}")
+                    # Stage beside the output directory so extraction/copy failures
+                    # cannot leave a partially generated task or destroy an old one.
+                    self.output_dir.parent.mkdir(parents=True, exist_ok=True)
+                    with TemporaryDirectory(
+                        prefix=f".{task_id}-", dir=self.output_dir.parent
+                    ) as directory:
+                        staging = Path(directory) / "task"
+                        shutil.copytree(
+                            TEMPLATE,
+                            staging,
+                            ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+                        )
+                        archive.extractall(staging / "environment/data")
+                        self._write_task(staging, task_id, row)
+                        self.output_dir.mkdir(parents=True, exist_ok=True)
+                        backup = Path(directory) / "previous"
+                        if target.exists():
+                            target.rename(backup)
+                        try:
+                            staging.rename(target)
+                        except BaseException:
+                            if backup.exists():
+                                backup.rename(target)
+                            raise
 
     def _write_task(self, target: Path, task_id: str, row: dict[str, str]) -> None:
         (target / "instruction.md").write_text(

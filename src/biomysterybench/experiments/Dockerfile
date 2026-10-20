@@ -10,4 +10,4 @@ RUN micromamba install --yes --name base --file /tmp/environment.yaml \
     && micromamba clean --all --yes
 ENV PATH="/opt/conda/bin:${PATH}"
 WORKDIR /workspace
-COPY data/ /workspace/data/
+RUN mkdir -p /workspace/data

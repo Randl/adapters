@@ -64,10 +64,39 @@ uv run --project src/biomysterybench \
   python src/biomysterybench/experiments/prepare.py
 ```
 
-Preparation downloads the pinned release and creates separate parity and GT
-tasksets under `datasets/`, plus hashes and configs in
-`datasets/biomysterybench-preparation/`. It never launches evaluations and refuses
-existing destinations. GT fixtures contain expected-answer excerpts with scoring
+Preparation uses a shared extracted-data directory. Pass `--data-dir PATH` to
+reuse existing inputs or choose where missing inputs are downloaded/extracted:
+
+```bash
+uv run --project src/biomysterybench \
+  python src/biomysterybench/experiments/prepare.py \
+  --data-dir /path/to/biomysterybench-data
+```
+
+The layout is `<data-dir>/<source-id>/` (for example `hb001/`), containing the
+original ZIP contents. The default is `datasets/biomysterybench-data`. Existing
+nonempty task directories are trusted and reused without content checksums;
+missing ones are extracted once from the pinned HF downloads. Symlinks in input
+folders are rejected. Supplied data must match the pinned release. Partial
+extractions are staged and never published as complete input directories.
+
+Parity and GT tasks contain only small metadata, scripts and private references.
+Their Docker Compose files mount the same task-specific input directory read-only
+at `/workspace/data`; data is neither copied into the tasksets nor baked into
+Docker images. Answers and rubrics are outside this mount. Write derived files
+elsewhere under `/workspace`. These prepared configs require local Docker with
+access to the recorded absolute data paths; keep that directory available for
+all runs. The standalone adapter's ordinary output remains self-contained.
+
+Use `--resume` to rebuild existing generated task metadata and GT fixtures while
+reusing the shared inputs. It does not migrate old full-copy tasksets or remove
+unrelated files. Preparation never launches evaluations. Task-level progress bars
+cover shared inputs, parity tasks and GT fixtures, showing the current source ID.
+The manifest stays `preparing` until every step finishes. Do not rebuild task
+metadata concurrently with evaluation. The HF ZIP cache and Docker images still
+use additional space, but each extracted dataset is stored only once.
+
+GT fixtures contain expected-answer excerpts with scoring
 directions removed; `--gt-answers /private/answers.json` accepts a reviewed mapping
 of all 90 source IDs to plain answers. GT acceptance tests verifier plumbing,
 not independent biological analysis. Keep these answer-bearing outputs private.
@@ -234,7 +263,9 @@ and ID.md reports. Without them the oracle launcher fails explicitly. Independen
 analysis solutions and GT acceptance fixtures must be labeled separately: the
 prepared GT experiment checks verifier plumbing, not biological solvability.
 --data-dir accepts a local HF snapshot but does not verify its claimed revision;
-the experiment preparation uses pinned Hub downloads and records file hashes.
+the experiment downloads missing inputs from the pinned Hub revision. Supplied
+input directories are trusted; its manifest records their paths and hashes task
+metadata, not the reused input contents.
 --split full|human-solvable|human-difficult selects a partition. Generated tasks
 contain gated material and must remain local pending review of distribution terms.
 
@@ -243,6 +274,22 @@ contain gated material and must remain local pending review of distribution term
 Python 3.11+, uv, Docker, and external Harbor 0.24.0 with separate verifier support.
 Run uv sync inside this adapter's independent project. Source-access, assets,
 credential and platform requirements are listed in Notes.
+
+### Disk space
+
+For the pinned 90-task release, measured storage is approximately:
+
+- **145 GiB** for downloaded ZIPs in the Hugging Face cache.
+- **145 GiB** for extracted inputs in `--data-dir`, shared across parity and oracle runs.
+
+Budget roughly **350–400 GiB for a fresh full setup**, including headroom for
+Docker images/build cache and analysis working files. Large intermediate outputs
+or concurrent trials can require more. These are total setup estimates, not extra
+space needed on each rerun; existing shared inputs are reused.
+
+Preparation currently includes all 90 tasks even if the subsequent Harbor run
+uses `--n-tasks 3`. If the cache, data directory and Docker storage are on different
+filesystems, check free space on each.
 
 Local validation from this independent project:
 
