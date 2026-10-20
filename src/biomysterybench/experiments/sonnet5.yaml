@@ -8,8 +8,18 @@ retry:
 datasets:
   - path: datasets/biomysterybench-parity
 agents:
-  - import_path: sonnet_agent:Sonnet5Agent
+  - import_path: parity_agent:ParityAgent
     model_name: anthropic/claude-sonnet-5
+    kwargs:
+      api_base: https://api.anthropic.com/v1
+      max_turns: 150
+      max_tokens: 32768
+      thinking:
+        type: adaptive
+      effort: high
+      request_timeout_sec: 900
+      tool_timeout_sec: 600
+      max_tool_output_chars: 100000
     extra_allowed_hosts: []
 environment:
   type: docker

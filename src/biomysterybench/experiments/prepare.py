@@ -8,6 +8,7 @@ import shutil
 from pathlib import Path
 
 from biomysterybench.adapter import REPO, REVISION, BioMysteryBenchAdapter
+from biomysterybench.judge import DEFAULT_BASE_URL
 
 HERE = Path(__file__).parent
 SCORING_SUFFIX = (
@@ -36,6 +37,7 @@ def gt_excerpt(rubric: str) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--datasets-dir", type=Path, default=Path("datasets"))
+    parser.add_argument("--judge-base-url", default=DEFAULT_BASE_URL)
     parser.add_argument(
         "--gt-answers",
         type=Path,
@@ -49,7 +51,7 @@ def main() -> None:
         if path.exists():
             raise FileExistsError(f"Use a fresh output directory: {path}")
     # Use the pinned Hub download path, not unverified --data-dir input.
-    adapter = BioMysteryBenchAdapter(parity)
+    adapter = BioMysteryBenchAdapter(parity, judge_base_url=args.judge_base_url)
     source = adapter.source("problems.csv")
     with source.open(newline="") as stream:
         rows = list(csv.DictReader(stream))

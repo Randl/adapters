@@ -12,6 +12,7 @@ from zipfile import ZipFile, ZipInfo
 import pytest
 
 from biomysterybench.adapter import TEMPLATE, BioMysteryBenchAdapter
+from biomysterybench.judge import JudgeConfig
 
 
 def source(tmp_path):
@@ -185,7 +186,9 @@ def test_failed_publish_restores_existing_task(tmp_path, monkeypatch):
     assert not (task / "marker").exists()
 
 
-def test_judge_failures_are_not_scores():
+def test_judge_failures_are_not_scores(monkeypatch):
+    # Generated tasks receive this same module next to /tests/verify.py.
+    monkeypatch.syspath_prepend(str(TEMPLATE.parent))
     spec = importlib.util.spec_from_file_location(
         "bio_verify", TEMPLATE / "tests/verify.py"
     )
@@ -193,9 +196,16 @@ def test_judge_failures_are_not_scores():
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
 
-    def client(content):
+    config = JudgeConfig("test-judge", "https://judge.example/v1", None, 120)
+
+    def client(content, model="test-judge", finish="stop", refusal=None):
         response = SimpleNamespace(
-            choices=[SimpleNamespace(message=SimpleNamespace(content=content))]
+            model=model,
+            choices=[SimpleNamespace(message=SimpleNamespace(content=content))],
+            model_dump=lambda: {
+                "model": model,
+                "choices": [{"finish_reason": finish, "message": {"refusal": refusal}}],
+            },
         )
         return SimpleNamespace(
             chat=SimpleNamespace(
@@ -204,10 +214,22 @@ def test_judge_failures_are_not_scores():
         )
 
     problem = {"question": "Q", "answer_rubric": "A"}
-    assert module.grade(problem, "A", "analysis", client('{"score": 1}'))["score"] == 1
+    assert (
+        module.grade(problem, "A", "analysis", client('{"score": 1}'), config)["score"] == 1
+    )
     for value in ['{"score": true}', '{"score": 0.5}', "invalid"]:
         with pytest.raises(ValueError):
-            module.grade(problem, "A", "analysis", client(value))
+            module.grade(problem, "A", "analysis", client(value), config)
+    for kwargs in (
+        {"finish": "length"},
+        {"refusal": "Cannot grade this"},
+    ):
+        with pytest.raises(ValueError):
+            module.grade(problem, "A", "analysis", client('{"score": 1}', **kwargs), config)
+    result = module.grade(
+        problem, "A", "analysis", client('{"score": 1}', model="resolved-snapshot"), config
+    )
+    assert result["judge_response_model"] == "resolved-snapshot"
 
     class Broken:
         def create(self, **kwargs):
@@ -219,7 +241,42 @@ def test_judge_failures_are_not_scores():
             "A",
             "analysis",
             SimpleNamespace(chat=SimpleNamespace(completions=Broken())),
+            config,
         )
+
+
+def test_judge_requires_explicit_model_and_supports_provider_settings(monkeypatch):
+    monkeypatch.delenv("JUDGE_MODEL", raising=False)
+    with pytest.raises(ValueError, match="Set JUDGE_MODEL"):
+        JudgeConfig.from_env()
+    monkeypatch.setenv("JUDGE_MODEL", "judge-alias")
+    monkeypatch.setenv("OPENAI_BASE_URL", "https://judge.example/api/v1/")
+    monkeypatch.setenv("JUDGE_TEMPERATURE", "")
+    monkeypatch.setenv("JUDGE_TIMEOUT_SEC", "60")
+    config = JudgeConfig.from_env()
+    assert config.model == "judge-alias"
+    assert config.base_url == "https://judge.example/api/v1"
+    assert config.timeout == 60
+    assert "temperature" not in config.completion_options()
+    monkeypatch.setenv("JUDGE_TEMPERATURE", "0")
+    assert JudgeConfig.from_env().completion_options()["temperature"] == 0
+    assert JudgeConfig.from_env("explicit-model").model == "explicit-model"
+
+
+def test_custom_judge_endpoint_is_private_to_verifier(tmp_path):
+    data, output = source(tmp_path), tmp_path / "tasks"
+    BioMysteryBenchAdapter(
+        output, data_dir=data, limit=1, judge_base_url="https://judge.example/api/v1/"
+    ).run()
+    task = output / "biomysterybench-hb001"
+    config = tomllib.loads((task / "task.toml").read_text())
+    assert config["verifier"]["env"]["JUDGE_MODEL"] == "${JUDGE_MODEL}"
+    assert config["verifier"]["env"]["OPENAI_BASE_URL"] == "https://judge.example/api/v1"
+    assert config["verifier"]["environment"]["allowed_hosts"] == ["judge.example"]
+    assert "judge.example" not in config["environment"]["allowed_hosts"]
+    assert (task / "tests/judge.py").read_bytes() == (
+        TEMPLATE.parent / "judge.py"
+    ).read_bytes()
 
 
 def test_partition_metrics():

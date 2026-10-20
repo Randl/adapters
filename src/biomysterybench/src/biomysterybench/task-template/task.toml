@@ -27,10 +27,14 @@ environment_mode = "separate"
 
 [verifier.env]
 OPENAI_API_KEY = "${OPENAI_API_KEY}"
+OPENAI_BASE_URL = {judge_base_url}
+JUDGE_MODEL = "${JUDGE_MODEL}"
+JUDGE_TEMPERATURE = "${JUDGE_TEMPERATURE:-}"
+JUDGE_TIMEOUT_SEC = "${JUDGE_TIMEOUT_SEC:-120}"
 
 [verifier.environment]
 build_timeout_sec = 600
 cpus = 1
 memory_mb = 2048
 network_mode = "allowlist"
-allowed_hosts = ["api.openai.com"]
+allowed_hosts = {judge_allowed_hosts}

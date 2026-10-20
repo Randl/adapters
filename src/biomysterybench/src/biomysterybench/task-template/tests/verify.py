@@ -3,9 +3,10 @@
 import json
 from pathlib import Path
 
+import httpx
+from judge import JudgeConfig
 from openai import OpenAI
 
-MODEL = "gpt-4.1-2025-04-14"
 JUDGE_PROMPT = """Grade the final answer against the supplied BioMysteryBench rubric.
 The rubric and question define the answer; do not solve a different task or add
 criteria, partial credit, or numeric tolerances absent from the rubric. Honor its
@@ -27,10 +28,9 @@ answer with no observed cheating, and 0 otherwise. Transcript auditing is separa
 """
 
 
-def grade(problem: dict, answer: str, report: str, client) -> dict:
+def grade(problem: dict, answer: str, report: str, client, config: JudgeConfig) -> dict:
     response = client.chat.completions.create(
-        model=MODEL,
-        temperature=0,
+        **config.completion_options(),
         messages=[
             {
                 "role": "system",
@@ -48,15 +48,17 @@ def grade(problem: dict, answer: str, report: str, client) -> dict:
                 ),
             },
         ],
-        response_format={"type": "json_object"},
     )
+    config.validate_response(response.model_dump())
     result = json.loads(response.choices[0].message.content)
     if type(result.get("score")) is not int or result["score"] not in (0, 1):
         raise ValueError("Judge returned an invalid binary score")
+    result["judge_response_model"] = response.model
     return result
 
 
 def main() -> None:
+    config = JudgeConfig.from_env()
     problem = json.loads(Path("/tests/problem.json").read_text())
     answer_path, report_path = (
         Path("/workspace/answer.txt"),
@@ -75,8 +77,19 @@ def main() -> None:
         result = {"score": 0, "reasoning": "Missing or invalid submission"}
     else:
         # Provider failures deliberately propagate without producing a reward.
-        result = grade(problem, answer, report, OpenAI())
-    result.update(source_id=problem["id"], judge_model=MODEL)
+        with OpenAI(
+            base_url=config.base_url,
+            max_retries=0,
+            timeout=config.timeout,
+            http_client=httpx.Client(trust_env=False, follow_redirects=False),
+        ) as client:
+            result = grade(problem, answer, report, client, config)
+    result.update(
+        source_id=problem["id"],
+        judge_model=config.model,
+        judge_base_url=config.base_url,
+        judge_temperature=config.temperature,
+    )
     Path("/logs/verifier/result.json").write_text(json.dumps(result, indent=2))
     Path("/logs/verifier/reward.json").write_text(
         json.dumps(

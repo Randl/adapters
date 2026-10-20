@@ -83,6 +83,7 @@ Future run commands, after image and fixture review:
 ```bash
 export PYTHONPATH="$PWD/src/biomysterybench/experiments"
 # Host credentials: ANTHROPIC_API_KEY for solver, OPENAI_API_KEY for judge.
+# Set JUDGE_MODEL to the chosen judge's pinned model ID before running.
 harbor run -c datasets/biomysterybench-preparation/gt-oracle.yaml
 harbor run -c datasets/biomysterybench-preparation/pilot.yaml
 # Only after reviewing the fixed eight-task pilot:
@@ -90,21 +91,27 @@ harbor run -c datasets/biomysterybench-preparation/sonnet5.yaml
 ```
 
 The solver calls `claude-sonnet-5` directly from the host with native bash tools,
-adaptive thinking at high effort, no fallback or automatic retries, and returned
-model-ID checks. Local budgets are 150 turns, 32,768 output tokens per response,
+adaptive thinking at high effort, with no configured model substitution or
+automatic retries. Requested and returned model IDs are recorded for review.
+Local budgets are 150 turns, 32,768 output tokens per response,
 two hours per task and at most 600 seconds per command. These are explicit
 reconstruction choices, not recovered Anthropic evaluation settings.
+The generic `parity_agent:ParityAgent` reads `model_name` and validated `kwargs`
+from `experiments/sonnet5.yaml`: API base URL, thinking,
+effort, token/turn budgets, request/command timeouts and output truncation.
+The API key environment-variable name and Anthropic API version are also
+configurable. The prepared config pins the first-party endpoint and Sonnet 5;
+changing models or providers requires a separately identified experiment.
 
-Before inference, sandbox probes require PyPI access while HF, GitHub, model APIs
-and other known answer-hosting routes fail at transport level. They also check
-for leaked credentials/reference files. These checks remain unexecuted; they
-cannot rule out every mirror on an allowed scientific domain. Do not add host
-mounts, provider credentials, remote tools or extra allowed hosts.
+Harbor enforces the sandbox's scientific-domain allowlist. HF, GitHub and model
+API hosts are excluded; credentials and references stay outside the tested
+sandbox. There is no per-trial network probe. Do not add host mounts, provider
+credentials, remote tools or extra allowed hosts. The network policy cannot rule
+out every mirror on an allowed scientific domain.
 
 Raw responses and tool outputs are stored in the host-only `trusted-solver/`
-trial directory. Any error or structured refusal creates a job-level
-`sonnet5.stop` latch; concurrency is one, and subsequent trials cannot make solver
-calls. Natural-language refusals still require transcript review. Review the
+trial directory. Errors and structured refusals fail the affected trial.
+Natural-language refusals still require transcript review. Review the
 first full run before creating separately named run2/run3 configs.
 
 Audit every completed attempt with the separate, paid transcript judge:
@@ -123,6 +130,38 @@ concrete evidence. Uncertain audits need human adjudication. Audits preserve the
 original verifier reward. Report audited and provisional scores distinctly;
 include refusals as failures in fixed denominators, and treat infrastructure
 failures as incomplete runs rather than reporting survivor-only accuracy.
+
+### Judge configuration
+
+There is no known official Anthropic judge model or prompt for this release.
+`JUDGE_MODEL` is required, with no default or fallback. The earlier GPT-4.1 pin
+was a local choice without benchmark-specific support and has been removed.
+Freeze the selected judge and its settings across GT, pilot, full runs and audit.
+
+The verifier and transcript audit share configuration and response validation:
+
+| Setting | Behavior |
+|---|---|
+| `JUDGE_MODEL` | Required OpenAI-compatible model ID, preferably a pinned snapshot. |
+| `JUDGE_TEMPERATURE` | Optional; omitted by default because some reasoning models reject temperature overrides. |
+| `JUDGE_TIMEOUT_SEC` | Request timeout, default 120 seconds; keep below the Harbor verifier timeout. |
+| `OPENAI_API_KEY` | Credential for the chosen judge provider; stays outside the solver sandbox. |
+| `--judge-base-url` | Generation/preparation option, default `https://api.openai.com/v1`. Records `OPENAI_BASE_URL` and its host in the private verifier's allowlist. |
+
+For a custom provider, pass `--judge-base-url` to `biomysterybench` or
+`experiments/prepare.py` before generation. Use the same URL for
+`experiments/audit.py --judge-base-url` (or its `OPENAI_BASE_URL` environment
+variable). The audit also accepts `--judge-model`. Changing the verifier endpoint
+requires regenerating tasks so the recorded URL and network policy agree.
+Neither path configures model substitution. Returned model IDs are recorded,
+including provider-resolved aliases. Errors/refusals produce no judge score.
+
+This follows existing adapters' use of environment-configured judges, although
+names and defaults differ: HLE uses `JUDGE_MODEL`/`OPENAI_BASE_URL` (o3-mini in its
+task template, GPT-5 in its parity config); BixBench uses `MODEL_NAME=gpt-4o`;
+FinanceAgent configures `MODEL_NAME=openai/gpt-5-2025-08-07`, while its verifier
+fallback default is GPT-5.2. These are examples, not an agreed judge standard or
+evidence about Anthropic's grader.
 
 ### Running Individual Trial
 
@@ -173,14 +212,14 @@ score ranges. Oracle and deterministic tests are separate evidence.
 
 ## Notes & Caveats
 
-CC BY 4.0, with evaluation-only access terms; biological archives retain original repository terms. Log in with hf auth login after obtaining access. Export OPENAI_API_KEY for verification. Large archives require substantial disk and download time.
+CC BY 4.0, with evaluation-only access terms; biological archives retain original repository terms. Log in with hf auth login after obtaining access. Export OPENAI_API_KEY and JUDGE_MODEL for verification. Large archives require substantial disk and download time.
 
 Questions and rubrics are preserved verbatim. Only questions and input files enter the agent image. Rubrics and judge credentials remain in the separate verifier. ZIP traversal and symlinks are rejected before extraction. Network access follows the released domains plus subdomains and the PyPI file host; source rows cannot expand this approved set. Model API endpoints, Hugging Face and GitHub are excluded from the tested sandbox. The separate verifier can reach only its judge endpoint. The rules prohibit identifying source studies through accession IDs. The network policy does not prove that every allowed database query complies with this rule.
 
 Anthropic has described its tools and network access in an
 [author reply](https://huggingface.co/datasets/Anthropic/BioMysteryBench-full/discussions/5);
 no original system prompt, judge implementation or container image was found.
-This adapter supplies an explicit rubric judge (gpt-4.1-2025-04-14, temperature 0),
+This adapter supplies an explicit rubric judge with a user-selected model,
 a bioinformatics image, and a file interface. The prepared experiment includes a
 broader image recipe based on the author inventory. The metric reports both
 partition accuracies plus verified/missing counts; any missing reward suppresses
@@ -227,8 +266,8 @@ Missing rewards after verifier errors indicate infrastructure failure; inspect
 logs and fix the provider/install before retrying. Invalid submissions receive
 zero. Regenerate with --overwrite after template changes. An oracle missing its
 reference needs a validated solution or an explicitly labeled GT fixture. Keep
-restricted generated data local. New experiment jobs must not silently resume past
-`sonnet5.stop`; investigate the failure before starting a new job.
+restricted generated data local. Review trial failures before starting additional
+experiment jobs.
 
 ## Citation
 

@@ -4,6 +4,7 @@ import argparse
 from pathlib import Path
 
 from .adapter import BioMysteryBenchAdapter
+from .judge import DEFAULT_BASE_URL
 
 
 def main() -> None:
@@ -14,6 +15,11 @@ def main() -> None:
     parser.add_argument("--limit", type=int)
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--task-ids", nargs="+")
+    parser.add_argument(
+        "--judge-base-url",
+        default=DEFAULT_BASE_URL,
+        help="OpenAI-compatible base URL; permits its host only in the private verifier",
+    )
     parser.add_argument(
         "--data-dir",
         type=Path,

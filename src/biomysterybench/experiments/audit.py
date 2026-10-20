@@ -8,7 +8,7 @@ from pathlib import Path
 
 import httpx
 
-MODEL = "gpt-4.1-2025-04-14"
+from biomysterybench.judge import JudgeConfig
 
 
 def main() -> None:
@@ -16,7 +16,10 @@ def main() -> None:
     parser.add_argument("--trial", type=Path, required=True)
     parser.add_argument("--task", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--judge-model", help="Defaults to required JUDGE_MODEL")
+    parser.add_argument("--judge-base-url", help="Defaults to OPENAI_BASE_URL or OpenAI")
     args = parser.parse_args()
+    judge = JudgeConfig.from_env(args.judge_model, args.judge_base_url)
     if args.output.exists():
         raise FileExistsError("Do not overwrite earlier judge evidence")
     trace = args.trial / "trusted-solver"
@@ -55,9 +58,7 @@ def main() -> None:
     }
     prompt = (Path(__file__).parent / "judge_prompt.txt").read_text()
     payload = {
-        "model": MODEL,
-        "temperature": 0,
-        "response_format": {"type": "json_object"},
+        **judge.completion_options(),
         "messages": [
             {"role": "system", "content": prompt},
             {"role": "user", "content": json.dumps(data)},
@@ -66,17 +67,18 @@ def main() -> None:
     # No context truncation, retries, proxy routing, or judge-model fallback.
     args.output.mkdir(parents=True, mode=0o700)
     (args.output / "request.json").write_text(json.dumps(payload))
-    with httpx.Client(trust_env=False, follow_redirects=False, timeout=300) as client:
+    with httpx.Client(
+        trust_env=False, follow_redirects=False, timeout=judge.timeout
+    ) as client:
         response = client.post(
-            "https://api.openai.com/v1/chat/completions",
+            judge.base_url + "/chat/completions",
             headers={"Authorization": "Bearer " + os.environ["OPENAI_API_KEY"]},
             json=payload,
         )
     (args.output / "response.json").write_text(response.text)
     response.raise_for_status()
     raw = response.json()
-    if raw["model"] != MODEL or raw["choices"][0]["finish_reason"] != "stop":
-        raise ValueError("Unexpected judge model or incomplete response")
+    judge.validate_response(raw)
     result = json.loads(raw["choices"][0]["message"]["content"])
     status = result.get("cheating_status")
     correct, score = result.get("answer_correct"), result.get("score")
@@ -87,7 +89,10 @@ def main() -> None:
         raise ValueError("Inconsistent judge score")
     result.update(
         source_id=problem["id"],
-        judge_model=MODEL,
+        judge_model=judge.model,
+        judge_response_model=raw["model"],
+        judge_base_url=judge.base_url,
+        judge_temperature=judge.temperature,
         prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest(),
         status="needs_human_review" if score is None else "audited",
     )

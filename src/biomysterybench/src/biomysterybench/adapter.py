@@ -11,6 +11,8 @@ from zipfile import ZipFile
 
 from huggingface_hub import hf_hub_download
 
+from .judge import DEFAULT_BASE_URL, endpoint_host
+
 REPO = "Anthropic/BioMysteryBench-full"
 REVISION = "b5a889c4757214ec9a6ade876b734f920a7799db"
 TEMPLATE = Path(__file__).parent / "task-template"
@@ -52,10 +54,13 @@ class BioMysteryBenchAdapter:
         data_dir: Path | None = None,
         oracle_dir: Path | None = None,
         split: str = "full",
+        judge_base_url: str = DEFAULT_BASE_URL,
     ):
         self.output_dir = Path(output_dir)
         self.limit, self.overwrite, self.task_ids = limit, overwrite, task_ids
         self.data_dir, self.oracle_dir, self.split = data_dir, oracle_dir, split
+        self.judge_base_url = judge_base_url.rstrip("/")
+        self.judge_host = endpoint_host(self.judge_base_url)
         if limit is not None and limit < 0:
             raise ValueError("--limit must be nonnegative")
 
@@ -134,7 +139,10 @@ class BioMysteryBenchAdapter:
         config = config.replace("{allowed_hosts}", json.dumps(hosts))
         config = config.replace("{source_id}", row["id"])
         config = config.replace("{human_solvable}", row["human_solvable"])
+        config = config.replace("{judge_base_url}", json.dumps(self.judge_base_url))
+        config = config.replace("{judge_allowed_hosts}", json.dumps([self.judge_host]))
         (target / "task.toml").write_text(config)
+        shutil.copyfile(Path(__file__).with_name("judge.py"), target / "tests/judge.py")
         (target / "tests/problem.json").write_text(json.dumps(row, indent=2))
         if self.oracle_dir is not None:
             shutil.copyfile(

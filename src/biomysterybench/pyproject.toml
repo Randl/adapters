@@ -20,4 +20,4 @@ build-backend = "uv_build"
 module-name = "biomysterybench"
 
 [tool.ty.src]
-exclude = ["src/biomysterybench/task-template", "experiments/sonnet_agent.py"]
+exclude = ["src/biomysterybench/task-template", "experiments/parity_agent.py"]
