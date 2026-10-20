@@ -1,0 +1,9 @@
+services:
+  main:
+    # Enforce an empty network namespace, independently of Harbor's TCP proxy.
+    # Host-driven agents call model APIs outside this container.
+    network_mode: none
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true

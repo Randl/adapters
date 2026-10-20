@@ -1,0 +1,19 @@
+job_name: codereviewbench-ground-truth
+jobs_dir: jobs/codereviewbench
+n_attempts: 1
+agents:
+  - name: oracle
+datasets:
+  - path: datasets/codereviewbench
+verifier:
+  override_timeout_sec: 1800
+environment:
+  type: docker
+  delete: true
+orchestrator:
+  type: local
+  n_concurrent_trials: 1
+metrics:
+  - type: uv-script
+    kwargs:
+      script_path: src/codereviewbench/src/codereviewbench/metric.py

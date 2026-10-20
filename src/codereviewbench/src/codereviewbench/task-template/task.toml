@@ -18,15 +18,19 @@ build_timeout_sec = 1800
 cpus = 2
 memory_mb = 4096
 storage_mb = 20480
-network_mode = "allowlist"
-allowed_hosts = ["api.openai.com", "api.anthropic.com"]
+network_mode = "no-network"
 
 [verifier]
 timeout_sec = 1800
 environment_mode = "separate"
+network_mode = "allowlist"
+allowed_hosts = [{judge_host}]
 
 [verifier.env]
-MARTIAN_API_KEY = "${MARTIAN_API_KEY}"
+JUDGE_API_KEY = "${JUDGE_API_KEY}"
+JUDGE_MODEL = {judge_model}
+JUDGE_BASE_URL = {judge_base_url}
+JUDGE_TEMPERATURE = {judge_temperature}
 
 [verifier.environment]
 build_timeout_sec = 600

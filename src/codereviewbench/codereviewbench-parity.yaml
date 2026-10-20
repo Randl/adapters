@@ -1,0 +1,33 @@
+job_name: codereviewbench-sonnet-5-5
+jobs_dir: jobs/codereviewbench
+n_attempts: 1
+timeout_multiplier: 1.0
+
+agents:
+  - name: terminus-2
+    model_name: anthropic/claude-sonnet-5-5
+    override_timeout_sec: 1800
+    kwargs:
+      reasoning_effort: medium
+      max_turns: 40
+      # Sonnet 5.5 rejects non-default temperature; omit it.
+
+datasets:
+  - path: datasets/codereviewbench
+
+verifier:
+  override_timeout_sec: 1800
+
+environment:
+  type: docker
+  delete: true
+  force_build: false
+
+orchestrator:
+  type: local
+  n_concurrent_trials: 1
+
+metrics:
+  - type: uv-script
+    kwargs:
+      script_path: src/codereviewbench/src/codereviewbench/metric.py

@@ -14,8 +14,14 @@ def main() -> None:
     parser.add_argument("--limit", type=int)
     parser.add_argument("--overwrite", action="store_true")
     parser.add_argument("--task-ids", nargs="+")
+    parser.add_argument("--split", choices=["full", "parity", "sanity"], default="full")
     parser.add_argument(
         "--source-dir", type=Path, help="Local checkout of the pinned upstream revision"
+    )
+    parser.add_argument("--judge-model", default="anthropic/claude-sonnet-4-5-20250929")
+    parser.add_argument("--judge-base-url", default="https://api.withmartian.com/v1")
+    parser.add_argument(
+        "--judge-temperature", default="0", help="0..2 or 'default' to omit"
     )
     CodeReviewBenchAdapter(**vars(parser.parse_args())).run()
 

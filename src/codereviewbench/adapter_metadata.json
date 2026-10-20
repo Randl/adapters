@@ -33,7 +33,7 @@
           "None"
         ],
         "parity_costs": "$0",
-        "notes": "Local WIP. No measured model parity, full oracle validation, publication or registry entry."
+        "notes": "Prepared full 50-task, three-repetition paired parity using configurable Harbor YAML (default Terminus 2 + Claude Sonnet 5.5, medium effort) and a separate released-ground-truth oracle experiment. Measured oracle and model parity results have not been recorded in this repository. Runtime offline isolation and separate verification passed on one real task; all 50 generated tasks and oracle references pass deterministic tests. See README for validation and residual cheating risks."
       }
     ]
   }

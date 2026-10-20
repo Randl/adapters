@@ -1,5 +1,6 @@
 """Generate PR review tasks with upstream extraction, deduplication and scoring."""
 
+import hashlib
 import io
 import json
 import re
@@ -7,6 +8,9 @@ import shutil
 import tarfile
 import urllib.request
 from pathlib import Path
+from urllib.parse import urlsplit
+
+from .judge_client import parse_temperature
 
 REVISION = "e616e849755441da38f18bf3adba2c9583b03803"
 PACKAGE = Path(__file__).parent
@@ -17,6 +21,35 @@ MODULES = [
 ]
 
 
+def validate_source(files: dict[str, bytes]) -> None:
+    """Reject partial, modified or mismatched upstream inputs before writing tasks."""
+    hashes = json.loads((PACKAGE / "upstream_hashes.json").read_text())
+    for name, expected in hashes.items():
+        if name not in files or hashlib.sha256(files[name]).hexdigest() != expected:
+            raise ValueError(f"Upstream content does not match {REVISION}: {name}")
+
+
+def sanity_ids(per_project: int = 2) -> list[str]:
+    """Two PRs per project, selected by ID hash without consulting scores."""
+    records = json.loads((PACKAGE / "prs.json").read_text())
+
+    def project(row):
+        return next(
+            p
+            for p in ("cal", "discourse", "grafana", "keycloak", "sentry")
+            if p in row["repo"]
+        )
+
+    return [
+        row["id"]
+        for repo in sorted({project(r) for r in records})
+        for row in sorted(
+            (r for r in records if project(r) == repo),
+            key=lambda r: hashlib.sha256(r["id"].encode()).hexdigest(),
+        )[:per_project]
+    ]
+
+
 class CodeReviewBenchAdapter:
     def __init__(
         self,
@@ -25,15 +58,33 @@ class CodeReviewBenchAdapter:
         overwrite: bool = False,
         task_ids: list[str] | None = None,
         source_dir: Path | None = None,
+        split: str = "full",
+        judge_model: str = "anthropic/claude-sonnet-4-5-20250929",
+        judge_base_url: str = "https://api.withmartian.com/v1",
+        judge_temperature: str = "0",
     ):
         self.output_dir = Path(output_dir)
         self.limit, self.overwrite, self.task_ids = limit, overwrite, task_ids
         self.source_dir = source_dir
+        self.split = split
+        self.judge_model, self.judge_base_url = judge_model, judge_base_url
+        parse_temperature(judge_temperature)
+        self.judge_temperature = judge_temperature
+        url = urlsplit(judge_base_url)
+        if url.scheme != "https" or not url.hostname or url.username or url.password:
+            raise ValueError(
+                "Judge endpoint must be HTTPS without embedded credentials"
+            )
+        if split not in {"full", "parity", "sanity"}:
+            raise ValueError("Unknown split")
         if limit is not None and limit < 0:
             raise ValueError("--limit must be nonnegative")
 
     def run(self) -> None:
         records = json.loads((PACKAGE / "prs.json").read_text())
+        if self.split == "sanity":
+            ids = sanity_ids()
+            records = [r for r in records if r["id"] in ids]
         if self.task_ids is not None:
             requested = {x.removeprefix("codereviewbench-") for x in self.task_ids}
             if requested - {r["id"] for r in records}:
@@ -49,14 +100,9 @@ class CodeReviewBenchAdapter:
         ]
         if not records:
             return
-        required = ["offline/code_review_benchmark/" + name for name in MODULES]
-        required += ["offline/analysis/score_profiles.py", "LICENSE"]
+        required = list(json.loads((PACKAGE / "upstream_hashes.json").read_text()))
         files = {}
         if self.source_dir is not None:
-            required += [
-                p.relative_to(self.source_dir).as_posix()
-                for p in (self.source_dir / "offline/golden_comments").glob("*.json")
-            ]
             files = {name: (self.source_dir / name).read_bytes() for name in required}
         else:
             url = f"https://api.github.com/repos/withmartian/code-review-benchmark/tarball/{REVISION}"
@@ -68,16 +114,11 @@ class CodeReviewBenchAdapter:
             ):
                 for item in archive.getmembers():
                     name = item.name.partition("/")[2]
-                    if item.isfile() and (
-                        name in required
-                        or (
-                            name.startswith("offline/golden_comments/")
-                            and name.endswith(".json")
-                        )
-                    ):
+                    if item.isfile() and name in required:
                         stream = archive.extractfile(item)
                         if stream is not None:
                             files[name] = stream.read()
+        validate_source(files)
         golden = {
             r["url"]: r["comments"]
             for name, data in files.items()
@@ -87,6 +128,8 @@ class CodeReviewBenchAdapter:
         for row in records:
             task_id = "codereviewbench-" + row["id"]
             target = self.output_dir / task_id
+            if target.is_symlink():
+                raise ValueError(f"Refusing symlink output: {target}")
             if target.exists():
                 shutil.rmtree(target)
             shutil.copytree(
@@ -96,6 +139,9 @@ class CodeReviewBenchAdapter:
                 (target / "tests" / name).write_bytes(
                     files["offline/code_review_benchmark/" + name]
                 )
+            shutil.copyfile(
+                PACKAGE / "judge_client.py", target / "tests/judge_client.py"
+            )
             (target / "tests/score_profiles.py").write_bytes(
                 files["offline/analysis/score_profiles.py"]
             )
@@ -112,12 +158,16 @@ class CodeReviewBenchAdapter:
                 "{head}": row["head"],
                 "{title}": row["title"],
                 "{body}": row["body"],
+                "{judge_model}": json.dumps(self.judge_model),
+                "{judge_base_url}": json.dumps(self.judge_base_url),
+                "{judge_temperature}": json.dumps(self.judge_temperature),
+                "{judge_host}": json.dumps(urlsplit(self.judge_base_url).hostname),
             }
             # Never interpret braces in PR text as format placeholders.
             for filename in ["task.toml", "instruction.md", "environment/Dockerfile"]:
                 text = (TEMPLATE / filename).read_text()
                 text = re.sub(
-                    r"\{(?:task_id|repo|base|head|title|body)\}",
+                    "|".join(re.escape(key) for key in replacements),
                     lambda match, values=replacements: values[match[0]],
                     text,
                 )
