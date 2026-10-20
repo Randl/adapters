@@ -6,6 +6,7 @@ import re
 import shutil
 import stat
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from zipfile import ZipFile
 
 from huggingface_hub import hf_hub_download
@@ -13,6 +14,32 @@ from huggingface_hub import hf_hub_download
 REPO = "Anthropic/BioMysteryBench-full"
 REVISION = "b5a889c4757214ec9a6ade876b734f920a7799db"
 TEMPLATE = Path(__file__).parent / "task-template"
+RELEASED_DOMAINS = frozenset(
+    {
+        "conda.anaconda.org",
+        "repo.anaconda.com",
+        "ncbi.nlm.nih.gov",
+        "ftp.ncbi.nlm.nih.gov",
+        "ensembl.org",
+        "ftp.ensembl.org",
+        "hgdownload.soe.ucsc.edu",
+        "uniprot.org",
+        "bioconductor.org",
+        "pypi.org",
+        "bioconda.github.io",
+        "cran.r-project.org",
+        "cran.rstudio.com",
+        "ftp.ebi.ac.uk",
+    }
+)
+
+
+def allowed_hosts(value: str) -> list[str]:
+    """Accept only the pinned release's database/package domains."""
+    domains = {x.strip() for x in value.split(",") if x.strip()}
+    if not domains or domains - RELEASED_DOMAINS:
+        raise ValueError(f"Unexpected source domains: {sorted(domains)}")
+    return sorted(domains | {"*." + x for x in domains} | {"files.pythonhosted.org"})
 
 
 class BioMysteryBenchAdapter:
@@ -71,39 +98,48 @@ class BioMysteryBenchAdapter:
                         or stat.S_ISLNK(entry.external_attr >> 16)
                     ):
                         raise ValueError(f"Unsafe archive member: {entry.filename}")
-                if target.exists():
-                    shutil.rmtree(target)
-                shutil.copytree(
-                    TEMPLATE,
-                    target,
-                    ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
-                )
-                archive.extractall(target / "environment/data")
-            (target / "instruction.md").write_text(
-                (TEMPLATE / "instruction.md")
-                .read_text()
-                .replace("{question}", row["question"])
+                # Stage beside the output directory so extraction/copy failures
+                # cannot leave a partially generated task or destroy an old one.
+                self.output_dir.parent.mkdir(parents=True, exist_ok=True)
+                with TemporaryDirectory(
+                    prefix=f".{task_id}-", dir=self.output_dir.parent
+                ) as directory:
+                    staging = Path(directory) / "task"
+                    shutil.copytree(
+                        TEMPLATE,
+                        staging,
+                        ignore=shutil.ignore_patterns("__pycache__", "*.pyc"),
+                    )
+                    archive.extractall(staging / "environment/data")
+                    self._write_task(staging, task_id, row)
+                    self.output_dir.mkdir(parents=True, exist_ok=True)
+                    backup = Path(directory) / "previous"
+                    if target.exists():
+                        target.rename(backup)
+                    try:
+                        staging.rename(target)
+                    except BaseException:
+                        if backup.exists():
+                            backup.rename(target)
+                        raise
+
+    def _write_task(self, target: Path, task_id: str, row: dict[str, str]) -> None:
+        (target / "instruction.md").write_text(
+            (TEMPLATE / "instruction.md")
+            .read_text()
+            .replace("{question}", row["question"])
+        )
+        hosts = allowed_hosts(row["allowed_domains"])
+        config = (TEMPLATE / "task.toml").read_text().replace("{task_id}", task_id)
+        config = config.replace("{allowed_hosts}", json.dumps(hosts))
+        config = config.replace("{source_id}", row["id"])
+        config = config.replace("{human_solvable}", row["human_solvable"])
+        (target / "task.toml").write_text(config)
+        (target / "tests/problem.json").write_text(json.dumps(row, indent=2))
+        if self.oracle_dir is not None:
+            shutil.copyfile(
+                self.oracle_dir / f"{row['id']}.txt", target / "solution/answer.txt"
             )
-            domains = [
-                x.strip() for x in row["allowed_domains"].split(",") if x.strip()
-            ]
-            hosts = sorted(
-                set(
-                    domains
-                    + ["*." + x for x in domains]
-                    + ["files.pythonhosted.org", "api.openai.com", "api.anthropic.com"]
-                )
+            shutil.copyfile(
+                self.oracle_dir / f"{row['id']}.md", target / "solution/report.md"
             )
-            config = (TEMPLATE / "task.toml").read_text().replace("{task_id}", task_id)
-            config = config.replace("{allowed_hosts}", json.dumps(hosts))
-            config = config.replace("{source_id}", row["id"])
-            config = config.replace("{human_solvable}", row["human_solvable"])
-            (target / "task.toml").write_text(config)
-            (target / "tests/problem.json").write_text(json.dumps(row, indent=2))
-            if self.oracle_dir is not None:
-                shutil.copyfile(
-                    self.oracle_dir / f"{row['id']}.txt", target / "solution/answer.txt"
-                )
-                shutil.copyfile(
-                    self.oracle_dir / f"{row['id']}.md", target / "solution/report.md"
-                )

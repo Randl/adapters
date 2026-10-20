@@ -1,0 +1,18 @@
+# GT acceptance / verifier plumbing only; not an independent analysis solution.
+job_name: biomysterybench-v11-gt-oracle
+jobs_dir: jobs
+n_attempts: 1
+n_concurrent_trials: 1
+retry:
+  max_retries: 0
+datasets:
+  - path: datasets/biomysterybench-gt-oracle
+agents:
+  - name: oracle
+environment:
+  type: docker
+  delete: true
+metrics:
+  - type: uv-script
+    kwargs:
+      script_path: src/biomysterybench/src/biomysterybench/metric.py

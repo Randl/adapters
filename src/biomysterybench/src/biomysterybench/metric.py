@@ -6,10 +6,16 @@ from collections.abc import Sequence
 from pathlib import Path
 
 
-def aggregate(rewards: Sequence[dict | None]) -> dict[str, float]:
-    if not rewards or any(row is None for row in rewards):
-        raise ValueError("Cannot aggregate incomplete verification")
-    result = {}
+def aggregate(rewards: Sequence[dict | None]) -> dict[str, float | int]:
+    missing = sum(row is None for row in rewards)
+    result: dict[str, float | int] = {
+        "n_verified": len(rewards) - missing,
+        "n_missing": missing,
+    }
+    # Harbor computes metrics for failed trials too, including during finalization.
+    # Retain failure counts without reporting a biased accuracy over survivors.
+    if not rewards or missing:
+        return result
     for name, flag in (("human_solvable_accuracy", 1), ("human_difficult_accuracy", 0)):
         rows = [
             row for row in rewards if row is not None and row["human_solvable"] == flag

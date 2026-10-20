@@ -18,6 +18,7 @@ Analyze anonymized biological datasets to identify tissues, organisms, variants 
 - Pinned sources and self-contained generated tasks.
 - Separate private verifier and explicit failure behavior.
 - Retained verifier evidence and reproduction configuration.
+- Prepared Sonnet 5 reproduction and separate GT fixture experiment (not run).
 
 ## Generated Task Structure
 
@@ -48,18 +49,85 @@ repository root, after generation:
 
 ~~~bash
 harbor run -c src/biomysterybench/run_biomysterybench.yaml
-harbor run -c src/biomysterybench/run_biomysterybench.yaml -a codex -m MODEL
 harbor job resume -p /path/to/job
 ~~~
 
 Oracle is the default. This configuration does not assert oracle success; read
 Notes for the required reference assets.
 
+### Prepared Sonnet 5 and GT experiments
+
+The setup in `experiments/` is prepared but unexecuted. From the repository root:
+
+```bash
+uv run --project src/biomysterybench \
+  python src/biomysterybench/experiments/prepare.py
+```
+
+Preparation downloads the pinned release and creates separate parity and GT
+tasksets under `datasets/`, plus hashes and configs in
+`datasets/biomysterybench-preparation/`. It never launches evaluations and refuses
+existing destinations. GT fixtures contain expected-answer excerpts with scoring
+directions removed; `--gt-answers /private/answers.json` accepts a reviewed mapping
+of all 90 source IDs to plain answers. GT acceptance tests verifier plumbing,
+not independent biological analysis. Keep these answer-bearing outputs private.
+
+The image recipe follows the author's published tool inventory with Python 3.11,
+R 4.3 and conda. Its packages have not been resolved or built. Before collecting
+scores, build it, freeze the image digest and package list across all tasks/runs,
+and record the Harbor version and source commit. The experiment adds EBI and
+Reactome from the author reply to the CSV's scientific-domain allowlist.
+
+Future run commands, after image and fixture review:
+
+```bash
+export PYTHONPATH="$PWD/src/biomysterybench/experiments"
+# Host credentials: ANTHROPIC_API_KEY for solver, OPENAI_API_KEY for judge.
+harbor run -c datasets/biomysterybench-preparation/gt-oracle.yaml
+harbor run -c datasets/biomysterybench-preparation/pilot.yaml
+# Only after reviewing the fixed eight-task pilot:
+harbor run -c datasets/biomysterybench-preparation/sonnet5.yaml
+```
+
+The solver calls `claude-sonnet-5` directly from the host with native bash tools,
+adaptive thinking at high effort, no fallback or automatic retries, and returned
+model-ID checks. Local budgets are 150 turns, 32,768 output tokens per response,
+two hours per task and at most 600 seconds per command. These are explicit
+reconstruction choices, not recovered Anthropic evaluation settings.
+
+Before inference, sandbox probes require PyPI access while HF, GitHub, model APIs
+and other known answer-hosting routes fail at transport level. They also check
+for leaked credentials/reference files. These checks remain unexecuted; they
+cannot rule out every mirror on an allowed scientific domain. Do not add host
+mounts, provider credentials, remote tools or extra allowed hosts.
+
+Raw responses and tool outputs are stored in the host-only `trusted-solver/`
+trial directory. Any error or structured refusal creates a job-level
+`sonnet5.stop` latch; concurrency is one, and subsequent trials cannot make solver
+calls. Natural-language refusals still require transcript review. Review the
+first full run before creating separately named run2/run3 configs.
+
+Audit every completed attempt with the separate, paid transcript judge:
+
+```bash
+uv run --project src/biomysterybench \
+  python src/biomysterybench/experiments/audit.py \
+  --trial jobs/JOB/TRIAL \
+  --task datasets/biomysterybench-parity/biomysterybench-ID \
+  --output jobs/JOB/TRIAL/transcript-audit
+```
+
+The fixed `experiments/judge_prompt.txt` separates correctness from prohibited
+source lookup, permits memory and ordinary reference-database use, and requires
+concrete evidence. Uncertain audits need human adjudication. Audits preserve the
+original verifier reward. Report audited and provisional scores distinctly;
+include refusals as failures in fixed denominators, and treat infrastructure
+failures as incomplete runs rather than reporting survivor-only accuracy.
+
 ### Running Individual Trial
 
 ~~~bash
 harbor trial start -p datasets/biomysterybench/TASK_ID -a oracle
-harbor trial start -p datasets/biomysterybench/TASK_ID -a codex -m MODEL
 ~~~
 
 ## Usage: Create Task Directories
@@ -84,13 +152,18 @@ the structural validator will report that required file as pending.
 |-------|-------|--------|----------------|--------------|--------------------------------|----------------------------|
 | Pending | Pending | See text | 0 | 90 | Not measured | Not measured |
 
-No official executable original harness exists. Native Anthropic parity cannot currently be asserted. Coordinate an explicitly labeled released-harness or matched CLI-agent comparison, fixing the dataset, solver, model, judge, prompts, allowlist, images, budgets and attempt order. Repeated-attempt pass@5 is not the mean of five trial rewards.
+No official executable original harness was found. Native Anthropic parity cannot currently be asserted. Coordinate an explicitly labeled reconstructed-harness comparison, fixing the dataset, solver, model, judge, prompts, allowlist, images, budgets and attempt order. Repeated-attempt pass@5 is not the mean of five trial rewards.
 
-Harbor-side compatibility command, which alone does not establish parity:
-
-```bash
-harbor run -c src/biomysterybench/run_biomysterybench.yaml -a codex -m MODEL
-```
+The prepared reproduction target is Sonnet 5's **87.5% human-solvable / 34.1%
+human-difficult** in the [July 24 Opus 5 system card](https://www.anthropic.com/claude-opus-5-system-card),
+§8.17.1. Its removal counts match v11, but it does not specify a dataset commit.
+There are no measurements from the prepared setup and no claimed successful
+reproduction. No official judge model or prompt was found; the released rubric
+and [v11 scoring rules](https://huggingface.co/datasets/Anthropic/BioMysteryBench-preview/blob/main/CHANGELOG.md)
+are the grading specification. [SaferAI's independent implementation](https://www.safer-ai.org/u/2026/08/SaferAI-GLM-Evaluation-Report.pdf),
+Appendix A.4.1, uses full-transcript grading with Opus 4.8, but reports pass@5.
+[Vals](https://www.vals.ai/benchmarks/biomysterybench) uses its own harness/judge;
+neither establishes reproduction of Sonnet 5's published partition scores.
 
 Agree on solver/model versions, judge routing, prompts/tools, subset, images,
 Harbor revision, limits, at least three repetitions and expected cost before paid
@@ -102,18 +175,29 @@ score ranges. Oracle and deterministic tests are separate evidence.
 
 CC BY 4.0, with evaluation-only access terms; biological archives retain original repository terms. Log in with hf auth login after obtaining access. Export OPENAI_API_KEY for verification. Large archives require substantial disk and download time.
 
-Questions and rubrics are preserved verbatim. Only questions and input files enter the agent image. Rubrics and credentials remain in the separate verifier. ZIP traversal and symlinks are rejected before extraction. Network access follows the released domains plus subdomains, the PyPI file host, and model endpoints. The rules prohibit identifying source studies through accession IDs. The network policy does not prove that every allowed database query complies with this rule.
+Questions and rubrics are preserved verbatim. Only questions and input files enter the agent image. Rubrics and judge credentials remain in the separate verifier. ZIP traversal and symlinks are rejected before extraction. Network access follows the released domains plus subdomains and the PyPI file host; source rows cannot expand this approved set. Model API endpoints, Hugging Face and GitHub are excluded from the tested sandbox. The separate verifier can reach only its judge endpoint. The rules prohibit identifying source studies through accession IDs. The network policy does not prove that every allowed database query complies with this rule.
 
-Anthropic has not released the original tools, system prompt, judge prompt or container. This adapter supplies an explicit rubric judge (gpt-4.1-2025-04-14, temperature 0), a bioinformatics image, and a file interface. The configured metric reports the human-solvable and human-difficult accuracy separately and excludes its partition marker from reported outcomes. These are adapter rubric scores; they are not established replicas of Anthropic's reported results. Provider and judge-format failures leave no reward. Invalid answers receive zero. The required analysis report is agent-supplied evidence, not an authenticated execution audit.
+Anthropic has described its tools and network access in an
+[author reply](https://huggingface.co/datasets/Anthropic/BioMysteryBench-full/discussions/5);
+no original system prompt, judge implementation or container image was found.
+This adapter supplies an explicit rubric judge (gpt-4.1-2025-04-14, temperature 0),
+a bioinformatics image, and a file interface. The prepared experiment includes a
+broader image recipe based on the author inventory. The metric reports both
+partition accuracies plus verified/missing counts; any missing reward suppresses
+accuracy rather than reporting a biased surviving subset. These are adapter rubric
+scores, not established replicas of Anthropic's results. Provider and judge-format
+failures leave no reward. Invalid answers receive zero. The analysis report is
+agent-supplied evidence; the prepared host transcript audit supplies a separate
+anti-cheat check.
 
-Reference solutions are not released. --oracle-dir accepts independently solved ID.txt answers and ID.md analyses. Without them the oracle launcher fails explicitly. Copying rubrics into answers is not oracle evidence. --data-dir accepts a pinned local HF snapshot; --split full|human-solvable|human-difficult selects a partition. Generated tasks contain gated material and must remain local pending review of distribution terms.
-
-Review lessons checked against [adapters PR 9](https://github.com/harbor-framework/adapters/pull/9),
-[Harbor PR 3104](https://github.com/harbor-framework/harbor/pull/3104) and
-[Harbor PR 2974](https://github.com/harbor-framework/harbor/pull/2974): preserve
-failure identity, executable acceptance rules and diagnostic evidence; keep
-credentials private; distinguish model parity from synthetic and oracle checks.
-No push, public post, upload or registry write has occurred.
+No released reference solutions were found. --oracle-dir accepts ID.txt answers
+and ID.md reports. Without them the oracle launcher fails explicitly. Independent
+analysis solutions and GT acceptance fixtures must be labeled separately: the
+prepared GT experiment checks verifier plumbing, not biological solvability.
+--data-dir accepts a local HF snapshot but does not verify its claimed revision;
+the experiment preparation uses pinned Hub downloads and records file hashes.
+--split full|human-solvable|human-difficult selects a partition. Generated tasks
+contain gated material and must remain local pending review of distribution terms.
 
 ## Installation / Prerequisites
 
@@ -132,14 +216,19 @@ uv run ty check
 
 The upstream source environment variables enable integration cases without network
 requests. Type checks cover generator code and ordinary tests; generated runtime
-modules are checked in their own containers or evaluator environment.
+modules are checked in their own containers or evaluator environment. The custom
+experiment agent requires the external Harbor environment. New experiment code
+and the latest network/judge changes have not been executed under the preparation-only
+instruction.
 
 ## Troubleshooting
 
 Missing rewards after verifier errors indicate infrastructure failure; inspect
 logs and fix the provider/install before retrying. Invalid submissions receive
 zero. Regenerate with --overwrite after template changes. An oracle missing its
-reference needs a real validated solution. Keep restricted generated data local.
+reference needs a validated solution or an explicitly labeled GT fixture. Keep
+restricted generated data local. New experiment jobs must not silently resume past
+`sonnet5.stop`; investigate the failure before starting a new job.
 
 ## Citation
 

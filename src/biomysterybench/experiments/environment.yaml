@@ -1,0 +1,50 @@
+# Prepared tool inventory, not a solved environment lock.
+name: base
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - conda
+  - pip
+  - uv
+  - r-base=4.3
+  - bwa
+  - bowtie2
+  - blast
+  - samtools
+  - bcftools
+  - bedtools
+  - seqtk
+  - fastqc
+  - nextflow
+  - openjdk=21
+  - nodejs
+  - r-tidyverse
+  - bioconductor-deseq2
+  - bioconductor-edger
+  - bioconductor-limma
+  - bioconductor-genomicranges
+  - bioconductor-clusterprofiler
+  - bioconductor-enrichplot
+  - bioconductor-go.db
+  - bioconductor-tximport
+  - bioconductor-biostrings
+  - bioconductor-org.hs.eg.db
+  - bioconductor-org.mm.eg.db
+  - bioconductor-lionessr
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - scikit-image
+  - biopython
+  - pysam
+  - pyvcf3
+  - plotly
+  - statsmodels
+  - networkx
+  - h5py
+  - jupyterlab

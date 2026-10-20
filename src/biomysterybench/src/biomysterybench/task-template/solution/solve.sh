@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 if [ ! -f /solution/answer.txt ]; then
-    echo 'No released reference solution. Generate with --oracle-dir containing independently solved answers.' >&2
+    echo 'Missing reference assets. Generate with --oracle-dir (independent solutions or explicitly labeled GT fixtures).' >&2
     exit 1
 fi
 cp /solution/answer.txt /workspace/answer.txt

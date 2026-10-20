@@ -1,0 +1,21 @@
+# Prepared only. Paths are relative to the repository root.
+job_name: biomysterybench-v11-sonnet5-run1
+jobs_dir: jobs
+n_attempts: 1
+n_concurrent_trials: 1
+retry:
+  max_retries: 0
+datasets:
+  - path: datasets/biomysterybench-parity
+agents:
+  - import_path: sonnet_agent:Sonnet5Agent
+    model_name: anthropic/claude-sonnet-5
+    extra_allowed_hosts: []
+environment:
+  type: docker
+  delete: true
+  extra_allowed_hosts: []
+metrics:
+  - type: uv-script
+    kwargs:
+      script_path: src/biomysterybench/src/biomysterybench/metric.py
