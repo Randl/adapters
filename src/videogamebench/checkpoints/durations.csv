@@ -1,0 +1,21 @@
+game,split,video_duration_seconds,video_duration_hours,video_count,walkthrough_urls,expanded_checkpoints,reconstructed_upstream_checkpoints
+kirby,test,1153,0.32,1,https://www.youtube.com/watch?v=n8CSolb0hjc,8,8
+castlevania,dev,1573,0.437,1,https://www.youtube.com/watch?v=oL5TwYG0iQ8,4,0
+super_mario_land,dev,1741,0.484,1,https://www.youtube.com/watch?v=vfaV2VDBQEk,12,2
+mega_man,dev,2776,0.771,1,https://www.youtube.com/watch?v=wpwESPNjAk0,10,0
+oregon_trail,dev,2815,0.782,1,https://www.youtube.com/watch?v=FaWmldKoo9Y,16,0
+prince,dev,3200,0.889,1,https://www.youtube.com/watch?v=qMOBiT3F6AM,11,0
+scooby_doo,dev,3558,0.988,1,https://www.youtube.com/watch?v=yYfpaz9NwU8,3,0
+need_for_speed,test,5495,1.526,1,https://www.youtube.com/watch?v=1Sf7_TbG8Js,9,9
+warcraft2,dev,5703,1.584,1,https://www.youtube.com/watch?v=DWjZQzviTUs,14,0
+zelda,test,6272,1.742,1,https://www.youtube.com/watch?v=rLFXGs1Rr6c,10,10
+donkey_kong,dev,6727,1.869,1,https://www.youtube.com/watch?v=tqUU9pwUxQo,46,0
+incredible-machine,test,7755,2.154,1,https://www.youtube.com/watch?v=pTbSMKGQ_rU,87,14
+pokemon_red,dev,8750,2.431,1,https://www.youtube.com/watch?v=hYcotDHI0dg,9,0
+doom2,test,14892,4.137,1,https://www.youtube.com/watch?v=nhmRxFf02JA,30,30
+doom,dev,15031,4.175,1,https://www.youtube.com/watch?v=Q4GiCg_m8wA,4,0
+quake,dev,16273,4.52,1,https://www.youtube.com/watch?v=Y8k9c-6Me_A,30,0
+civ,test,17893,4.97,1,https://www.youtube.com/watch?v=XnfkrhREDDM,1,1
+pokemon_crystal,test,40774,11.326,1,https://www.youtube.com/watch?v=HQEaaIuyKAM,21,14
+age_of_empires,dev,43126,11.979,2,https://www.youtube.com/watch?v=hqsbQzpFRBI https://www.youtube.com/watch?v=e0B0tMANkCo,61,0
+x-com,dev,395211,109.781,76,https://www.youtube.com/playlist?list=PLvqxe4XbcSiFAIFbzADIjQg9TPBQrxaW4,2,0

@@ -441,3 +441,55 @@ Benchmark code, prompts and evaluation remain credited to the upstream authors.
 
 No paid inference, dataset publication or result upload was performed while
 preparing this implementation.
+
+### Reconstructing and extending checkpoints
+
+`checkpoints/plan.json` records source videos, exact timestamps, normalized crops,
+labels, source review status, paper percentages, and source-video/reference SHA-256 hashes
+for all 20 public games. It includes every released checkpoint and the paper's
+166 test milestones. Dev additions are separately identified, selected
+intermediate milestones; they are not an official exhaustive checkpoint list.
+`checkpoints/durations.csv` ranks walkthrough lengths, including both Age of
+Empires parts and the 76-video X-COM playlist. These durations are proxies, not
+expected human or emulator execution times.
+
+```bash
+uv sync --extra checkpoints
+uv run videogamebench-checkpoints \
+  --plan checkpoints/plan.json \
+  --video-dir /path/to/walkthrough-cache \
+  --source-dir /path/to/pinned/VideoGameBench \
+  --output-dir /path/to/checkpoint-audit \
+  --download-missing
+```
+
+The output contains `reconstructed-upstream/`, `expanded/`, `report.json`, and a
+local `index.html` gallery. Download concurrency, chunk size, retries, timeout,
+decoder, and progress interval are CLI options; timestamps, crops, formats,
+labels, and comparison thresholds live in the JSON plan. `--overwrite` explicitly
+regenerates images. `--strict-reference-matches` exits with status 2 if any
+reconstruction exceeds the published threshold. Video-content changes fail
+validation so edited walkthroughs cannot silently invalidate timestamps. Published
+reference hashes also pin the images used for comparison.
+
+The comparison uses upstream's 64-bit `imagehash.average_hash`, including Doom
+II's threshold of 8 and the other released defaults of 10. The audit also lists
+checkpoint pairs that collide under that matcher. A matching video frame is not
+proof of emulator compatibility or unique milestone detection. Remastered/source
+ports, color palettes, creator overlays, repeated credits, and similar result
+screens require replay validation. The X-COM sources have an overlapping webcam;
+those references need clean emulator captures before oracle use.
+
+`checkpoints/collision_probe.json` records a direct probe of the unmodified Doom II
+matcher: repeatedly supplying the published map-1 image reaches checkpoint 30
+after 16 checks. This is a matcher probe, not a game episode or Harbor result.
+Scoring is preserved for parity; the collision limits what a checkpoint reward
+alone can establish about game completion.
+
+These reconstructed and expanded images are **experimental references**, not
+validated oracle inputs. Task generation and parity continue to use the pinned
+upstream checkpoint set. Generated images and downloaded videos stay outside the
+adapter package; the extraction plan, comparison summary, and tool are versioned.
+See `checkpoints/audit_summary.json` for the measured comparisons and remaining
+limitations. The existing validated Mario oracle remains tied to its original
+checkpoint set.

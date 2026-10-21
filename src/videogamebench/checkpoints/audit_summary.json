@@ -1,0 +1,493 @@
+{
+  "schema_version": 1,
+  "upstream_revision": "faab53179cb4babdd102f35cb83c24a5f2c29d05",
+  "plan_sha256": "8845fadfd5c49828ac84db38de52a3ec7294c125371047912ea665b0286c176a",
+  "status": "experimental_references_emulator_validation_pending",
+  "counts": {
+    "public_games": 20,
+    "expanded_checkpoints": 388,
+    "paper_test_milestones": 166,
+    "adapter_defined_dev_milestones": 222,
+    "released_references_reconstructed": 88,
+    "total_extracted_images": 476,
+    "reconstructions_within_upstream_threshold": 86
+  },
+  "hash_algorithm": "imagehash.average_hash(hash_size=8)",
+  "thresholds": {
+    "doom2": 8,
+    "other_games": 10
+  },
+  "reference_mismatches": [
+    {
+      "game": "incredible-machine",
+      "id": "87",
+      "video": "incredible-machine",
+      "timestamp_sec": 7722.0,
+      "reference_path": "published/incredible-machine/87.png",
+      "reference_sha256": "cbdf49a36db6b4f3a36a484ea5deccb2e710f3e40241855e9bf49cf9e5c32b89",
+      "reference_hash": "fe0e473c3c000000",
+      "distance": 12,
+      "threshold": 10,
+      "within_threshold": false
+    },
+    {
+      "game": "super_mario_land",
+      "id": "2",
+      "video": "super_mario_land",
+      "timestamp_sec": 1672.5,
+      "reference_path": "published/super_mario_land/2.png",
+      "reference_sha256": "edb138eeb11ea40a4c64b523ba7dad94b69ec2374d40228e7118912c737e9762",
+      "reference_hash": "00fffbe7c7ffffff",
+      "distance": 14,
+      "threshold": 10,
+      "within_threshold": false
+    }
+  ],
+  "collision_audit": {
+    "method": "Pairwise 64-bit average-hash distance compared with the later checkpoint threshold; no threshold changes.",
+    "generated_pairs_within_threshold": 4690,
+    "published_reference_pairs_within_threshold": 386,
+    "expanded_pairs_involving_final_by_game": {
+      "doom2": 23,
+      "age_of_empires": 1
+    },
+    "published_pairs_involving_final_by_game": {
+      "doom2": 24
+    },
+    "upstream_matcher_probe": "collision_probe.json",
+    "probe_result": "The unmodified Doom II matcher reaches checkpoint 30 after 16 checks of the same published checkpoint-1 image. This was a direct matcher probe, not a game episode or Harbor reward run.",
+    "expanded_final_collision_pairs": [
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "1",
+        "right": "30",
+        "distance": 7,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "5",
+        "right": "30",
+        "distance": 5,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "7",
+        "right": "30",
+        "distance": 3,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "8",
+        "right": "30",
+        "distance": 6,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "9",
+        "right": "30",
+        "distance": 6,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "10",
+        "right": "30",
+        "distance": 5,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "11",
+        "right": "30",
+        "distance": 7,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "12",
+        "right": "30",
+        "distance": 6,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "14",
+        "right": "30",
+        "distance": 4,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "15",
+        "right": "30",
+        "distance": 6,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "16",
+        "right": "30",
+        "distance": 4,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "17",
+        "right": "30",
+        "distance": 1,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "18",
+        "right": "30",
+        "distance": 5,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "19",
+        "right": "30",
+        "distance": 5,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "21",
+        "right": "30",
+        "distance": 1,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "22",
+        "right": "30",
+        "distance": 6,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "23",
+        "right": "30",
+        "distance": 4,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "24",
+        "right": "30",
+        "distance": 3,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "25",
+        "right": "30",
+        "distance": 1,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "26",
+        "right": "30",
+        "distance": 4,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "27",
+        "right": "30",
+        "distance": 4,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "28",
+        "right": "30",
+        "distance": 4,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "doom2",
+        "left": "29",
+        "right": "30",
+        "distance": 2,
+        "threshold": 8,
+        "includes_final": true
+      },
+      {
+        "profile": "expanded",
+        "game": "age_of_empires",
+        "left": "27",
+        "right": "61",
+        "distance": 4,
+        "threshold": 10,
+        "includes_final": true
+      }
+    ]
+  },
+  "games": [
+    {
+      "game": "kirby",
+      "split": "test",
+      "walkthrough_duration_seconds": 1153,
+      "expanded_checkpoints": 8,
+      "reconstructed_upstream_checkpoints": 8,
+      "reconstructions_within_threshold": 8,
+      "maximum_reference_hash_distance": 6,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "castlevania",
+      "split": "dev",
+      "walkthrough_duration_seconds": 1573,
+      "expanded_checkpoints": 4,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "super_mario_land",
+      "split": "dev",
+      "walkthrough_duration_seconds": 1741,
+      "expanded_checkpoints": 12,
+      "reconstructed_upstream_checkpoints": 2,
+      "reconstructions_within_threshold": 1,
+      "maximum_reference_hash_distance": 14,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "mega_man",
+      "split": "dev",
+      "walkthrough_duration_seconds": 2776,
+      "expanded_checkpoints": 10,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "oregon_trail",
+      "split": "dev",
+      "walkthrough_duration_seconds": 2815,
+      "expanded_checkpoints": 16,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "prince",
+      "split": "dev",
+      "walkthrough_duration_seconds": 3200,
+      "expanded_checkpoints": 11,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "scooby_doo",
+      "split": "dev",
+      "walkthrough_duration_seconds": 3558,
+      "expanded_checkpoints": 3,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "need_for_speed",
+      "split": "test",
+      "walkthrough_duration_seconds": 5495,
+      "expanded_checkpoints": 9,
+      "reconstructed_upstream_checkpoints": 9,
+      "reconstructions_within_threshold": 9,
+      "maximum_reference_hash_distance": 1,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "warcraft2",
+      "split": "dev",
+      "walkthrough_duration_seconds": 5703,
+      "expanded_checkpoints": 14,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "zelda",
+      "split": "test",
+      "walkthrough_duration_seconds": 6272,
+      "expanded_checkpoints": 10,
+      "reconstructed_upstream_checkpoints": 10,
+      "reconstructions_within_threshold": 10,
+      "maximum_reference_hash_distance": 8,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "donkey_kong",
+      "split": "dev",
+      "walkthrough_duration_seconds": 6727,
+      "expanded_checkpoints": 46,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "incredible-machine",
+      "split": "test",
+      "walkthrough_duration_seconds": 7755,
+      "expanded_checkpoints": 87,
+      "reconstructed_upstream_checkpoints": 14,
+      "reconstructions_within_threshold": 13,
+      "maximum_reference_hash_distance": 12,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "pokemon_red",
+      "split": "dev",
+      "walkthrough_duration_seconds": 8750,
+      "expanded_checkpoints": 9,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "doom2",
+      "split": "test",
+      "walkthrough_duration_seconds": 14892,
+      "expanded_checkpoints": 30,
+      "reconstructed_upstream_checkpoints": 30,
+      "reconstructions_within_threshold": 30,
+      "maximum_reference_hash_distance": 3,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "doom",
+      "split": "dev",
+      "walkthrough_duration_seconds": 15031,
+      "expanded_checkpoints": 4,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "quake",
+      "split": "dev",
+      "walkthrough_duration_seconds": 16273,
+      "expanded_checkpoints": 30,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "civ",
+      "split": "test",
+      "walkthrough_duration_seconds": 17893,
+      "expanded_checkpoints": 1,
+      "reconstructed_upstream_checkpoints": 1,
+      "reconstructions_within_threshold": 1,
+      "maximum_reference_hash_distance": 8,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "pokemon_crystal",
+      "split": "test",
+      "walkthrough_duration_seconds": 40774,
+      "expanded_checkpoints": 21,
+      "reconstructed_upstream_checkpoints": 14,
+      "reconstructions_within_threshold": 14,
+      "maximum_reference_hash_distance": 3,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "age_of_empires",
+      "split": "dev",
+      "walkthrough_duration_seconds": 43126,
+      "expanded_checkpoints": 61,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    },
+    {
+      "game": "x-com",
+      "split": "dev",
+      "walkthrough_duration_seconds": 395211,
+      "expanded_checkpoints": 2,
+      "reconstructed_upstream_checkpoints": 0,
+      "reconstructions_within_threshold": 0,
+      "maximum_reference_hash_distance": null,
+      "emulator_validation": "pending"
+    }
+  ],
+  "limitations": [
+    "All newly extracted references require emulator replay validation before oracle use. Hash agreement does not establish unique completion evidence.",
+    "Task generation and parity still use the pinned upstream checkpoints; this plan does not replace scoring.",
+    "Dev milestones are selected adapter-defined intermediates and completion references, not an official exhaustive level list.",
+    "The three unreleased secret test games cannot be reconstructed from the public repository.",
+    "The Mario ending reconstruction differs from the published palette and exceeds its threshold. The Incredible Machine final reconstruction also exceeds its threshold. Original published references are preserved for comparison.",
+    "Remastered and source-port visuals are accepted as walkthrough sources but may not match original-emulator frames.",
+    "X-COM sources use OpenXcom and include an overlapping webcam; clean emulator captures are needed. Only the Cydonia assault and final victory milestones are currently extracted from the 76-part playlist.",
+    "Age of Empires includes Rise of Rome and additional campaigns. Its 61 source-verified victory screens use generic sequence labels; OCR mission names are evidence, not canonical IDs. One earlier screen collides with the final reference.",
+    "Doom includes Ultimate Doom episode 4; Donkey Kong includes optional Lost World content; Quake milestones cover levels visited in this walkthrough, not every possible secret level.",
+    "Video length and elapsed fractions are proxies for walkthrough length, not expected play time, checkpoint score weights, or replay execution time. X-COM playlist and individual-video metadata durations differ slightly.",
+    "Generated PNGs, gallery, and full pairwise report are external artifacts; source plans, provenance, and this summary are versioned."
+  ]
+}
