@@ -1,0 +1,13 @@
+# Independent candidate collection; success must be revalidated in a fresh game.
+mode: lite
+model: gpt-4o-2024-08-06
+max_steps: 15000
+action_frames: 15
+temperature: 0.7
+max_tokens: 1024
+history_tokens: 4000
+max_context_size: 20
+max_cost: 30.0
+agent_timeout_sec: 86400
+record_video: true
+video_fps: 5.0

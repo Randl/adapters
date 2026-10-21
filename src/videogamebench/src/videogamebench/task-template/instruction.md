@@ -1,14 +1,18 @@
 {game_prompt}
 
-This task uses VideoGameBench Lite: the emulator pauses while you think. Use
-`python /opt/game/play.py --buttons RIGHT` to act and save the resulting screenshot
-at `/workspace/screen.png`. Multiple buttons can be pressed together, for example
-`--buttons A RIGHT`. Use `--no-op` to advance without pressing a button, or omit
-both flags to observe without advancing. Each action has the upstream default
-15-frame duration. At most 15,000 actions are allowed.
+Control the game through screenshots and actions with `python /opt/game/play.py`.
+Running it without arguments saves the current view to `/workspace/screen.png`.
+Open that file with your image-viewing tool. The platform is {emulator}; the mode
+is {mode}. Lite pauses during deliberation; real-time continues running.
 
-The tool records the action sequence in `/workspace/actions.json`. Leave this file
-as your submission. The verifier independently replays it from a fresh emulator
-and checks the released checkpoints. Use the screenshot tool available to your
-agent to view the screen; raw memory and emulator introspection are outside the
-benchmark's visual interaction contract.
+For Game Boy, use `--buttons RIGHT A` (buttons: A, B, START, SELECT, UP, DOWN,
+LEFT, RIGHT), or `--no-op`. For DOS, use `--action` with JSON, for example
+`--action '{"action":"press_key","action_input":"ArrowRight"}'`.
+DOS actions are click, move, drag, scroll_down, scroll_up, write, press_key and
+hold_key. Move/drag inputs are "x,y" coordinates; key inputs use Playwright key
+names. Game Boy actions use {action_frames} frames (the emulator also ticks on
+button updates). The session permits {max_steps} evaluator steps.
+
+Play toward the game's objectives. Your actions are recorded automatically.
+Finish with `python /opt/game/play.py --finish`. No score file or textual answer
+is required. Use only the visual control interface to interact with the game.

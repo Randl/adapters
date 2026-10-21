@@ -2,6 +2,11 @@ datasets:
   - path: datasets/videogamebench
 agents:
   - name: oracle
+# For upstream VG-Agent use prepared experiment configs or:
+# agents:
+#   - import_path: videogamebench.agent:VideoGameBenchAgent
+#     model_name: gpt-4o-2024-08-06
+# For CLI compatibility use name: codex with a vision-capable model_name.
 environment:
   type: docker
   delete: true

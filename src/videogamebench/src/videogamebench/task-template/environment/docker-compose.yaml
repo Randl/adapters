@@ -4,14 +4,19 @@ services:
       game:
         condition: service_healthy
   game:
+    environment:
+      VIDEOGAMEBENCH_LOG_INTERVAL_SEC: "${VIDEOGAMEBENCH_LOG_INTERVAL_SEC:-10}"
+    init: true
     build:
       context: .
       dockerfile: Dockerfile.game
+    shm_size: "{game_shm_mb}m"
+    cpus: {cpus}
+    mem_limit: "{memory_mb}m"
     healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080', timeout=5)"]
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=5)"]
       interval: 5s
       timeout: 10s
-      retries: 24
-      start_period: 360s
+      retries: 12
     networks:
       - default

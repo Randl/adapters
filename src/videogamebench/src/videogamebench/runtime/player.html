@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VideoGameBench recorder</title>
+<style>
+  :root { color-scheme: dark; font-family: system-ui, sans-serif; }
+  body { max-width: 760px; margin: 30px auto; padding: 0 20px; background: #121722; color: #e5eaf4; }
+  h1 { font-size: 24px; }
+  canvas { display: block; width: min(100%, 640px); image-rendering: pixelated; background: #070b12; border: 2px solid #465369; }
+  button { padding: 12px 18px; margin: 16px 8px 0 0; cursor: pointer; }
+  #status { min-height: 3em; }
+  kbd { padding: 2px 6px; background: #303b50; border-radius: 4px; }
+</style>
+<h1>VideoGameBench recorder</h1>
+<p id="game"></p>
+<canvas id="screen" width="160" height="144" aria-label="Live game screen"></canvas>
+<button id="play" disabled>Play &amp; record</button>
+<button id="pause" disabled>Pause game</button>
+<button id="finish" disabled>Finish &amp; save</button>
+<button id="restart" hidden disabled>Restart game &amp; recording</button>
+<p>
+  <label>Play speed <select id="play-speed">
+    <option value="1">1×</option><option value="0.5">½×</option>
+    <option value="0.25" selected>¼×</option><option value="0.1">⅒×</option>
+  </select></label>
+  <label><input type="checkbox" id="step-mode"> Single-action mode</label>
+  <button id="step" disabled>Advance one action (.)</button>
+</p>
+<p>For precise timing, enable Single-action mode, hold your buttons, then press
+  <kbd>.</kbd> or click Advance. With no buttons held, Advance waits one action.
+  The game stays frozen between actions. Each action keeps the configured frame count.</p>
+<p id="rewind-controls" hidden>
+  <label>Rewind <input id="rewind-count" type="number" value="60" min="1" step="1" style="width:5em"> actions</label>
+  <label>Replay speed <select id="replay-speed">
+    <option value="0">Fastest</option><option value="1">1×</option>
+    <option value="2">2×</option><option value="4">4×</option>
+  </select></label>
+  <button id="rewind" disabled>Rewind &amp; continue</button>
+</p>
+<p><kbd>Arrow keys</kbd> move · <kbd>Z</kbd> / <kbd>Space</kbd> A (jump) ·
+  <kbd>X</kbd> B (run/fire) · <kbd>Enter</kbd> Start · <kbd>Shift</kbd> Select</p>
+<p>Alternatives: <kbd>WASD</kbd> move · <kbd>J</kbd> jump · <kbd>K</kbd> run.
+  <label><input type="checkbox" id="hold-run"> Hold run (B)</label></p>
+<p id="input-state" aria-live="off">Held: none · Last sent: none</p>
+<p>Hold the jump key rather than tapping it. Hold X while moving to run.</p>
+<p>Click Play, then press Enter to start the game. Switching windows pauses play.
+  Finish saves the action trace and video on the server.
+  Restart and rewind save your previous attempt separately.
+  Rewind rebuilds the game from your recorded inputs, then lets you take a different path.</p>
+<p id="status" role="status">Connecting…</p>
+<script>
+const screen = document.querySelector("#screen");
+const context = screen.getContext("2d");
+const status = document.querySelector("#status");
+const play = document.querySelector("#play");
+const pause = document.querySelector("#pause");
+const finish = document.querySelector("#finish");
+const restart = document.querySelector("#restart");
+const rewind = document.querySelector("#rewind");
+const rewindCount = document.querySelector("#rewind-count");
+const replaySpeed = document.querySelector("#replay-speed");
+const holdRun = document.querySelector("#hold-run");
+const inputState = document.querySelector("#input-state");
+const playSpeed = document.querySelector("#play-speed");
+const stepMode = document.querySelector("#step-mode");
+const step = document.querySelector("#step");
+// UI pacing only: neither frame counts nor saved action contents change.
+try {
+  const speed = localStorage.getItem("vgbench-play-speed");
+  if ([...playSpeed.options].some(option => option.value === speed)) playSpeed.value = speed;
+  stepMode.checked = localStorage.getItem("vgbench-step-mode") === "true";
+} catch (_) {}
+function rememberControls() {
+  try {
+    localStorage.setItem("vgbench-play-speed", playSpeed.value);
+    localStorage.setItem("vgbench-step-mode", String(stepMode.checked));
+  } catch (_) {}
+}
+playSpeed.onchange = rememberControls;
+stepMode.onchange = () => { stop(); rememberControls(); };
+const keys = new Set();
+const pendingPresses = new Set();
+let lastSent = [];
+const mapping = {ArrowLeft:"LEFT", ArrowRight:"RIGHT", ArrowUp:"UP", ArrowDown:"DOWN",
+  KeyA:"LEFT", KeyD:"RIGHT", KeyW:"UP", KeyS:"DOWN", KeyJ:"A", KeyK:"B",
+  KeyZ:"A", Space:"A", KeyX:"B", Enter:"START", ShiftLeft:"SELECT", ShiftRight:"SELECT"};
+function heldButtons() {
+  const held = new Set([...keys].map(key => mapping[key]));
+  if (holdRun.checked) held.add("B");
+  return held;
+}
+function showInputs() {
+  inputState.textContent = `Held: ${[...heldButtons()].join(" + ") || "none"} · Last sent: ${lastSent.join(" + ") || "none"}`;
+}
+holdRun.onchange = showInputs;
+let running = false, pending = null, finished = false, busy = true, loopTask = null, info, lastSteps = 0;
+function controls() {
+  play.disabled = busy || finished || running || stepMode.checked;
+  step.disabled = busy || finished || running || !stepMode.checked || pending !== null || loopTask !== null;
+  playSpeed.disabled = busy;
+  stepMode.disabled = busy;
+  pause.disabled = busy || !running;
+  finish.disabled = busy || finished;
+  restart.hidden = !info?.allow_restart;
+  restart.disabled = busy;
+  document.querySelector("#rewind-controls").hidden = !info?.allow_restart;
+  rewind.disabled = busy || lastSteps === 0;
+  rewindCount.disabled = busy;
+  rewindCount.max = lastSteps;
+  replaySpeed.disabled = busy;
+}
+async function request(path, data) {
+  const response = await fetch(path, {cache: "no-store",
+    ...(data !== undefined ? {method:"POST", body:JSON.stringify(data)} : {})});
+  if (!response.ok) throw new Error(await response.text());
+  return response;
+}
+async function draw() {
+  const response = await request("/screen");
+  const bitmap = await createImageBitmap(await response.blob());
+  screen.width = bitmap.width;
+  screen.height = bitmap.height;
+  context.drawImage(bitmap, 0, 0);
+  bitmap.close();
+}
+async function waitRestored() {
+  while (true) {
+    const result = await (await request("/status")).json();
+    if (result.restore_error) throw new Error(result.restore_error);
+    if (!result.restoring) return result;
+    status.textContent = `Reconstructing game · ${result.restore_progress} actions replayed…`;
+    await new Promise(resolve => setTimeout(resolve, 250));
+  }
+}
+function stop() {
+  running = false;
+  keys.clear();
+  pendingPresses.clear();
+  holdRun.checked = false;
+  showInputs();
+  controls();
+  if (!finished) status.textContent = stepMode.checked
+    ? "Paused. Hold buttons and press . to advance once."
+    : "Paused. Click Play to continue.";
+}
+function fail(error) {
+  busy = false;
+  stop();
+  status.textContent = "Error: " + error.message;
+}
+async function advance(buttons) {
+  lastSent = buttons ? Object.keys(buttons) : [];
+  showInputs();
+  const response = await request("/action", buttons);
+  const result = await response.json();
+  lastSteps = result.steps;
+  await draw();
+  if (result.finished) {
+    finished = true;
+    stop();
+    status.textContent = result.error || "Run finished; trace and video saved.";
+  }
+  controls();
+}
+function sampleButtons(includeTaps) {
+  const pressed = new Set([...heldButtons(), ...(includeTaps ? pendingPresses : [])]);
+  pendingPresses.clear();
+  return pressed.size ? Object.fromEntries([...pressed].map(button => [button, true])) : null;
+}
+async function loop() {
+  try {
+    while (running && !finished) {
+      const buttons = sampleButtons(true);
+      const started = performance.now();
+      pending = advance(buttons);
+      await pending;
+      pending = null;
+      if (running && !finished) status.textContent = `Recording · ${lastSteps} actions · ${playSpeed.value}× speed`;
+      // Budget includes the emulator and network time. Never submit catch-up
+      // actions if the browser stalls, or tick the emulator during this wait.
+      const frames = info.action_frames + (buttons === null ? 0 : 1);
+      const deadline = started + 1000 * frames / 60 / Number(playSpeed.value);
+      while (running && !finished && performance.now() < deadline)
+        await new Promise(resolve => setTimeout(resolve, Math.min(25, deadline - performance.now())));
+    }
+  } catch (error) { fail(error); }
+  finally { pending = null; controls(); }
+}
+async function singleAction() {
+  if (busy || running || finished || !stepMode.checked || pending || loopTask) return;
+  // In single-action mode only currently held buttons are sent. A released
+  // direction must not unexpectedly affect a later neutral step.
+  try {
+    pending = advance(sampleButtons(false));
+    controls();
+    await pending;
+    if (!finished) status.textContent = `Paused at action ${lastSteps}. Hold buttons and press . to advance once.`;
+  } catch (error) { fail(error); }
+  finally { pending = null; controls(); }
+}
+step.onclick = singleAction;
+play.onclick = async () => {
+  if (busy || running || finished || stepMode.checked) return;
+  play.disabled = true;
+  if (loopTask) await loopTask;
+  running = true;
+  controls();
+  loopTask = loop();
+  try { await loopTask; } finally { loopTask = null; controls(); }
+};
+pause.onclick = stop;
+finish.onclick = async () => {
+  busy = true;
+  stop();
+  try {
+    if (loopTask) await loopTask;
+    if (pending) await pending;
+    status.textContent = "Saving recording…";
+    await request("/finish", {});
+    finished = true;
+    busy = false;
+    controls();
+    status.textContent = "Saved: actions.json and gameplay.mp4. You can close this window.";
+  } catch (error) { fail(error); }
+};
+async function transition(path, data) {
+  busy = true;
+  stop();
+  try {
+    if (loopTask) await loopTask;
+    if (pending) await pending;
+    status.textContent = "Saving this attempt and preparing a fresh emulator…";
+    const oldInstance = info.instance;
+    const saved = await (await request(path, data)).json();
+    const deadline = Date.now() + info.restart_timeout_sec * 1000;
+    while (true) {
+      let next;
+      try { next = await (await request("/controls")).json(); } catch (_) {}
+      if (next && next.instance !== oldInstance) { info = next; break; }
+      if (Date.now() >= deadline) throw new Error("Restart timed out. Refresh to check the server.");
+      await new Promise(resolve => setTimeout(resolve, 250));
+    }
+    status.textContent = "Preparing a fresh game…";
+    await waitRestored();
+    await draw();
+    const result = await (await request("/status")).json();
+    lastSteps = result.steps;
+    finished = false;
+    busy = false;
+    controls();
+    status.textContent = path === "/rewind"
+      ? `Rewound to action ${lastSteps}. Click Play to continue. Previous attempt saved as ${saved.saved_attempt}.`
+      : `New recording ready: 0 actions. Previous attempt saved as ${saved.saved_attempt}. Click Play, then Enter.`;
+  } catch (error) { fail(error); }
+}
+restart.onclick = () => transition("/restart", {});
+rewind.onclick = () => {
+  const count = Number(rewindCount.value);
+  if (!Number.isInteger(count) || count < 1 || count > lastSteps) {
+    status.textContent = `Choose between 1 and ${lastSteps} actions to rewind.`;
+    return;
+  }
+  transition("/rewind", {actions: count, speed: Number(replaySpeed.value)});
+};
+window.addEventListener("keydown", event => {
+  if (event.target.matches?.("select, input[type=number], input[type=text], textarea")) return;
+  if (stepMode.checked && event.code === "Period") {
+    event.preventDefault();
+    if (!event.repeat) singleAction();
+    return;
+  }
+  if ((running || (stepMode.checked && !busy && !finished)) && mapping[event.code]) {
+    event.preventDefault();
+    keys.add(event.code);
+    if (running && !event.repeat) pendingPresses.add(mapping[event.code]);
+    showInputs();
+  }
+}, true);
+window.addEventListener("keyup", event => {
+  keys.delete(event.code);
+  showInputs();
+}, true);
+window.addEventListener("blur", stop);
+document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); });
+(async () => {
+  try {
+    info = await (await request("/controls")).json();
+    replaySpeed.value = String(info.replay_speed ?? 0);
+    document.querySelector("#game").textContent =
+      `${info.game} · ${info.mode} · ${info.action_frames} frames per action`;
+    if (info.emulator !== "gba" || info.mode !== "lite")
+      throw new Error("This keyboard recorder requires a Game Boy task in Lite mode.");
+    status.textContent = "Starting emulator. Please wait for the upstream boot preparation…";
+    await waitRestored();
+    await draw();
+    const result = await (await request("/status")).json();
+    finished = result.finished;
+    lastSteps = result.steps;
+    busy = false;
+    controls();
+    status.textContent = finished ? "This run has finished. Use Restart game & recording for another attempt."
+      : stepMode.checked ? `Ready at action ${lastSteps}. Hold buttons and press . to advance once.`
+      : lastSteps > 0 ? `Ready at action ${lastSteps}. Click Play to continue.`
+      : "Ready. Click Play, then press Enter to start.";
+  } catch (error) { fail(error); }
+})();
+</script>
+</html>

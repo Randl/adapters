@@ -1,30 +1,35 @@
 version = "1.0"
-artifacts = ["/workspace/actions.json"]
+artifacts = [{source = "/state", service = "game"}]
 
 [task]
 name = "videogamebench/{task_id}"
 authors = [{name = "Alex L. Zhang"}, {name = "Thomas L. Griffiths"}, {name = "Karthik R. Narasimhan"}, {name = "Ofir Press"}]
 
 [metadata]
-mode = "game-boy-lite"
-source_revision = "faab53179cb4babdd102f35cb83c24a5f2c29d05"
+mode = "{mode}"
+source_revision = "{revision}"
 
 [agent]
-timeout_sec = 14400
+timeout_sec = {agent_timeout_sec}
 
 [environment]
-build_timeout_sec = 600
-cpus = 2
-memory_mb = 2048
-storage_mb = 10240
-network_mode = "allowlist"
-allowed_hosts = ["api.openai.com", "api.anthropic.com"]
+build_timeout_sec = {build_timeout_sec}
+cpus = {cpus}
+memory_mb = {memory_mb}
+storage_mb = {storage_mb}
+network_mode = "public"
 
 [verifier]
-timeout_sec = 6000
+timeout_sec = {verifier_timeout_sec}
 environment_mode = "separate"
 
+[[verifier.collect]]
+service = "game"
+command = "python /opt/game/play.py --url http://localhost:8080 --finish"
+timeout_sec = 180
+
 [verifier.environment]
-build_timeout_sec = 600
-cpus = 2
-memory_mb = 2048
+build_timeout_sec = {build_timeout_sec}
+cpus = 1
+memory_mb = 512
+network_mode = "no-network"

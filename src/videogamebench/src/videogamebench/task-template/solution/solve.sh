@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 if [ ! -f /solution/actions.json ]; then
-    echo 'No released winning replay. Generate with --oracle-dir containing validated action traces.' >&2
+    echo 'Supply a candidate gameplay trace with --oracle-dir; no winning trace is bundled.' >&2
     exit 1
 fi
-cp /solution/actions.json /workspace/actions.json
+python /opt/game/play.py --replay /solution/actions.json

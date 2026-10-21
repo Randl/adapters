@@ -6,25 +6,35 @@
     ],
     "original_benchmark": [
       {
-        "split": "game-boy-lite",
-        "size": 4,
+        "split": "test",
+        "size": 7,
         "harness": "agent",
         "supported_agents": [
-          "None"
+          "vgagent@faab531"
         ],
         "adaptable": true,
-        "notes": "4 Lite tasks: Kirby, Pokemon Crystal, Super Mario Land and Links Awakening. These are the released Game Boy games with checkpoint images (three test games plus Mario from dev). Five other Game Boy configs lack checkpoints. DOS games, secret games, real-time mode and extra non-benchmark configs are excluded."
+        "notes": "All public test games; three secret games are not released."
+      },
+      {
+        "split": "dev",
+        "size": 13,
+        "harness": "agent",
+        "supported_agents": [
+          "vgagent@faab531"
+        ],
+        "adaptable": true,
+        "notes": "All public dev games; only Super Mario Land has released checkpoints, so twelve games collect trajectories without a completion score."
       }
     ],
     "harbor_adapter": [
       {
-        "split": "game-boy-lite",
-        "adapted_benchmark_size": 4,
+        "split": "full",
+        "adapted_benchmark_size": 20,
         "parity_benchmark_size": 0,
         "parity_sampling_rate": 0,
         "registry_benchmark_size": 0,
         "added_agents": [
-          "None"
+          "videogamebench-vgagent@faab531"
         ],
         "parity_matching_agents": [
           "None"
@@ -33,7 +43,7 @@
           "None"
         ],
         "parity_costs": "$0",
-        "notes": "Local WIP. No measured model parity, full oracle validation, publication or registry entry."
+        "notes": "Prepared: seven-game Lite model parity, three repetitions per side; model parity has not been executed. One human Super Mario Land dev oracle (8,939 actions) passed a fresh Harbor replay with reward 1.0 and 2/2 checkpoints. Other games have no validated oracle."
       }
     ]
   }

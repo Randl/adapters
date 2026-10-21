@@ -1,8 +1,9 @@
-FROM python:3.12.13-slim-bookworm@sha256:4766d8b510c428e595d74b9cc5bbb2fae8e26316fffb4adc89908d79aacd58a2
+FROM {base_image}
+RUN apt-get update && apt-get install -y --no-install-recommends xvfb xauth libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
 COPY requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt
-COPY upstream /opt/upstream
-COPY game.gb game.json server.py /opt/game/
-ENV PYTHONPATH=/opt/upstream
-WORKDIR /opt/game
-CMD ["python", "/opt/game/server.py"]
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && playwright install --with-deps chromium
+COPY game /opt/game
+COPY play.py /opt/game/play.py
+ENV PYTHONPATH=/opt/game/upstream:/opt/game/runtime
+WORKDIR /opt/game/upstream
+CMD ["xvfb-run", "-a", "python", "/opt/game/runtime/server.py"]
