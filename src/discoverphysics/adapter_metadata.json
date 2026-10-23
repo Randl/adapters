@@ -14,22 +14,46 @@
         ],
         "adaptable": true,
         "notes": "Eleven supported n-body worlds at two seeds. The pinned registry has twelve worlds; wave requires the field engine and lacks batch benchmark normalization metadata. The pinned upstream config also names two worlds whose implementations are not released."
+      },
+      {
+        "split": "public-worlds-four-seed-reviewer-variant",
+        "size": 44,
+        "harness": "agent",
+        "supported_agents": [
+          "DiscoveryAgent@33b7fa9df96de9c35744efd181ca7e5a8dd60ad5"
+        ],
+        "adaptable": true,
+        "notes": "Historical four-seed reviewer universe: eleven n-body worlds at seeds 0–3. This is not the default 22-task dataset or a registry publication."
       }
     ],
     "harbor_adapter": [
       {
         "split": "public-worlds",
         "adapted_benchmark_size": 22,
-        "parity_benchmark_size": 0,
-        "parity_sampling_rate": 0.0,
+        "parity_benchmark_size": 2,
+        "parity_sampling_rate": 0.09090909090909091,
         "registry_benchmark_size": 0,
         "added_agents": [
           "DiscoverPhysicsParityAgent@0.1.0"
         ],
         "parity_matching_agents": [],
         "parity_unmatching_agents": [],
-        "parity_costs": "Not run",
-        "notes": "Oracle discoverphysics-oracle-20260930-102507: 22/22 passed, zero errors/retries, mean explanation score 0.95. All task digests match the evaluated dataset; see validation/README.md. Oracle dt=0.005 is a documented exception to the prompt minimum. Pinned fractional grading-reference and Coulomb Easy final-fitting limitations are preserved; see README. Audrey Zheng coordinates parity; results, standard CLI-agent validation, HF evidence upload, and registry publication remain pending. Dataset PR: https://github.com/harbor-framework/harbor-datasets/pull/259. Adapter PR: https://github.com/harbor-framework/adapters/pull/9; original review: https://github.com/harbor-framework/harbor/pull/2974."
+        "parity_costs": "Unknown (historical spend not reconstructed)",
+        "notes": "Historical Gravity stream-v1 subset: 2/22 tasks, three repetitions per side; the range-overlap parity criterion is met for this subset. Full-adapter and migrated-head acceptance remain unset. See parity_experiment.json and README for evidence links and qualifications. Oracle: 22/22; see validation/README.md and HF PR #271. CLI-agent validation and registry publication remain pending; reviewer patch/fork is deferred."
+      },
+      {
+        "split": "public-worlds-four-seed-reviewer-variant",
+        "adapted_benchmark_size": 44,
+        "parity_benchmark_size": 6,
+        "parity_sampling_rate": 0.13636363636363635,
+        "registry_benchmark_size": 0,
+        "added_agents": [
+          "DiscoverPhysicsParityAgent@0.1.0"
+        ],
+        "parity_matching_agents": [],
+        "parity_unmatching_agents": [],
+        "parity_costs": "Unknown (historical spend not reconstructed)",
+        "notes": "Historical durable-v3 subset: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6/44 tasks, three repetitions per side; the range-overlap parity criterion is met for this subset. Separate from Gravity and the default registry dataset. Full-adapter and migrated-head acceptance remain unset; reviewer patch/fork is deferred."
       }
     ]
   }

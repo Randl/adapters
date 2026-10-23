@@ -236,28 +236,59 @@ uv run discoverphysics \
 
 ### Parity type: Scenario 3 (custom upstream agent)
 
-Parity is being run by Audrey Zheng, as coordinated in the
-[migration request](https://github.com/harbor-framework/harbor/pull/2974#issuecomment-6004953490);
-reviewed results are not yet recorded here. Migration does not launch duplicate runs.
-The experiment uses the full 22-task
-public suite, `DiscoveryAgent@33b7fa9d` on upstream and
-`DiscoverPhysicsParityAgent@0.1.0` in Harbor, `claude-opus-4-7` as agent,
-`claude-opus-4-6` as judge, critic disabled, N-body engine, noise fraction
-`0.05`, seeds 0 and 1, 16 rounds, and MSE fitting enabled. Both sides use
-Python 3.12 and `anthropic==0.64.0` for model calls.
-
-The parity plan must be approved by the Harbor team before API spend. Execution
-then proceeds symmetrically in the required order:
-
-1. Run the fixed six-task sanity set on both sides.
-2. Inspect errors and trajectories, then run one full 22-task repetition on
-   both sides.
-3. Only if the full-run score ranges are compatible, run repetitions two and
-   three on both sides with the same commits and configuration.
+The [partial historical parity evidence](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270) records three repetitions
+per side using `zai-org/GLM-5.3-Flash` for both discovery and judging. Scores below
+are fractions reported as mean ± sample SEM. The range-overlap parity criterion
+is met for both tested subsets below. These results do not establish full-adapter
+acceptance or equivalence to the migrated adapter head.
 
 | Agent | Model | Metric | Number of Runs | Dataset Size | Original Benchmark Performance | Harbor Adapter Performance |
-| --- | --- | --- | ---: | ---: | --- | --- |
-| Not run | Not run | Trial pass rate | 0 | 0 | Pending | Pending |
+| --- | --- | --- | ---: | --- | --- | --- |
+| Reviewer parity agent, stream-v1 | zai-org/GLM-5.3-Flash | Gravity success rate | 3 | 2/22 (9.09%) | 1.00000000 ± 0.00000000 | 1.00000000 ± 0.00000000 |
+| Reviewer parity agent, durable-v3 | zai-org/GLM-5.3-Flash | Complete six-task success rate | 3 | 6/44 (13.64%) | 0.11111111 ± 0.05555556 | 0.16666667 ± 0.00000000 |
+
+[parity_experiment.json](parity_experiment.json) records both configuration strata
+separately, including exact agent SHA-256 versions and raw repetition arrays.
+Gravity uses stream-v1 at seeds 0/1. Durable-v3 uses a persistent worker and a
+four-seed universe: Yukawa seeds 2/3, Oscillator seeds 0/1, and Hubble seeds 0/1.
+The six-task metric equally weights Yukawa, Oscillator, and Hubble within each
+repetition and stays separate from Gravity. The four-seed universe has 44
+possible tasks and is not the default 22-task dataset submitted for registration.
+
+The [HF evidence](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270)
+contains world-level scores, raw trajectories, verifier outputs, provenance,
+and the complete attempt ledger. Failures and empty/truncated responses in the
+tested subsets remain in the reported scores. Oscillator's all-failure agreement
+has limited discriminatory power. Output-length limits alone do not establish
+that discrepancies are random.
+
+Historical settings: W&B Inference on Modal, requested discovery/judge caps
+131072/65536, 16 rounds, nominal fitting budget 180 seconds, and OpenAI SDK
+1.102.0. The model ID is not an immutable snapshot. Upstream is pinned to
+`33b7fa9df96de9c35744efd181ca7e5a8dd60ad5`; the historical adapter baseline is
+`059eef7a960c036760e7391cdf0da3faac59f9d9` and runtime baseline is
+`3c82380859d187957cfd5cd64802b076d9779550`, with reviewer changes. Full-precision
+noise and fitting/runtime differences remain qualifications. No new run or
+regrading was performed for this integration.
+
+The reviewer-runtime patch/fork is deferred. `original_parity_repo` therefore
+remains empty rather than linking a repository that cannot reproduce these
+runs. The HF upload retains the recorded configurations and provenance; the
+commands below describe the separate Opus reference plan and do not reproduce
+the historical GLM evidence.
+
+### Reference Opus parity plan (not the recorded GLM results)
+
+The existing reference configuration targets the full 22-task public suite,
+`DiscoveryAgent@33b7fa9d` upstream and `DiscoverPhysicsParityAgent@0.1.0` in
+Harbor, `claude-opus-4-7` for discovery and `claude-opus-4-6` for judging, critic
+disabled, N-body engine, noise fraction `0.05`, seeds 0/1, 16 rounds, MSE fitting,
+Python 3.12, and `anthropic==0.64.0`.
+
+Before new API spend, the Harbor team must approve the plan: run the fixed
+six-task sanity set on both sides, inspect errors and trajectories, run the
+first full repetition, then run repetitions two and three only if the first
+comparison is compatible. This metadata integration launches no new runs.
 
 Original-side reproduction from the pinned DiscoverPhysics checkout:
 
@@ -303,7 +334,7 @@ uv run --project src/discoverphysics --extra harbor harbor run -c src/discoverph
 
 Report trial pass rate as mean ± sample SEM and retain every raw per-run score.
 Parity passes only if the original and Harbor raw run-score ranges overlap. Do
-not populate `parity_experiment.json` until real results exist. A separate
+not treat historical subset overlap as full-suite validation. A separate
 standard Harbor CLI-agent run is also required as Harbor-only compatibility
 evidence; it is not an original-versus-adapter parity claim.
 
@@ -318,12 +349,13 @@ packaging, entry points, and paths.
   [evaluated snapshot](https://github.com/Randl/harbor-datasets/tree/4952f1fe2e0104d6ae5467c52444dbd908b13828/datasets/discoverphysics).
   Registry publication is pending. For repackaging, follow the repository's
   [dataset registration guide](../../docs/adapters.mdx#step-8-register-the-dataset).
-- [Latest oracle evidence](validation/README.md): 22/22 passed. Full logs and
-  experiment artifacts are prepared for `harborframework/parity-experiments`;
-  the public upload link is pending. Use the repository's
-  [upload skill](../../skills/upload-parity-experiments/SKILL.md) for publication.
-- Reviewer-coordinated parity and the separate standard CLI-agent check remain
-  pending. An oracle pass does not establish either result.
+- [Latest oracle evidence](validation/README.md): 22/22 passed. Full sanitized
+  logs, configurations, experiments, and exact tasks are published in
+  [HF oracle PR #271](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/271).
+- Partial historical parity is recorded above and in `parity_experiment.json`.
+  Full-adapter acceptance, current-head equivalence, and the separate standard
+  CLI-agent check remain pending. The reviewer-runtime patch/fork is deferred.
+  An oracle pass does not establish parity or CLI-agent compatibility.
 - Open review limitations: the root-only verifier token shares the main container
   with the agent; discovery credentials expose native parity prompts; experiment
   requests have no per-round work bound; private judge reasoning is written to
@@ -379,10 +411,12 @@ packaging, entry points, and paths.
   no longer configures the judge, and verification requests cannot override its
   model, credentials, or endpoint.
 - For non-parity development, the judge can be overridden with
-  an exported `DISCOVERPHYSICS_JUDGE_MODEL` before startup. Official oracle and
-  parity runs must retain `claude-opus-4-6`.
-- `parity_experiment.json` must be added after real experiments finish; registry
-  sizes, parity costs, and matching-agent metadata remain unset until then.
+  an exported `DISCOVERPHYSICS_JUDGE_MODEL` before startup. The reference oracle
+  and Opus parity configurations use `claude-opus-4-6`; the recorded historical
+  GLM reviewer runs used the GLM judge described above.
+- `parity_experiment.json` records the two historical reviewer strata. Registry
+  publication and matching-agent acceptance remain unset; historical parity
+  spend has not been reconstructed.
 
 Run the adapter regression tests from the adapters repository root:
 

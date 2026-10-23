@@ -1,0 +1,80 @@
+[
+  {
+    "adapter_name": "discoverphysics",
+    "model": "zai-org/GLM-5.3-Flash",
+    "number_of_runs": 3,
+    "original_parity_repo": "",
+    "adapter_pr": [
+      "https://github.com/harbor-framework/adapters/pull/9",
+      "https://github.com/harbor-framework/harbor/pull/2974"
+    ],
+    "dataset_pr": [
+      "https://github.com/harbor-framework/harbor-datasets/pull/259"
+    ],
+    "parity_pr": [
+      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270"
+    ],
+    "agent": "DiscoverPhysicsOpenAIParityAgent@sha256:eb6161f4eed35c0df80d7559bbcb4518550b33ff3fa6419ff63cb5ec1081280e",
+    "date": "2026-09-28",
+    "adapted_benchmark_size": 22,
+    "parity_benchmark_size": 2,
+    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Gravity stream-v1, seeds 0/1; 2 of 22 tasks. Date is the last model-response UTC date. Do not pool with durable-v3. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
+    "metrics": [
+      {
+        "benchmark_name": "DiscoverPhysics/gravity stream-v1 (2 tasks)",
+        "metric": "law_success_rate (fraction; normalized_mse<0.1 and explanation_score>=0.75)",
+        "original": "1.00000000 ± 0.00000000",
+        "original_runs": [
+          1,
+          1,
+          1
+        ],
+        "harbor": "1.00000000 ± 0.00000000",
+        "harbor_runs": [
+          1.0,
+          1.0,
+          1.0
+        ]
+      }
+    ]
+  },
+  {
+    "adapter_name": "discoverphysics",
+    "model": "zai-org/GLM-5.3-Flash",
+    "number_of_runs": 3,
+    "original_parity_repo": "",
+    "adapter_pr": [
+      "https://github.com/harbor-framework/adapters/pull/9",
+      "https://github.com/harbor-framework/harbor/pull/2974"
+    ],
+    "dataset_pr": [
+      "https://github.com/harbor-framework/harbor-datasets/pull/259"
+    ],
+    "parity_pr": [
+      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270"
+    ],
+    "agent": "DiscoverPhysicsOpenAIParityAgent@sha256:6a5cc9f4861f7acef23df9611c58037b9a19eeaa94b7b06b330690ffa2d06734",
+    "date": "2026-10-09",
+    "adapted_benchmark_size": 44,
+    "parity_benchmark_size": 6,
+    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Durable-v3 persistent worker: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6 of 44 tasks in the historical four-seed universe. Each repetition weights the six tasks equally. Evidence dates October 7–9, 2026; date is the last model-response UTC date. Do not pool with Gravity. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
+    "metrics": [
+      {
+        "benchmark_name": "DiscoverPhysics/durable-v3 Yukawa, Oscillator, Hubble (6 tasks)",
+        "metric": "law_success_rate (fraction; normalized_mse<0.1 and explanation_score>=0.75)",
+        "original": "0.11111111 ± 0.05555556",
+        "original_runs": [
+          0.16666666666666666,
+          0.16666666666666666,
+          0
+        ],
+        "harbor": "0.16666667 ± 0.00000000",
+        "harbor_runs": [
+          0.16666666666666666,
+          0.16666666666666666,
+          0.16666666666666666
+        ]
+      }
+    ]
+  }
+]
