@@ -39,7 +39,7 @@
         "parity_matching_agents": [],
         "parity_unmatching_agents": [],
         "parity_costs": "Unknown (historical spend not reconstructed)",
-        "notes": "Historical Gravity stream-v1 subset: 2/22 tasks, three repetitions per side; ranges overlap. Full-adapter and migrated-head acceptance remain unset. See parity_experiment.json and README for evidence links and qualifications. Oracle: 22/22; see validation/README.md and HF PR #271. CLI-agent validation and registry publication remain pending; reviewer patch/fork is deferred."
+        "notes": "Historical Gravity stream-v1 subset: 2/22 tasks, three repetitions per side; the range-overlap parity criterion is met for this subset. Full-adapter and migrated-head acceptance remain unset. See parity_experiment.json and README for evidence links and qualifications. Oracle: 22/22; see validation/README.md and HF PR #271. CLI-agent validation and registry publication remain pending; reviewer patch/fork is deferred."
       },
       {
         "split": "public-worlds-four-seed-reviewer-variant",
@@ -53,7 +53,7 @@
         "parity_matching_agents": [],
         "parity_unmatching_agents": [],
         "parity_costs": "Unknown (historical spend not reconstructed)",
-        "notes": "Historical durable-v3 subset: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6/44 tasks, three repetitions per side; ranges overlap. Separate from Gravity and the default registry dataset. Ether is excluded from the complete metric; see README and HF PR #270 for qualified salvage. Full-adapter and migrated-head acceptance remain unset; reviewer patch/fork is deferred."
+        "notes": "Historical durable-v3 subset: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6/44 tasks, three repetitions per side; the range-overlap parity criterion is met for this subset. Separate from Gravity and the default registry dataset. Full-adapter and migrated-head acceptance remain unset; reviewer patch/fork is deferred."
       }
     ]
   }

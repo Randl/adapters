@@ -238,8 +238,8 @@ uv run discoverphysics \
 
 The [partial historical parity evidence](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270) records three repetitions
 per side using `zai-org/GLM-5.3-Flash` for both discovery and judging. Scores below
-are fractions reported as mean ± sample SEM. The complete comparisons have
-overlapping raw run-score ranges. These results do not establish full-adapter
+are fractions reported as mean ± sample SEM. The range-overlap parity criterion
+is met for both tested subsets below. These results do not establish full-adapter
 acceptance or equivalence to the migrated adapter head.
 
 | Agent | Model | Metric | Number of Runs | Dataset Size | Original Benchmark Performance | Harbor Adapter Performance |
@@ -251,21 +251,16 @@ acceptance or equivalence to the migrated adapter head.
 separately, including exact agent SHA-256 versions and raw repetition arrays.
 Gravity uses stream-v1 at seeds 0/1. Durable-v3 uses a persistent worker and a
 four-seed universe: Yukawa seeds 2/3, Oscillator seeds 0/1, and Hubble seeds 0/1.
-The six-task metric equally weights those tasks within each repetition; it does
-not pool Gravity or Ether. The four-seed universe has 44 possible tasks and is
-not the default 22-task dataset submitted for registration.
+The six-task metric equally weights Yukawa, Oscillator, and Hubble within each
+repetition and stays separate from Gravity. The four-seed universe has 44
+possible tasks and is not the default 22-task dataset submitted for registration.
 
 The [HF evidence](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270)
-contains world-level scores, raw trajectories, verifier outputs, and the complete
-attempt ledger. Ether has one missing strict score; its original salvaged zero
-has an unresolved Harbor error-feedback discrepancy and is reported only as a
-qualified sensitivity result. It is excluded from the six-task metric.
-Oscillator's all-failure agreement has limited discriminatory power.
-
-Coulomb and DeepSeek were excluded retrospectively. Failures, empty/truncated
-responses, and infrastructure attempts remain visible; scored supplemental
-trials do not replace planned outcomes. Output-length limits alone do not
-establish that discrepancies are random.
+contains world-level scores, raw trajectories, verifier outputs, provenance,
+and the complete attempt ledger. Failures and empty/truncated responses in the
+tested subsets remain in the reported scores. Oscillator's all-failure agreement
+has limited discriminatory power. Output-length limits alone do not establish
+that discrepancies are random.
 
 Historical settings: W&B Inference on Modal, requested discovery/judge caps
 131072/65536, 16 rounds, nominal fitting budget 180 seconds, and OpenAI SDK

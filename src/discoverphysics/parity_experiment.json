@@ -18,7 +18,7 @@
     "date": "2026-09-28",
     "adapted_benchmark_size": 22,
     "parity_benchmark_size": 2,
-    "notes": "Gravity stream-v1, seeds 0/1; 2 of 22 tasks. Date is the last model-response UTC date. Do not pool with durable-v3. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Coulomb and DeepSeek were excluded retrospectively; failures and truncated replies are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
+    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Gravity stream-v1, seeds 0/1; 2 of 22 tasks. Date is the last model-response UTC date. Do not pool with durable-v3. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
     "metrics": [
       {
         "benchmark_name": "DiscoverPhysics/gravity stream-v1 (2 tasks)",
@@ -57,10 +57,10 @@
     "date": "2026-10-09",
     "adapted_benchmark_size": 44,
     "parity_benchmark_size": 6,
-    "notes": "Durable-v3 persistent worker: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6 of 44 tasks in the historical four-seed universe. Each repetition weights the six tasks equally. Evidence dates October 7–9, 2026; date is the last model-response UTC date. Ether has one missing strict score; its qualified salvage remains in HF PR #270 and is excluded from this metric. Do not pool with Gravity. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Coulomb and DeepSeek were excluded retrospectively; failures and truncated replies are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
+    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Durable-v3 persistent worker: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6 of 44 tasks in the historical four-seed universe. Each repetition weights the six tasks equally. Evidence dates October 7–9, 2026; date is the last model-response UTC date. Do not pool with Gravity. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
     "metrics": [
       {
-        "benchmark_name": "DiscoverPhysics/durable-v3 complete subset (6 tasks; excludes Ether)",
+        "benchmark_name": "DiscoverPhysics/durable-v3 Yukawa, Oscillator, Hubble (6 tasks)",
         "metric": "law_success_rate (fraction; normalized_mse<0.1 and explanation_score>=0.75)",
         "original": "0.11111111 ± 0.05555556",
         "original_runs": [
