@@ -39,7 +39,7 @@
         "parity_matching_agents": [],
         "parity_unmatching_agents": [],
         "parity_costs": "Unknown (historical spend not reconstructed)",
-        "notes": "Partial historical Gravity stream-v1 evidence: two tasks, three repetitions per side; run-score ranges overlap. This covers only Gravity in this runtime stratum; it does not establish full-adapter or migrated-head equivalence. Matching-agent acceptance remains unset. Oracle September 30: 22/22, zero errors/retries, mean explanation 0.95; dt=0.005 is the documented oracle exception. Parity HF PR: https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270. Oracle HF PR: https://huggingface.co/datasets/harborframework/parity-experiments/discussions/271. Reviewer reproduction patch/fork is deferred; standard CLI-agent validation, existing security/fidelity findings, and registry publication remain pending. Dataset PR: https://github.com/harbor-framework/harbor-datasets/pull/259. Adapter PR: https://github.com/harbor-framework/adapters/pull/9."
+        "notes": "Historical Gravity stream-v1 subset: 2/22 tasks, three repetitions per side; ranges overlap. Full-adapter and migrated-head acceptance remain unset. See parity_experiment.json and README for evidence links and qualifications. Oracle: 22/22; see validation/README.md and HF PR #271. CLI-agent validation and registry publication remain pending; reviewer patch/fork is deferred."
       },
       {
         "split": "public-worlds-four-seed-reviewer-variant",
@@ -53,7 +53,7 @@
         "parity_matching_agents": [],
         "parity_unmatching_agents": [],
         "parity_costs": "Unknown (historical spend not reconstructed)",
-        "notes": "Partial historical durable-v3 evidence: Yukawa seeds 2/3, Oscillator seeds 0/1, Hubble seeds 0/1; six complete tasks, three repetitions per side. Run-score ranges overlap. This four-seed reviewer variant is separate from Gravity stream-v1 and the default 22-task registry submission. Ether is excluded from the complete-case metric; strict first repetition is incomplete and original salvage remains separately qualified in the HF evidence. Matching-agent acceptance remains unset; current-head equivalence is not established. Reviewer reproduction patch/fork is deferred. Parity HF PR: https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270."
+        "notes": "Historical durable-v3 subset: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6/44 tasks, three repetitions per side; ranges overlap. Separate from Gravity and the default registry dataset. Ether is excluded from the complete metric; see README and HF PR #270 for qualified salvage. Full-adapter and migrated-head acceptance remain unset; reviewer patch/fork is deferred."
       }
     ]
   }

@@ -255,31 +255,17 @@ The six-task metric equally weights those tasks within each repetition; it does
 not pool Gravity or Ether. The four-seed universe has 44 possible tasks and is
 not the default 22-task dataset submitted for registration.
 
-World-level rates, in the same fraction units, remain visible below and in the
-[raw evidence and attempt ledger](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270):
+The [HF evidence](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270)
+contains world-level scores, raw trajectories, verifier outputs, and the complete
+attempt ledger. Ether has one missing strict score; its original salvaged zero
+has an unresolved Harbor error-feedback discrepancy and is reported only as a
+qualified sensitivity result. It is excluded from the six-task metric.
+Oscillator's all-failure agreement has limited discriminatory power.
 
-| World | Upstream runs | Harbor runs | Upstream mean ± SEM | Harbor mean ± SEM |
-| --- | --- | --- | --- | --- |
-| Gravity | 1, 1, 1 | 1, 1, 1 | 1.00000000 ± 0.00000000 | 1.00000000 ± 0.00000000 |
-| Yukawa | 0, 0, 0 | 0, 0.5, 0 | 0.00000000 ± 0.00000000 | 0.16666667 ± 0.16666667 |
-| Oscillator | 0, 0, 0 | 0, 0, 0 | 0.00000000 ± 0.00000000 | 0.00000000 ± 0.00000000 |
-| Hubble | 0.5, 0.5, 0 | 0.5, 0, 0.5 | 0.33333333 ± 0.16666667 | 0.33333333 ± 0.16666667 |
-| Ether, strict | 0, 0.5, 0.5 | missing, 1, 0.5 | 0.33333333 ± 0.16666667 | Incomplete |
-| Ether, qualified original salvage | 0, 0.5, 0.5 | 0, 1, 0.5 | 0.33333333 ± 0.16666667 | 0.50000000 ± 0.28867513 |
-
-Ether's strict first Harbor repetition is incomplete. The original salvaged zero
-has an unresolved Harbor error-feedback discrepancy, so it appears only in the
-qualified sensitivity row. It is not included in the complete six-task metric.
-Scored supplemental trials are not substituted for planned outcomes.
-Oscillator's all-failure agreement provides limited discriminatory evidence.
-
-Coulomb and DeepSeek were excluded retrospectively. All outcomes in the selected
-configurations remain visible, including scored failures and empty/truncated
-responses. The inventory contains 67 attempts: 59 strict scored slots, six
-unscored infrastructure attempts, and two scored supplemental trials outside the
-60 planned slots. Discovery responses hit the length cap 83/425 times upstream
-and 84/419 times in Harbor; these counts do not establish that all discrepancies
-are random.
+Coulomb and DeepSeek were excluded retrospectively. Failures, empty/truncated
+responses, and infrastructure attempts remain visible; scored supplemental
+trials do not replace planned outcomes. Output-length limits alone do not
+establish that discrepancies are random.
 
 Historical settings: W&B Inference on Modal, requested discovery/judge caps
 131072/65536, 16 rounds, nominal fitting budget 180 seconds, and OpenAI SDK
