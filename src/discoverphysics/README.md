@@ -350,8 +350,11 @@ packaging, entry points, and paths.
   Registry publication is pending. For repackaging, follow the repository's
   [dataset registration guide](../../docs/adapters.mdx#step-8-register-the-dataset).
 - [Latest oracle evidence](validation/README.md): 22/22 passed. Full sanitized
-  logs, configurations, experiments, and exact tasks are published in
+  logs, configurations, experiments, and exact tasks are uploaded to the open
   [HF oracle PR #271](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/271).
+  The open [parity PR #270](https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270)
+  is stacked on #271 and preserves its oracle files. Merge #271 before #270.
+  Uploading these artifacts does not establish dataset registry publication.
 - Partial historical parity is recorded above and in `parity_experiment.json`.
   Full-adapter acceptance, current-head equivalence, and the separate standard
   CLI-agent check remain pending. The reviewer-runtime patch/fork is deferred.

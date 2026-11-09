@@ -12,7 +12,8 @@
       "https://github.com/harbor-framework/harbor-datasets/pull/259"
     ],
     "parity_pr": [
-      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270"
+      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270",
+      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/271"
     ],
     "agent": "DiscoverPhysicsOpenAIParityAgent@sha256:eb6161f4eed35c0df80d7559bbcb4518550b33ff3fa6419ff63cb5ec1081280e",
     "date": "2026-09-28",
@@ -51,7 +52,8 @@
       "https://github.com/harbor-framework/harbor-datasets/pull/259"
     ],
     "parity_pr": [
-      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270"
+      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/270",
+      "https://huggingface.co/datasets/harborframework/parity-experiments/discussions/271"
     ],
     "agent": "DiscoverPhysicsOpenAIParityAgent@sha256:6a5cc9f4861f7acef23df9611c58037b9a19eeaa94b7b06b330690ffa2d06734",
     "date": "2026-10-09",
