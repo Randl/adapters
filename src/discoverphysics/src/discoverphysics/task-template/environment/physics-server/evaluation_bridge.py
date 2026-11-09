@@ -29,6 +29,10 @@ WORLD = os.environ["WORLD"]
 NOISE_SEED = int(os.environ["NOISE_SEED"])
 NOISE_STD = float(os.environ["NOISE_STD"])
 WORLD_VARIANCE = float(os.environ["WORLD_VARIANCE"])
+_JUDGE_TOKEN_SETTING = os.environ.get("DISCOVERPHYSICS_JUDGE_MAX_TOKENS")
+JUDGE_MAX_TOKENS = int(_JUDGE_TOKEN_SETTING) if _JUDGE_TOKEN_SETTING else None
+if JUDGE_MAX_TOKENS is not None and JUDGE_MAX_TOKENS <= 0:
+    raise ValueError("DISCOVERPHYSICS_JUDGE_MAX_TOKENS must be positive")
 ALLOWED_JUDGE_ENV = {
     "ANTHROPIC_API_KEY",
     "ANTHROPIC_BASE_URL",
@@ -212,7 +216,10 @@ def evaluate_submission(
 
     try:
         with temporary_judge_environment(judge_env):
-            explanation_result = ExplanationJudge(judge_model=judge_model).score(
+            judge_options: dict[str, Any] = {"judge_model": judge_model}
+            if JUDGE_MAX_TOKENS is not None:
+                judge_options["max_tokens"] = JUDGE_MAX_TOKENS
+            explanation_result = ExplanationJudge(**judge_options).score(
                 agent_explanation=explanation,
                 optimal_explanation=world["optimal_explanation"],
                 rubric=world["explanation_rubric"],

@@ -124,6 +124,14 @@ is merged. Use the local methods below during development.
 
 ### Using Job Configurations
 
+The explanation judge keeps upstream's 1,024-token output budget by default.
+For reasoning models whose output limit also includes reasoning tokens, set
+`DISCOVERPHYSICS_JUDGE_MAX_TOKENS` to a positive integer such as `8192` before
+starting the job. Regenerate tasks to include this setting in the physics
+service. Record any override in the run configuration and use the same judge
+budget on both sides of a parity comparison. A truncated or unparseable judge
+reply remains a verifier error, rather than an agent zero.
+
 The default configuration runs the oracle over the complete local dataset:
 
 ```bash
@@ -173,8 +181,9 @@ errors or retries in approximately 12 minutes. Mean explanation score was
 `0.95` (range `0.8–1.0`), and every trial completed two experiment rounds.
 All 22 task snapshots match their recorded lock digests and the task files in
 the compact dataset submission at `4952f1fe`. This run validates the build-time
-upstream fetch and the current verifier; its full-precision experiment artifacts
-and sanitized logs are included in the evidence bundle.
+upstream fetch and verifier in that archived revision; its full-precision
+experiment artifacts and sanitized logs are included in the evidence bundle.
+Newly generated task revisions record any judge-budget override separately.
 
 The run's mean reward is `1.0`; `E@1` and `E@2` are both `0.5`, reflecting
 upstream's fixed 22-world denominator for the 11 supported worlds. Its Harbor

@@ -302,6 +302,7 @@ def test_judge_settings_come_only_from_service_startup(monkeypatch):
     module = load_server(monkeypatch)
     for override in (
         {"judge_model": "untrusted"},
+        {"judge_max_tokens": 8192},
         {"judge_env": {"ANTHROPIC_BASE_URL": "https://untrusted.example"}},
     ):
         assert dispatch(module, "POST", "/verify", "token", override) == (

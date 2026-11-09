@@ -162,6 +162,38 @@ def test_evaluation_uses_upstream_benchmark_normalized_mse_threshold(
     assert result["reward"] == 1.0
 
 
+@pytest.mark.parametrize("setting, expected", [(None, 1024), ("8192", 8192)])
+def test_judge_output_budget_preserves_default_and_accepts_override(
+    monkeypatch, setting, expected
+):
+    if setting is None:
+        monkeypatch.delenv("DISCOVERPHYSICS_JUDGE_MAX_TOKENS", raising=False)
+    else:
+        monkeypatch.setenv("DISCOVERPHYSICS_JUDGE_MAX_TOKENS", setting)
+    module = load_bridge(monkeypatch)
+    budgets = []
+
+    class Judge:
+        def __init__(self, judge_model, max_tokens=1024):
+            assert judge_model == "judge-model"
+            budgets.append(max_tokens)
+
+        def score(self, **kwargs):
+            return {"score": 1.0, "reasoning": "correct"}
+
+    monkeypatch.setattr(module, "ExplanationJudge", Judge)
+    result = module.evaluate_submission("law", "explanation", "judge-model", {}, [])
+    assert result["reward"] == 1.0
+    assert budgets == [expected]
+
+
+@pytest.mark.parametrize("setting", ["0", "-1", "not-an-integer"])
+def test_invalid_judge_output_budget_stops_service_startup(monkeypatch, setting):
+    monkeypatch.setenv("DISCOVERPHYSICS_JUDGE_MAX_TOKENS", setting)
+    with pytest.raises(ValueError):
+        load_bridge(monkeypatch)
+
+
 def test_remote_compilation_normalizes_source_for_both_consumers(monkeypatch):
     module = load_bridge(monkeypatch)
     raw = "```python\ndef discovered_law(): return 1\n```"
