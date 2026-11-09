@@ -244,12 +244,12 @@ acceptance or equivalence to the migrated adapter head.
 
 | Agent | Model | Metric | Number of Runs | Dataset Size | Original Benchmark Performance | Harbor Adapter Performance |
 | --- | --- | --- | ---: | --- | --- | --- |
-| Reviewer parity agent, stream-v1 | zai-org/GLM-5.3-Flash | Gravity success rate | 3 | 2/22 (9.09%) | 1.00000000 ± 0.00000000 | 1.00000000 ± 0.00000000 |
-| Reviewer parity agent, durable-v3 | zai-org/GLM-5.3-Flash | Complete six-task success rate | 3 | 6/44 (13.64%) | 0.11111111 ± 0.05555556 | 0.16666667 ± 0.00000000 |
+| Custom agent, Gravity | zai-org/GLM-5.3-Flash | Gravity success rate | 3 | 2/22 (9.09%) | 1.00000000 ± 0.00000000 | 1.00000000 ± 0.00000000 |
+| Custom agent, persistent law worker | zai-org/GLM-5.3-Flash | Complete six-task success rate | 3 | 6/44 (13.64%) | 0.11111111 ± 0.05555556 | 0.16666667 ± 0.00000000 |
 
 [parity_experiment.json](parity_experiment.json) records both configuration strata
 separately, including exact agent SHA-256 versions and raw repetition arrays.
-Gravity uses stream-v1 at seeds 0/1. Durable-v3 uses a persistent worker and a
+Gravity uses seeds 0/1. The other comparison uses a persistent law worker and a
 four-seed universe: Yukawa seeds 2/3, Oscillator seeds 0/1, and Hubble seeds 0/1.
 The six-task metric equally weights Yukawa, Oscillator, and Hubble within each
 repetition and stays separate from Gravity. The four-seed universe has 44
@@ -271,11 +271,13 @@ Historical settings: W&B Inference on Modal, requested discovery/judge caps
 noise and fitting/runtime differences remain qualifications. No new run or
 regrading was performed for this integration.
 
-The reviewer-runtime patch/fork is deferred. `original_parity_repo` therefore
-remains empty rather than linking a repository that cannot reproduce these
-runs. The HF upload retains the recorded configurations and provenance; the
-commands below describe the separate Opus reference plan and do not reproduce
-the historical GLM evidence.
+The [selected-run reproduction package](https://github.com/audreina17/adapters/tree/620c393262cf360423a19320ac062fe08b29eb1d/validation/discoverphysics/reproduction) supplies the recorded inference
+helpers, agent and exact task assets for Gravity, Yukawa, Oscillator and Hubble.
+The official upstream source is unchanged at the pinned revision. The portable
+launcher replaces local cloud-session orchestration; its source and asset checks
+passed offline, but it has not itself been rerun against a paid model. The HF
+upload retains the historical run outputs and provenance. The commands below
+describe the separate Opus reference plan, not those historical GLM runs.
 
 ### Reference Opus parity plan (not the recorded GLM results)
 
@@ -357,7 +359,7 @@ packaging, entry points, and paths.
   Uploading these artifacts does not establish dataset registry publication.
 - Partial historical parity is recorded above and in `parity_experiment.json`.
   Full-adapter acceptance, current-head equivalence, and the separate standard
-  CLI-agent check remain pending. The reviewer-runtime patch/fork is deferred.
+  CLI-agent check remain pending. Original-side reproduction sources are linked above.
   An oracle pass does not establish parity or CLI-agent compatibility.
 - Open review limitations: the root-only verifier token shares the main container
   with the agent; discovery credentials expose native parity prompts; experiment

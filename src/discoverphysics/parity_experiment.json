@@ -3,7 +3,7 @@
     "adapter_name": "discoverphysics",
     "model": "zai-org/GLM-5.3-Flash",
     "number_of_runs": 3,
-    "original_parity_repo": "",
+    "original_parity_repo": "https://github.com/audreina17/adapters/tree/620c393262cf360423a19320ac062fe08b29eb1d/validation/discoverphysics/reproduction",
     "adapter_pr": [
       "https://github.com/harbor-framework/adapters/pull/9",
       "https://github.com/harbor-framework/harbor/pull/2974"
@@ -19,10 +19,10 @@
     "date": "2026-09-28",
     "adapted_benchmark_size": 22,
     "parity_benchmark_size": 2,
-    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Gravity stream-v1, seeds 0/1; 2 of 22 tasks. Date is the last model-response UTC date. Do not pool with durable-v3. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
+    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Gravity with streamed inference, seeds 0/1; 2 of 22 tasks. Date is the last model-response UTC date. Do not pool with the persistent-worker comparison. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. The linked reproduction package supplies the pinned upstream revision, recorded inference helpers, agent and exact selected task assets; the portable launcher replaces local session orchestration and has only been checked offline.",
     "metrics": [
       {
-        "benchmark_name": "DiscoverPhysics/gravity stream-v1 (2 tasks)",
+        "benchmark_name": "DiscoverPhysics/gravity (2 tasks)",
         "metric": "law_success_rate (fraction; normalized_mse<0.1 and explanation_score>=0.75)",
         "original": "1.00000000 ± 0.00000000",
         "original_runs": [
@@ -43,7 +43,7 @@
     "adapter_name": "discoverphysics",
     "model": "zai-org/GLM-5.3-Flash",
     "number_of_runs": 3,
-    "original_parity_repo": "",
+    "original_parity_repo": "https://github.com/audreina17/adapters/tree/620c393262cf360423a19320ac062fe08b29eb1d/validation/discoverphysics/reproduction",
     "adapter_pr": [
       "https://github.com/harbor-framework/adapters/pull/9",
       "https://github.com/harbor-framework/harbor/pull/2974"
@@ -59,10 +59,10 @@
     "date": "2026-10-09",
     "adapted_benchmark_size": 44,
     "parity_benchmark_size": 6,
-    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Durable-v3 persistent worker: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6 of 44 tasks in the historical four-seed universe. Each repetition weights the six tasks equally. Evidence dates October 7–9, 2026; date is the last model-response UTC date. Do not pool with Gravity. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. original_parity_repo is empty because the reviewer patch/fork is deferred.",
+    "notes": "The run-score range-overlap parity criterion is met for this tested subset. Persistent-worker law execution: Yukawa seeds 2/3, Oscillator and Hubble seeds 0/1; 6 of 44 tasks in the historical four-seed universe. Each repetition weights the six tasks equally. Evidence dates October 7–9, 2026; date is the last model-response UTC date. Do not pool with Gravity. Partial historical evidence; full-adapter acceptance and migrated-head equivalence are not established. Both discovery and judging use the stated GLM model, a floating provider ID. Failures and truncated replies in these tested subsets are retained. Source pins, execution settings, and qualifications are in README and HF PR #270. The linked reproduction package supplies the pinned upstream revision, recorded inference helpers, agent and exact selected task assets; the portable launcher replaces local session orchestration and has only been checked offline.",
     "metrics": [
       {
-        "benchmark_name": "DiscoverPhysics/durable-v3 Yukawa, Oscillator, Hubble (6 tasks)",
+        "benchmark_name": "DiscoverPhysics/Yukawa, Oscillator, Hubble with persistent-worker law execution (6 tasks)",
         "metric": "law_success_rate (fraction; normalized_mse<0.1 and explanation_score>=0.75)",
         "original": "0.11111111 ± 0.05555556",
         "original_runs": [
