@@ -367,9 +367,20 @@ packaging, entry points, and paths.
   is stacked on #271 and preserves its oracle files. Merge #271 before #270.
   Uploading these artifacts does not establish dataset registry publication.
 - Partial historical parity is recorded above and in `parity_experiment.json`.
-  Full-adapter acceptance, current-head equivalence, and the separate standard
-  CLI-agent check remain pending. Original-side reproduction sources are linked above.
-  An oracle pass does not establish parity or CLI-agent compatibility.
+  It covers the listed archived configurations, not the full suite or every
+  later task revision. Original-side reproduction sources are linked above.
+- Harbor-only CLI checks used stock OpenCode 1.19.5, GLM-5.3-Flash through W&B
+  Inference, Harbor 0.25.0, and the task's default 7,200-second agent budget.
+  Gravity submitted within that budget and received reward 1, explanation
+  score 1, and normalized MSE 0.000014863571162206052 with the explicit
+  8,192-token judge setting. The CLI emitted a terminal stop but exited 1;
+  its EPIPE diagnostics and Harbor exception are retained with the result.
+  Hubble also submitted within the budget, but its original 1,024-token
+  verifier attempts failed. A separate 8,192-token replay of the same Hubble
+  submission and three exact experiment rounds returned a valid reward 0:
+  trajectory error passed, but explanation score 0.70 was below 0.75.
+  The frozen-output replay is not a new CLI run. These compatibility checks
+  do not replace or extend the historical matched parity.
 - Open review limitations: the root-only verifier token shares the main container
   with the agent; discovery credentials expose native parity prompts; experiment
   requests have no per-round work bound; private judge reasoning is written to
