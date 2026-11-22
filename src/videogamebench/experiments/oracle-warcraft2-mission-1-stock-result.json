@@ -1,0 +1,226 @@
+{
+  "upstream_commit": "faab53179cb4babdd102f35cb83c24a5f2c29d05",
+  "original_timed_actions": 359,
+  "reference_score": 720,
+  "checks_sha256": "7e44700d4181707873be13ad1442f5c80caf1a50b2ddd0a15912b7c0c9ec5dae",
+  "replay_sha256": "d89214672e4a558f8ebe6d9bd7390369f003255b6e3a7bb1111cc482bf7e4a80",
+  "runs": [
+    {
+      "name": "boot-1",
+      "controller_seed": 73,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 660,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ]
+    },
+    {
+      "name": "boot-2",
+      "controller_seed": 42,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ]
+    },
+    {
+      "name": "boot-3",
+      "controller_seed": 42,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ]
+    },
+    {
+      "name": "boot-4",
+      "controller_seed": 42,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ]
+    },
+    {
+      "name": "boot-5",
+      "controller_seed": 13,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "Zuldare viewport 48 row",
+        "One recorded scout takes northwestern route",
+        "Construction option active before 172",
+        "Peon selected before farm order 187",
+        "Construction option active before 189",
+        "Worker selected for recorded lumber order 194",
+        "Barracks builder selected 212",
+        "Zuldare viewport 279 row"
+      ]
+    },
+    {
+      "name": "boot-6",
+      "controller_seed": 101,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Zuldare viewport 19 row",
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row",
+        "Zuldare viewport 291 row"
+      ]
+    },
+    {
+      "name": "boot-7",
+      "controller_seed": 0,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row",
+        "Zuldare viewport 291 row"
+      ]
+    },
+    {
+      "name": "boot-8",
+      "controller_seed": 7,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ]
+    },
+    {
+      "name": "boot-9",
+      "controller_seed": 2026,
+      "deliberately_missed_click": false,
+      "upstream_runner": "DOSEvaluator",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ]
+    },
+    {
+      "name": "client-clean",
+      "controller_seed": null,
+      "deliberately_missed_click": false,
+      "upstream_runner": "generated Harbor solve.sh and game service",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 660,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "Original scout destination 134 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ],
+      "dispatched_steps": 370
+    },
+    {
+      "name": "client-holdout",
+      "controller_seed": null,
+      "deliberately_missed_click": false,
+      "upstream_runner": "generated Harbor solve.sh and game service",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 660,
+      "corrected_checks": [
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Zuldare viewport 279 row"
+      ],
+      "dispatched_steps": 368
+    },
+    {
+      "name": "client-regression",
+      "controller_seed": null,
+      "deliberately_missed_click": true,
+      "upstream_runner": "generated Harbor solve.sh and game service",
+      "victory": true,
+      "mission_II_briefing": true,
+      "completed": true,
+      "error": null,
+      "score": 720,
+      "corrected_checks": [
+        "Zuldare viewport 19 column",
+        "Original scout destination 39 row",
+        "One recorded scout takes northwestern route",
+        "Peon selected before farm order 187",
+        "Zuldare viewport 279 row"
+      ],
+      "dispatched_steps": 373
+    }
+  ],
+  "archive": "warcraft2-mission-1-stock.tar.gz",
+  "endpoint": "II. Raid at Hillsbrad briefing",
+  "fresh_boot_wins": 11,
+  "fresh_boot_attempts": 11,
+  "deliberate_miss_test_wins": 1,
+  "source_action_budget": 359,
+  "configured_max_steps": 1325,
+  "checkpoint_count": 0,
+  "mission_restarts": 0,
+  "notes": "Displayed scores were read from game results screens. Each run started the stock game from boot. The deliberate-miss test changes only the mouse move at input 185 to select the Great Hall at 186."
+}

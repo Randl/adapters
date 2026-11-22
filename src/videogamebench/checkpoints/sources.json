@@ -1,0 +1,90 @@
+{
+  "paper": "https://arxiv.org/html/2505.18134v3#A3.T7",
+  "upstream_revision": "faab53179cb4babdd102f35cb83c24a5f2c29d05",
+  "games": {
+    "zelda": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=rLFXGs1Rr6c",
+      "split": "test"
+    },
+    "doom2": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=nhmRxFf02JA",
+      "split": "test"
+    },
+    "kirby": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=n8CSolb0hjc",
+      "split": "test"
+    },
+    "civ": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=XnfkrhREDDM",
+      "split": "test",
+      "alternate_paper_url": "https://www.youtube.com/watch?v=o6_5PIsJkYk"
+    },
+    "need_for_speed": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=1Sf7_TbG8Js",
+      "split": "test"
+    },
+    "incredible-machine": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=pTbSMKGQ_rU",
+      "split": "test"
+    },
+    "pokemon_crystal": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=HQEaaIuyKAM",
+      "split": "test"
+    },
+    "doom": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=Q4GiCg_m8wA",
+      "split": "dev"
+    },
+    "quake": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=Y8k9c-6Me_A",
+      "split": "dev"
+    },
+    "warcraft2": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=DWjZQzviTUs",
+      "split": "dev"
+    },
+    "oregon_trail": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=FaWmldKoo9Y",
+      "split": "dev"
+    },
+    "x-com": {
+      "walkthrough_url": "https://www.youtube.com/playlist?list=PLvqxe4XbcSiFAIFbzADIjQg9TPBQrxaW4",
+      "split": "dev"
+    },
+    "scooby_doo": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=yYfpaz9NwU8",
+      "split": "dev"
+    },
+    "prince": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=qMOBiT3F6AM",
+      "split": "dev"
+    },
+    "age_of_empires": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=hqsbQzpFRBI",
+      "split": "dev",
+      "additional_walkthrough_urls": [
+        "https://www.youtube.com/watch?v=e0B0tMANkCo"
+      ]
+    },
+    "pokemon_red": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=hYcotDHI0dg",
+      "split": "dev"
+    },
+    "super_mario_land": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=vfaV2VDBQEk",
+      "split": "dev"
+    },
+    "castlevania": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=oL5TwYG0iQ8",
+      "split": "dev"
+    },
+    "donkey_kong": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=tqUU9pwUxQo",
+      "split": "dev"
+    },
+    "mega_man": {
+      "walkthrough_url": "https://www.youtube.com/watch?v=wpwESPNjAk0",
+      "split": "dev"
+    }
+  }
+}

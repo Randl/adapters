@@ -1,0 +1,50 @@
+[
+  {
+    "adapter_name": "videogamebench",
+    "adapter_builders": [
+      "Evgenii Zheltonozhskii (zheltonozhskiy@gmail.com)"
+    ],
+    "original_benchmark": [
+      {
+        "split": "test",
+        "size": 7,
+        "harness": "agent",
+        "supported_agents": [
+          "vgagent@faab531"
+        ],
+        "adaptable": true,
+        "notes": "All public test games; three secret games are not released."
+      },
+      {
+        "split": "dev",
+        "size": 13,
+        "harness": "agent",
+        "supported_agents": [
+          "vgagent@faab531"
+        ],
+        "adaptable": true,
+        "notes": "All public dev games; only Super Mario Land has released checkpoints, so twelve games collect trajectories without a completion score."
+      }
+    ],
+    "harbor_adapter": [
+      {
+        "split": "full",
+        "adapted_benchmark_size": 20,
+        "parity_benchmark_size": 0,
+        "parity_sampling_rate": 0,
+        "registry_benchmark_size": 0,
+        "added_agents": [
+          "videogamebench-vgagent@faab531"
+        ],
+        "parity_matching_agents": [
+          "None"
+        ],
+        "parity_unmatching_agents": [
+          "None"
+        ],
+        "parity_costs": "$0",
+        "notes": "Prepared: seven-game Lite model parity, three repetitions per side; model parity has not been executed. One human Super Mario Land dev oracle (8,939 actions) passed a fresh Harbor replay with reward 1.0 and 2/2 checkpoints. Other games have no validated oracle."
+      }
+    ]
+  }
+]

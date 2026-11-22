@@ -1,0 +1,93 @@
+{
+  "upstream_revision": "faab53179cb4babdd102f35cb83c24a5f2c29d05",
+  "method": "Executed the unmodified upstream BaseVGBenchEvaluator checkpoint method with repeated published reference images, not a game episode.",
+  "game": "doom2",
+  "threshold": 8,
+  "results": [
+    {
+      "observation_checkpoint": 1,
+      "checks": 16,
+      "reached_final": true,
+      "checkpoint_indices": [
+        1,
+        5,
+        11,
+        12,
+        14,
+        16,
+        17,
+        20,
+        21,
+        23,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    {
+      "observation_checkpoint": 17,
+      "checks": 24,
+      "reached_final": true,
+      "checkpoint_indices": [
+        1,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    {
+      "observation_checkpoint": 21,
+      "checks": 24,
+      "reached_final": true,
+      "checkpoint_indices": [
+        1,
+        5,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+FROM {base_image}
+RUN apt-get update && apt-get install -y --no-install-recommends xvfb xauth libgl1 libglib2.0-0 && rm -rf /var/lib/apt/lists/*
+COPY requirements.txt /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt && playwright install --with-deps chromium
+COPY game /opt/game
+COPY play.py /opt/game/play.py
+COPY client /opt/game/client
+ENV PYTHONPATH=/opt/game/upstream:/opt/game/runtime
+WORKDIR /opt/game/upstream
+CMD ["xvfb-run", "-a", "python", "/opt/game/runtime/server.py"]

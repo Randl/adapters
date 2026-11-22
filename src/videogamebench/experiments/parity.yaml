@@ -1,0 +1,26 @@
+# Selected parity: all seven public test games, Lite, three runs per side.
+# Upstream's 15,000 evaluator steps and exact VG-Agent loop on both sides.
+mode: lite
+model: gpt-4o-2024-08-06
+max_steps: 15000
+action_frames: 15
+skip_frames: 1
+step_delay: 0.0
+threshold: null
+temperature: 0.7
+max_tokens: 1024
+history_tokens: 4000
+max_context_size: 20
+num_screenshots_per_action: 0
+max_cost: 30.0
+api_base: null
+api_key_env: OPENAI_API_KEY
+seed: null
+agent_timeout_sec: 86400
+verifier_timeout_sec: 120
+build_timeout_sec: 1800
+cpus: 2
+memory_mb: 4096
+storage_mb: 20480
+record_video: true
+video_fps: 5.0

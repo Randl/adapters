@@ -1,0 +1,51 @@
+{
+  "kind": "human_oracle_validation",
+  "game": "super_mario_land",
+  "split": "dev",
+  "metric": "final_checkpoint_completion",
+  "reward": 1.0,
+  "checkpoints_reached": 2,
+  "checkpoint_count": 2,
+  "actions": 8939,
+  "validation_runs": 1,
+  "controller": "manual replay",
+  "harbor_version": "0.24.0",
+  "pyboy_version": "2.6.1",
+  "fresh_boot": true,
+  "boot_cache": false,
+  "snapshots": false,
+  "model_parity": false,
+  "upstream_revision": "faab53179cb4babdd102f35cb83c24a5f2c29d05",
+  "source_sha256": "e8fc596adac7876b38a503261d7c643b37aba42507ea6d1139d910ea8d9905bd",
+  "assets": {
+    "super_mario_land.gb": "49fbd2f61f953d5ef28cab73e357e524c3009ad19fcf30f6a9ee0ae273be41dc"
+  },
+  "task_identity": "ed1c185c72e1677e4bd44481070443589b74e350aede2a3630cccf15f1edc232",
+  "settings_file": "experiments/oracle-super-mario-land.yaml",
+  "input_file": "oracle-inputs/super_mario_land.json",
+  "input_sha256": "8efbcf735ede87912c0638d318a2167317a5ef626b52d6e9d74ff9da8bd95f65",
+  "started_at": "2026-10-21T12:49:22.425041Z",
+  "finished_at": "2026-10-21T13:28:57.871440Z",
+  "exception_info": null,
+  "verifier_result": {
+    "identity": "ed1c185c72e1677e4bd44481070443589b74e350aede2a3630cccf15f1edc232",
+    "task_id": "videogamebench-super-mario-land-lite",
+    "status": "stopped",
+    "completion": 1,
+    "checkpoint_index": 2,
+    "checkpoint_count": 2,
+    "steps": 8939,
+    "controller": "manual",
+    "error": null,
+    "video_error": null,
+    "model": "gpt-4o-2024-08-06",
+    "cost": 0.0
+  },
+  "evidence_sha256": {
+    "result.json": "08c8df8de18fb05cba2615d5a798d29cbbb41084d28b50acf7d6ff1b2e503b51",
+    "verifier/reward.txt": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b",
+    "verifier/result.json": "8ced7d16da286a3e694c767ce4d1e0c3ff31a3600b6c29acc53d345213700b28",
+    "artifacts/state/actions.json": "78c72525d5b100f099240104f37fd8d39af72a1e98c2b21d453d2697098959af"
+  },
+  "limitations": "One successful fresh Harbor replay of this ROM/configuration. This is not model parity or validation of other games. Licensed ROMs and videos are not bundled."
+}

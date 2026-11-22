@@ -1,0 +1,2423 @@
+{
+  "identity": "7e536d1d1373767a8d0182424c98698290e921ee215d2856bd3b0e2563c330d5",
+  "game": "warcraft2",
+  "mode": "realtime",
+  "actions": [
+    {
+      "action": {
+        "action": "move",
+        "action_input": "296,124"
+      },
+      "elapsed_sec": 34.998958514072,
+      "control_elapsed_sec": 6.47310009598732
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 35.22968924604356,
+      "control_elapsed_sec": 6.703830808168277
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "508,391"
+      },
+      "elapsed_sec": 40.37502609100193,
+      "control_elapsed_sec": 11.849167161155492
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 40.99566268012859,
+      "control_elapsed_sec": 12.469803837127984
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "388,214"
+      },
+      "elapsed_sec": 51.120606009149924,
+      "control_elapsed_sec": 22.594747198047116
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 51.53556106216274,
+      "control_elapsed_sec": 23.00970217306167
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "395,222"
+      },
+      "elapsed_sec": 55.12106712209061,
+      "control_elapsed_sec": 26.595208185957745
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 55.34471225994639,
+      "control_elapsed_sec": 26.81885335012339
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "473,107"
+      },
+      "elapsed_sec": 57.942785734077916,
+      "control_elapsed_sec": 29.416926810052246
+    },
+    {
+      "action": {
+        "action": "drag",
+        "action_input": "534,171"
+      },
+      "elapsed_sec": 58.21583023900166,
+      "control_elapsed_sec": 29.689971304964274
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "584,154"
+      },
+      "elapsed_sec": 63.607248390093446,
+      "control_elapsed_sec": 35.081389473052695
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 63.815040121087804,
+      "control_elapsed_sec": 35.28918118216097
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "466,288"
+      },
+      "elapsed_sec": 65.38902987306938,
+      "control_elapsed_sec": 36.863171053119004
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 65.732660548063,
+      "control_elapsed_sec": 37.206801674095914
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "111,304"
+      },
+      "elapsed_sec": 67.65503454604186,
+      "control_elapsed_sec": 39.12917579105124
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 68.29592775716446,
+      "control_elapsed_sec": 39.77006887597963
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "317,260"
+      },
+      "elapsed_sec": 75.07228504610248,
+      "control_elapsed_sec": 46.54642613604665
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 75.51953607494943,
+      "control_elapsed_sec": 46.993677175138146
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "317,260"
+      },
+      "elapsed_sec": 75.99513554107398,
+      "control_elapsed_sec": 47.46927663311362
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 76.21576319099404,
+      "control_elapsed_sec": 47.689904239960015
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "295,78"
+      },
+      "elapsed_sec": 78.66293792496435,
+      "control_elapsed_sec": 50.13707897509448
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 79.0312298790086,
+      "control_elapsed_sec": 50.50537098105997
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "379,373"
+      },
+      "elapsed_sec": 79.89523528306745,
+      "control_elapsed_sec": 51.36937677813694
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 80.44443403813057,
+      "control_elapsed_sec": 51.918575247051194
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "343,37"
+      },
+      "elapsed_sec": 80.89809353696182,
+      "control_elapsed_sec": 52.37223474914208
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 81.51656268606894,
+      "control_elapsed_sec": 52.990703768096864
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "455,279"
+      },
+      "elapsed_sec": 81.86433948203921,
+      "control_elapsed_sec": 53.33848059596494
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 82.62338976794854,
+      "control_elapsed_sec": 54.0975308760535
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "395,243"
+      },
+      "elapsed_sec": 83.32987475511618,
+      "control_elapsed_sec": 54.80401587113738
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 83.56580353714526,
+      "control_elapsed_sec": 55.03994479007088
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "545,45"
+      },
+      "elapsed_sec": 83.98241477808915,
+      "control_elapsed_sec": 55.45655603404157
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 84.44917299808003,
+      "control_elapsed_sec": 55.92331489804201
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "472,295"
+      },
+      "elapsed_sec": 86.0628607890103,
+      "control_elapsed_sec": 57.53700200212188
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 86.56651642802171,
+      "control_elapsed_sec": 58.04065766208805
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "110,293"
+      },
+      "elapsed_sec": 88.2632324330043,
+      "control_elapsed_sec": 59.73737354599871
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 88.93019219208509,
+      "control_elapsed_sec": 60.4043332580477
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "553,116"
+      },
+      "elapsed_sec": 92.36709240195341,
+      "control_elapsed_sec": 63.84123348607682
+    },
+    {
+      "action": {
+        "action": "drag",
+        "action_input": "579,161"
+      },
+      "elapsed_sec": 93.21987721300684,
+      "control_elapsed_sec": 64.69401830411516
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "120,338"
+      },
+      "elapsed_sec": 98.57545372098684,
+      "control_elapsed_sec": 70.04959480208345
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 99.44519604905508,
+      "control_elapsed_sec": 70.91933723911643
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "201,387"
+      },
+      "elapsed_sec": 101.47919028811157,
+      "control_elapsed_sec": 72.95333168515936
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 101.71603450505063,
+      "control_elapsed_sec": 73.19017558102496
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "121,381"
+      },
+      "elapsed_sec": 103.41488322406076,
+      "control_elapsed_sec": 74.88902428094298
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 103.64576973998919,
+      "control_elapsed_sec": 75.11991150700487
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "136,346"
+      },
+      "elapsed_sec": 113.03147033811547,
+      "control_elapsed_sec": 84.50561147299595
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 113.40400605206378,
+      "control_elapsed_sec": 84.87814712594263
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "585,190"
+      },
+      "elapsed_sec": 117.50304534006864,
+      "control_elapsed_sec": 88.97718643210828
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 118.3541585910134,
+      "control_elapsed_sec": 89.8282996499911
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "467,288"
+      },
+      "elapsed_sec": 119.27381827798672,
+      "control_elapsed_sec": 90.74795940914191
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 119.5807996110525,
+      "control_elapsed_sec": 91.05494082998484
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "104,301"
+      },
+      "elapsed_sec": 121.15956671815366,
+      "control_elapsed_sec": 92.63371261302382
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 121.80993478815071,
+      "control_elapsed_sec": 93.28407587809488
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "106,302"
+      },
+      "elapsed_sec": 122.39174190815538,
+      "control_elapsed_sec": 93.86588295805268
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 122.61057214997709,
+      "control_elapsed_sec": 94.08471327205189
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "108,302"
+      },
+      "elapsed_sec": 126.02069570217282,
+      "control_elapsed_sec": 97.4948368461337
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 126.26103627216071,
+      "control_elapsed_sec": 97.73517733206972
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "125,299"
+      },
+      "elapsed_sec": 131.78337938105687,
+      "control_elapsed_sec": 103.25752045912668
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 132.0142513550818,
+      "control_elapsed_sec": 103.4883925251197
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "125,299"
+      },
+      "elapsed_sec": 132.5899559610989,
+      "control_elapsed_sec": 104.064096970018
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 132.8120777020231,
+      "control_elapsed_sec": 104.28621893096715
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "583,184"
+      },
+      "elapsed_sec": 133.970104343025,
+      "control_elapsed_sec": 105.44424543809146
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 134.81484739109874,
+      "control_elapsed_sec": 106.28898871294223
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "583,184"
+      },
+      "elapsed_sec": 135.14647313114256,
+      "control_elapsed_sec": 106.62061432399787
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 135.3800392211415,
+      "control_elapsed_sec": 106.85418028198183
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "583,184"
+      },
+      "elapsed_sec": 135.8636035420932,
+      "control_elapsed_sec": 107.33774459105916
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 136.09763872413896,
+      "control_elapsed_sec": 107.57177979499102
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "101,381"
+      },
+      "elapsed_sec": 137.45563782006502,
+      "control_elapsed_sec": 108.92977888905443
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 138.4471108559519,
+      "control_elapsed_sec": 109.92125190398656
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "592,296"
+      },
+      "elapsed_sec": 150.84615048905835,
+      "control_elapsed_sec": 122.32029163115658
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 151.7287703801412,
+      "control_elapsed_sec": 123.20291145704687
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "251,146"
+      },
+      "elapsed_sec": 152.72052109311335,
+      "control_elapsed_sec": 124.19466230506077
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 153.5195144410245,
+      "control_elapsed_sec": 124.99365557101555
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "581,184"
+      },
+      "elapsed_sec": 154.66474300506525,
+      "control_elapsed_sec": 126.13888426404446
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 155.28131532017142,
+      "control_elapsed_sec": 126.7554565120954
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "119,374"
+      },
+      "elapsed_sec": 157.03564049396664,
+      "control_elapsed_sec": 128.50978162209503
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 157.91131911310367,
+      "control_elapsed_sec": 129.38546018209308
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "113,302"
+      },
+      "elapsed_sec": 162.73609605897218,
+      "control_elapsed_sec": 134.21023717406206
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 163.03774416004308,
+      "control_elapsed_sec": 134.51188554195687
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "423,212"
+      },
+      "elapsed_sec": 167.12279553595,
+      "control_elapsed_sec": 138.5969366710633
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 167.71512322803028,
+      "control_elapsed_sec": 139.1892643731553
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "429,193"
+      },
+      "elapsed_sec": 169.24881706014276,
+      "control_elapsed_sec": 140.72295816009864
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 169.48254842101596,
+      "control_elapsed_sec": 140.9566897409968
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "488,186"
+      },
+      "elapsed_sec": 179.6719518180471,
+      "control_elapsed_sec": 151.14609287516214
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 179.8910141659435,
+      "control_elapsed_sec": 151.3651552591473
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "560,202"
+      },
+      "elapsed_sec": 186.39265417400748,
+      "control_elapsed_sec": 157.86679526907392
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 186.63023750600405,
+      "control_elapsed_sec": 158.10437862505205
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "521,50"
+      },
+      "elapsed_sec": 188.2325193430297,
+      "control_elapsed_sec": 159.70666043600067
+    },
+    {
+      "action": {
+        "action": "drag",
+        "action_input": "598,144"
+      },
+      "elapsed_sec": 188.54757661698386,
+      "control_elapsed_sec": 160.0217177181039
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "451,46"
+      },
+      "elapsed_sec": 193.94510991708376,
+      "control_elapsed_sec": 165.41925128316507
+    },
+    {
+      "action": {
+        "action": "drag",
+        "action_input": "519,168"
+      },
+      "elapsed_sec": 194.2934072909411,
+      "control_elapsed_sec": 165.76754868612625
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "109,378"
+      },
+      "elapsed_sec": 196.1198828839697,
+      "control_elapsed_sec": 167.59402400115505
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 196.9406234580092,
+      "control_elapsed_sec": 168.414764510002
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "429,106"
+      },
+      "elapsed_sec": 202.5201654159464,
+      "control_elapsed_sec": 173.99430650798604
+    },
+    {
+      "action": {
+        "action": "drag",
+        "action_input": "573,255"
+      },
+      "elapsed_sec": 203.26155687705614,
+      "control_elapsed_sec": 174.7356983430218
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "495,93"
+      },
+      "elapsed_sec": 204.14605840295553,
+      "control_elapsed_sec": 175.6201995180454
+    },
+    {
+      "action": {
+        "action": "drag",
+        "action_input": "639,228"
+      },
+      "elapsed_sec": 204.4937199819833,
+      "control_elapsed_sec": 175.96786109707318
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "399,190"
+      },
+      "elapsed_sec": 206.44042379315943,
+      "control_elapsed_sec": 177.91456484794617
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 206.89418234094046,
+      "control_elapsed_sec": 178.36832340806723
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "105,384"
+      },
+      "elapsed_sec": 208.57679246296175,
+      "control_elapsed_sec": 180.0509335261304
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 209.22639427497052,
+      "control_elapsed_sec": 180.7005353490822
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "108,304"
+      },
+      "elapsed_sec": 210.45632613101043,
+      "control_elapsed_sec": 181.93046721513383
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 210.67345620808192,
+      "control_elapsed_sec": 182.14759728196077
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "318,193"
+      },
+      "elapsed_sec": 213.25729311909527,
+      "control_elapsed_sec": 184.7314341829624
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 213.7145124990493,
+      "control_elapsed_sec": 185.18865357502364
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "451,305"
+      },
+      "elapsed_sec": 215.22452696808614,
+      "control_elapsed_sec": 186.69866820401512
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 215.58164567197673,
+      "control_elapsed_sec": 187.055786781013
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "105,302"
+      },
+      "elapsed_sec": 217.04803306399845,
+      "control_elapsed_sec": 188.5221741499845
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 217.68037121603265,
+      "control_elapsed_sec": 189.15451231808402
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "105,302"
+      },
+      "elapsed_sec": 218.1744449599646,
+      "control_elapsed_sec": 189.64858606806956
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 218.4122228550259,
+      "control_elapsed_sec": 189.88636394008063
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "105,302"
+      },
+      "elapsed_sec": 218.92648003296927,
+      "control_elapsed_sec": 190.40062112011947
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 219.16032432811335,
+      "control_elapsed_sec": 190.63446540315636
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "106,307"
+      },
+      "elapsed_sec": 231.52951474208385,
+      "control_elapsed_sec": 203.00365582713857
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 231.75988198909909,
+      "control_elapsed_sec": 203.23402322805487
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "404,244"
+      },
+      "elapsed_sec": 232.549469813006,
+      "control_elapsed_sec": 204.02361090714112
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 233.1222353950143,
+      "control_elapsed_sec": 204.59637647215277
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "107,390"
+      },
+      "elapsed_sec": 234.87334480904974,
+      "control_elapsed_sec": 206.34748587105423
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 235.56466054613702,
+      "control_elapsed_sec": 207.0388016209472
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "110,304"
+      },
+      "elapsed_sec": 237.1496746011544,
+      "control_elapsed_sec": 208.6238157299813
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 237.38045654003508,
+      "control_elapsed_sec": 208.8545977191534
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "572,41"
+      },
+      "elapsed_sec": 242.36905344808474,
+      "control_elapsed_sec": 213.8431945219636
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 243.35679298406467,
+      "control_elapsed_sec": 214.83093422302045
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "297,186"
+      },
+      "elapsed_sec": 249.53160410700366,
+      "control_elapsed_sec": 221.0057451899629
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 250.11469093617052,
+      "control_elapsed_sec": 221.58883206616156
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "590,126"
+      },
+      "elapsed_sec": 250.88913803407922,
+      "control_elapsed_sec": 222.3632791209966
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 251.4440525060054,
+      "control_elapsed_sec": 222.9181935749948
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "590,126"
+      },
+      "elapsed_sec": 252.48183160601184,
+      "control_elapsed_sec": 223.95597271900624
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 252.7116848169826,
+      "control_elapsed_sec": 224.18582589412108
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "324,82"
+      },
+      "elapsed_sec": 253.46510366513394,
+      "control_elapsed_sec": 224.93924474995583
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 253.95895119197667,
+      "control_elapsed_sec": 225.43309239810333
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "325,81"
+      },
+      "elapsed_sec": 254.98179572308436,
+      "control_elapsed_sec": 226.4559368409682
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 255.2099225060083,
+      "control_elapsed_sec": 226.68406364601105
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "323,71"
+      },
+      "elapsed_sec": 255.90550466696732,
+      "control_elapsed_sec": 227.3796457441058
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 256.14425817201845,
+      "control_elapsed_sec": 227.6183993711602
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "401,65"
+      },
+      "elapsed_sec": 261.70490038511343,
+      "control_elapsed_sec": 233.17904174514115
+    },
+    {
+      "action": {
+        "action": "drag",
+        "action_input": "406,190"
+      },
+      "elapsed_sec": 261.92543625901453,
+      "control_elapsed_sec": 233.39957750914618
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 267.23419909598306,
+      "control_elapsed_sec": 238.70834050700068
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 268.7142248940654,
+      "control_elapsed_sec": 240.1883667721413
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "417,334"
+      },
+      "elapsed_sec": 272.90554270194843,
+      "control_elapsed_sec": 244.37968383915722
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 273.2085826159455,
+      "control_elapsed_sec": 244.6827238369733
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "111,300"
+      },
+      "elapsed_sec": 274.79340404015966,
+      "control_elapsed_sec": 246.26754509704188
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 275.35520668909885,
+      "control_elapsed_sec": 246.8293478989508
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "500,88"
+      },
+      "elapsed_sec": 280.98399791214615,
+      "control_elapsed_sec": 252.458139232127
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 281.84401402715594,
+      "control_elapsed_sec": 253.31815510313027
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "497,87"
+      },
+      "elapsed_sec": 284.977624429157,
+      "control_elapsed_sec": 256.45176550210454
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 285.20731412712485,
+      "control_elapsed_sec": 256.6814553940203
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "105,302"
+      },
+      "elapsed_sec": 289.2342513210606,
+      "control_elapsed_sec": 260.70839240704663
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 290.0240465151146,
+      "control_elapsed_sec": 261.49818759411573
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "347,293"
+      },
+      "elapsed_sec": 292.16404176317155,
+      "control_elapsed_sec": 263.6381828880403
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 292.62372138909996,
+      "control_elapsed_sec": 264.0978624681011
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "496,82"
+      },
+      "elapsed_sec": 293.946281721117,
+      "control_elapsed_sec": 265.42042278312147
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 294.42724380106665,
+      "control_elapsed_sec": 265.90138502116315
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "409,345"
+      },
+      "elapsed_sec": 297.4815480040852,
+      "control_elapsed_sec": 268.9556890761014
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 297.98621495696716,
+      "control_elapsed_sec": 269.4603560939431
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "117,307"
+      },
+      "elapsed_sec": 299.68151781708,
+      "control_elapsed_sec": 271.15565925394185
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 300.3506289089564,
+      "control_elapsed_sec": 271.82477017398924
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 307.58652056916617,
+      "control_elapsed_sec": 279.06066164397635
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "326,127"
+      },
+      "elapsed_sec": 309.41736414516345,
+      "control_elapsed_sec": 280.8915052241646
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 309.9227165260818,
+      "control_elapsed_sec": 281.3968576199841
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 310.29046519100666,
+      "control_elapsed_sec": 281.7646063209977
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 310.97779851802625,
+      "control_elapsed_sec": 282.45193959213793
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "325,69"
+      },
+      "elapsed_sec": 311.8511108160019,
+      "control_elapsed_sec": 283.3252519010566
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 312.07344341208227,
+      "control_elapsed_sec": 283.5475845229812
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 314.2992901520338,
+      "control_elapsed_sec": 285.77343137701973
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "355,33"
+      },
+      "elapsed_sec": 315.42627056105994,
+      "control_elapsed_sec": 286.9004117560107
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 315.70354445511475,
+      "control_elapsed_sec": 287.17768552294
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 316.0853585030418,
+      "control_elapsed_sec": 287.5594995759893
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 316.9117814740166,
+      "control_elapsed_sec": 288.38592255604453
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 317.3615974900313,
+      "control_elapsed_sec": 288.8357385529671
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 317.921676361002,
+      "control_elapsed_sec": 289.39581746514887
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "347,301"
+      },
+      "elapsed_sec": 319.1780001169536,
+      "control_elapsed_sec": 290.65214121807367
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 319.7680453681387,
+      "control_elapsed_sec": 291.242186719086
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "494,88"
+      },
+      "elapsed_sec": 321.6983715391252,
+      "control_elapsed_sec": 293.1725125780795
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 322.16990715195425,
+      "control_elapsed_sec": 293.64404827496037
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "393,359"
+      },
+      "elapsed_sec": 325.0255130319856,
+      "control_elapsed_sec": 296.4996540909633
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 325.5550458310172,
+      "control_elapsed_sec": 297.02918692911044
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "107,303"
+      },
+      "elapsed_sec": 326.97901095217094,
+      "control_elapsed_sec": 298.4531519811135
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 327.5196465731133,
+      "control_elapsed_sec": 298.99378774594516
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "263,158"
+      },
+      "elapsed_sec": 328.2987168210093,
+      "control_elapsed_sec": 299.7728579530958
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 328.7068145519588,
+      "control_elapsed_sec": 300.1809561070986
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "116,394"
+      },
+      "elapsed_sec": 331.05753581994213,
+      "control_elapsed_sec": 302.531676908955
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 331.57460924214683,
+      "control_elapsed_sec": 303.0487503299955
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "111,304"
+      },
+      "elapsed_sec": 332.84155398397706,
+      "control_elapsed_sec": 304.3156950471457
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 333.07277256809175,
+      "control_elapsed_sec": 304.54691379214637
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 333.4556561091449,
+      "control_elapsed_sec": 304.9297973299399
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "343,90"
+      },
+      "elapsed_sec": 335.5461697890423,
+      "control_elapsed_sec": 307.0203108531423
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 336.12459465302527,
+      "control_elapsed_sec": 307.5987357350532
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 339.0752550291363,
+      "control_elapsed_sec": 310.5493962119799
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 339.8993133569602,
+      "control_elapsed_sec": 311.37345451302826
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "400,242"
+      },
+      "elapsed_sec": 342.13027946511284,
+      "control_elapsed_sec": 313.60442053806037
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 342.45166469505057,
+      "control_elapsed_sec": 313.9258057719562
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "101,376"
+      },
+      "elapsed_sec": 344.23457148694433,
+      "control_elapsed_sec": 315.70871259714477
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 344.8180055820849,
+      "control_elapsed_sec": 316.29214665899053
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "113,289"
+      },
+      "elapsed_sec": 346.36411149194464,
+      "control_elapsed_sec": 317.8382525839843
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 346.5881829741411,
+      "control_elapsed_sec": 318.06232419400476
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "377,147"
+      },
+      "elapsed_sec": 348.01056340895593,
+      "control_elapsed_sec": 319.4847044700291
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 348.55441120895557,
+      "control_elapsed_sec": 320.02855239994824
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "451,284"
+      },
+      "elapsed_sec": 355.1729172440246,
+      "control_elapsed_sec": 326.64705831115134
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 355.48911811504513,
+      "control_elapsed_sec": 326.96325943013653
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "101,294"
+      },
+      "elapsed_sec": 356.91492591495626,
+      "control_elapsed_sec": 328.3890669690445
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 357.55636946996674,
+      "control_elapsed_sec": 329.0305106660817
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "101,294"
+      },
+      "elapsed_sec": 360.97862251102924,
+      "control_elapsed_sec": 332.452763578156
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 361.20111556211486,
+      "control_elapsed_sec": 332.6752567309886
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "299,112"
+      },
+      "elapsed_sec": 365.31440324895084,
+      "control_elapsed_sec": 336.78854468115605
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 365.8437731319573,
+      "control_elapsed_sec": 337.317914188141
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "236,258"
+      },
+      "elapsed_sec": 366.9781156759709,
+      "control_elapsed_sec": 338.45225678314455
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 367.3370250260923,
+      "control_elapsed_sec": 338.8111661521252
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "178,10"
+      },
+      "elapsed_sec": 373.3545139140915,
+      "control_elapsed_sec": 344.82865500613116
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 373.83883411996067,
+      "control_elapsed_sec": 345.3129751889501
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "472,210"
+      },
+      "elapsed_sec": 376.9264724031091,
+      "control_elapsed_sec": 348.4006134569645
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 377.57035693805665,
+      "control_elapsed_sec": 349.04449801007286
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "454,301"
+      },
+      "elapsed_sec": 381.22603867109865,
+      "control_elapsed_sec": 352.70017972704954
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 381.4368672480341,
+      "control_elapsed_sec": 352.91100831795484
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "450,306"
+      },
+      "elapsed_sec": 389.0981521359645,
+      "control_elapsed_sec": 360.57229319307953
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 389.30264345696196,
+      "control_elapsed_sec": 360.7767845641356
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "450,306"
+      },
+      "elapsed_sec": 389.634127862053,
+      "control_elapsed_sec": 361.108268937096
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 389.8660832371097,
+      "control_elapsed_sec": 361.34022470214404
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "97,299"
+      },
+      "elapsed_sec": 393.07855991995893,
+      "control_elapsed_sec": 364.55270100501366
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 393.722981993109,
+      "control_elapsed_sec": 365.197123053018
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "397,244"
+      },
+      "elapsed_sec": 394.76271984004416,
+      "control_elapsed_sec": 366.23686091508716
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 395.31980513595045,
+      "control_elapsed_sec": 366.7939463190269
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "101,387"
+      },
+      "elapsed_sec": 396.979550274089,
+      "control_elapsed_sec": 368.45369135797955
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 397.5713553051464,
+      "control_elapsed_sec": 369.04549642605707
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "158,298"
+      },
+      "elapsed_sec": 401.0031369191129,
+      "control_elapsed_sec": 372.4772781210486
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 401.23745709308423,
+      "control_elapsed_sec": 372.71159815997817
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "151,306"
+      },
+      "elapsed_sec": 413.35589044494554,
+      "control_elapsed_sec": 384.8300314950757
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 413.58560072700493,
+      "control_elapsed_sec": 385.05974213103764
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "151,307"
+      },
+      "elapsed_sec": 424.02752238395624,
+      "control_elapsed_sec": 395.5016634471249
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 424.3369182860479,
+      "control_elapsed_sec": 395.8110594190657
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "391,99"
+      },
+      "elapsed_sec": 426.1468238350935,
+      "control_elapsed_sec": 397.6209649059456
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 426.7239315111656,
+      "control_elapsed_sec": 398.1980725810863
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "383,88"
+      },
+      "elapsed_sec": 428.42708209413104,
+      "control_elapsed_sec": 399.901223171968
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 428.79159097815864,
+      "control_elapsed_sec": 400.26573199103586
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "348,156"
+      },
+      "elapsed_sec": 431.21986715099774,
+      "control_elapsed_sec": 402.6940082840156
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 431.51190320495516,
+      "control_elapsed_sec": 402.98604438710026
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "539,51"
+      },
+      "elapsed_sec": 433.0357561481651,
+      "control_elapsed_sec": 404.50989727303386
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 433.45351640111767,
+      "control_elapsed_sec": 404.92765745008364
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "409,275"
+      },
+      "elapsed_sec": 435.0998817749787,
+      "control_elapsed_sec": 406.5740228500217
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 435.61289366614074,
+      "control_elapsed_sec": 407.08703473606147
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "101,378"
+      },
+      "elapsed_sec": 437.5776497849729,
+      "control_elapsed_sec": 409.05179094406776
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 438.1648078591097,
+      "control_elapsed_sec": 409.6389489111025
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "112,302"
+      },
+      "elapsed_sec": 439.57916146400385,
+      "control_elapsed_sec": 411.0533025620971
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 439.81937567004934,
+      "control_elapsed_sec": 411.293516773032
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "331,350"
+      },
+      "elapsed_sec": 443.18718699901365,
+      "control_elapsed_sec": 414.66132807009853
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 443.6320789300371,
+      "control_elapsed_sec": 415.1062200421002
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "105,306"
+      },
+      "elapsed_sec": 445.2426669129636,
+      "control_elapsed_sec": 416.7168080210686
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 445.68558104196563,
+      "control_elapsed_sec": 417.15972213516943
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "321,349"
+      },
+      "elapsed_sec": 447.3781301721465,
+      "control_elapsed_sec": 418.8522712441627
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 447.8015894230921,
+      "control_elapsed_sec": 419.2757310681045
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 449.28370310994796,
+      "control_elapsed_sec": 420.7578443081584
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 450.8933721440844,
+      "control_elapsed_sec": 422.36751360306516
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 451.5866721190978,
+      "control_elapsed_sec": 423.06081316713244
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 452.03523258515634,
+      "control_elapsed_sec": 423.5093739950098
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 452.2596124371048,
+      "control_elapsed_sec": 423.7337535871193
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "264,291"
+      },
+      "elapsed_sec": 453.23725862405263,
+      "control_elapsed_sec": 424.71139970002696
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 453.48324505705386,
+      "control_elapsed_sec": 424.95738620497286
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 453.9544622229878,
+      "control_elapsed_sec": 425.42860348313116
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 454.17918546916917,
+      "control_elapsed_sec": 425.6533265360631
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 454.4598721661605,
+      "control_elapsed_sec": 425.9340132321231
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 454.69142314908095,
+      "control_elapsed_sec": 426.16556424298324
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 455.4273992299568,
+      "control_elapsed_sec": 426.9015402919613
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "261,58"
+      },
+      "elapsed_sec": 456.18780436599627,
+      "control_elapsed_sec": 427.6619454261381
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 456.63385713403113,
+      "control_elapsed_sec": 428.10799821908586
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 457.41123154596426,
+      "control_elapsed_sec": 428.88537263916805
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 458.1503049521707,
+      "control_elapsed_sec": 429.62444607215
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "538,263"
+      },
+      "elapsed_sec": 459.3761004060507,
+      "control_elapsed_sec": 430.85024162195623
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 460.1264645080082,
+      "control_elapsed_sec": 431.600605614949
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowLeft"
+      },
+      "elapsed_sec": 461.1071388460696,
+      "control_elapsed_sec": 432.58127998700365
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 461.97100036405027,
+      "control_elapsed_sec": 433.4451414521318
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "449,85"
+      },
+      "elapsed_sec": 462.7736371860374,
+      "control_elapsed_sec": 434.2477783130016
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 463.14683630503714,
+      "control_elapsed_sec": 434.62097739893943
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "387,52"
+      },
+      "elapsed_sec": 463.8114116929937,
+      "control_elapsed_sec": 435.28555273707025
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 464.0347786231432,
+      "control_elapsed_sec": 435.50892012310214
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "433,52"
+      },
+      "elapsed_sec": 464.9392620669678,
+      "control_elapsed_sec": 436.41340313106775
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 465.16791070997715,
+      "control_elapsed_sec": 436.64205197407864
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "457,84"
+      },
+      "elapsed_sec": 465.69983268203214,
+      "control_elapsed_sec": 437.17397379199974
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 465.9359772549942,
+      "control_elapsed_sec": 437.41011844412424
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 466.8201409240719,
+      "control_elapsed_sec": 438.2942819909658
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowUp"
+      },
+      "elapsed_sec": 467.37981418916024,
+      "control_elapsed_sec": 438.8539553510491
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 467.6988200380001,
+      "control_elapsed_sec": 439.1729611190967
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 468.0676430501044,
+      "control_elapsed_sec": 439.54178432398476
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "536,102"
+      },
+      "elapsed_sec": 469.4319989650976,
+      "control_elapsed_sec": 440.90614038100466
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 469.7081992670428,
+      "control_elapsed_sec": 441.18234031810425
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "295,130"
+      },
+      "elapsed_sec": 470.68331055995077,
+      "control_elapsed_sec": 442.1574517679401
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": "right"
+      },
+      "elapsed_sec": 471.15168442507274,
+      "control_elapsed_sec": 442.6258254800923
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 471.84065166302025,
+      "control_elapsed_sec": 443.31479272805154
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 472.03993158903904,
+      "control_elapsed_sec": 443.51407269597985
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 472.1804996270221,
+      "control_elapsed_sec": 443.6546407029964
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 472.3417883149814,
+      "control_elapsed_sec": 443.815929396078
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 473.1571326509584,
+      "control_elapsed_sec": 444.63127374695614
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 474.1163732430432,
+      "control_elapsed_sec": 445.5905143369455
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowDown"
+      },
+      "elapsed_sec": 474.8994146590121,
+      "control_elapsed_sec": 446.3735557689797
+    },
+    {
+      "action": {
+        "action": "press_key",
+        "action_input": "ArrowRight"
+      },
+      "elapsed_sec": 475.9420824351255,
+      "control_elapsed_sec": 447.4162235329859
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "422,98"
+      },
+      "elapsed_sec": 481.8594603170641,
+      "control_elapsed_sec": 453.3336013930384
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 482.1354505009949,
+      "control_elapsed_sec": 453.60959158302285
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "332,366"
+      },
+      "elapsed_sec": 504.09119859617203,
+      "control_elapsed_sec": 475.565339689143
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 504.61590166110545,
+      "control_elapsed_sec": 476.09004324604757
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "420,238"
+      },
+      "elapsed_sec": 509.3888161459472,
+      "control_elapsed_sec": 480.86295726313256
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 509.6980986180715,
+      "control_elapsed_sec": 481.1722397641279
+    },
+    {
+      "action": {
+        "action": "move",
+        "action_input": "465,382"
+      },
+      "elapsed_sec": 515.8119782381691,
+      "control_elapsed_sec": 487.286119393073
+    },
+    {
+      "action": {
+        "action": "click",
+        "action_input": ""
+      },
+      "elapsed_sec": 516.1302377141546,
+      "control_elapsed_sec": 487.6043788359966
+    },
+    {
+      "action": {
+        "action": null,
+        "action_input": ""
+      },
+      "elapsed_sec": 520.1722566380631,
+      "control_elapsed_sec": 491.64639776106924
+    }
+  ]
+}
